@@ -1,0 +1,17 @@
+# Build outputs
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+
+# Editors
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
+
+# Drafts and scratch
+*.bak
+scratch/
