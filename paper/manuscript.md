@@ -149,14 +149,14 @@ Primitive-level status matrix. Columns D/R/C are the DRC lens; Ev/Au/St/Tr/Ex/Re
 
 | **System** | **D** | **R** | **C** | **Ev** | **Au** | **St** | **Tr** | **Ex** | **Re** | **Gaps†** | **Selected public architectural evidence** |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Hermes Agent | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
-| OpenClaw | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
-| LangGraph | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
-| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
+| Hermes Agent | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
+| OpenClaw | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
+| LangGraph | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
+| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
 | OpenAI Agents SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 1‡ | Agents, handoffs, guardrails, sessions and tracing; tracing can be disabled/unavailable under ZDR. [10][11][12] |
 | Google Antigravity | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 3‡ | Agent-first development platform with autonomous planning, execution and verification across editor, terminal and browser. [13] |
 
-Legend: ✓ = COVERED under the frozen review method. * = primitive-level receipt pending publication (see §14); the status reflects the frozen review summary, which reported 0 gaps and no OPEN findings. ? = primitive-level status not identified in Draft 0.2; frozen receipt pending — not inferred from gap counts. † Gap counts are descriptive summaries only: they are not additive, not ordinal, not scores, and not rankings. ‡ Primitive identification pending frozen-receipt publication.
+Legend: ✓ = COVERED under the frozen review method. * = primitive-level receipt pending publication (see §14); the status reflects the frozen review summary, which reported 0 gaps and no OPEN findings. ? = primitive-level status not identified in Draft 0.2; frozen receipt pending — not inferred from gap counts. † Gap counts are a previously recorded aggregate (0/0/0/0/1/3) pending primitive-level receipt publication/audit: descriptive summaries only — not additive, not ordinal, not scores, and not rankings. ‡ Primitive identification pending frozen-receipt publication.
 
 This is comparative architectural evidence, not a statistical sample. The six systems are mature agent architectures and are therefore selected toward rich representations. Nevertheless, the observed asymmetry is informative. Within the examined corpus, DRC coverage did not entail EASTER coverage. OpenAI Agents SDK and Google Antigravity are observed cases under the frozen review method in which DRC was COVERED while one or more EASTER properties were GAP within the inspected boundary.
 
