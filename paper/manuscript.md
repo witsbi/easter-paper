@@ -145,22 +145,22 @@ The reviews rely on inspectable public documentation/source where available and 
 
 # 8. Comparative architectural results
 
-Primitive-level status matrix. Columns D/R/C are the DRC lens; Ev/Au/St/Tr/Ex/Re are the EASTER primitives (Evidence, Authority, State, Transition, Exception, Receipt).
+Four distinct layers are preserved from the frozen reviews, and the table below keeps them separate: (1) primitive-level findings, (2) whole-system composition, (3) final aggregate disposition, and (4) archival completeness. The recovery artifact (`paper/archive/recovered-review-state-2026-09-29.md`) is the source of truth; nothing below is inferred from aggregate gap counts.
 
-| **System** | **D** | **R** | **C** | **Ev** | **Au** | **St** | **Tr** | **Ex** | **Re** | **Gaps†** | **Selected public architectural evidence** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Hermes Agent | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
-| OpenClaw | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
-| LangGraph | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
-| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
-| OpenAI Agents SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 1‡ | Agents, handoffs, guardrails, sessions and tracing; tracing can be disabled/unavailable under ZDR. [10][11][12] |
-| Google Antigravity | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 3‡ | Agent-first development platform with autonomous planning, execution and verification across editor, terminal and browser. [13] |
+| **System** | **DRC (frozen overlay)** | **EASTER whole-system (frozen)** | **Primitive-level findings (recovered)** | **Archival completeness** |
+| --- | --- | --- | --- | --- |
+| Hermes Agent | D/R/C COVERED | 0 GAP, 0 CHALLENGED | Ev, Au, St, Ex COVERED. Tr, Re COVERED with surviving OPEN H-OPEN-1 (unrecoverable external-effect window; explicitly not promoted to GAP). | Strong. DRC primitive receipts and exact commit pin not yet recovered. |
+| OpenClaw | D/R/C COVERED | 0 GAP, 0 CHALLENGED (initial sweep: 30 COVERED / 11 OPEN) | Ev, Au, Ex COVERED. St, Tr COVERED + OC-OPEN-1 (unrecoverable external-effect window). Re COVERED + OC-OPEN-1 + OC-OPEN-2 (delivery bypass). | Strong. Source commit `2ef3b4a0…` recovered. Individual DRC receipts not yet recovered. |
+| LangGraph | D/R/C COVERED | 0 GAP, 0 CHALLENGED (composition closed many primitive-level OPENs) | Ev COVERED + OPEN (UntrackedValue boundary). Tr 7 COVERED / 4 OPEN. Ex 7 COVERED / 4 OPEN. Re 5 COVERED / 5 OPEN. Au, St reviewed; finding matrices not recovered. | Substantial. Au/St matrices and exact source SHA not yet recovered. |
+| Anthropic Claude Agent SDK | D/R/C COVERED | 0 GAP; no demonstrated GAP | Unknown — aggregate result only. | Aggregate only. Primitive decomposition unknown; must remain unknown until a primitive-level artifact is recovered. |
+| OpenAI Agents SDK | D/R/C COVERED | Exactly 1 GAP (real, recorded) | Unknown — which primitive owned the GAP was not recovered. (An unverified recollection of an Evidence OPEN is quarantined, not used.) | Aggregate + GAP existence. Primitive mapping unknown. |
+| Google Antigravity | D/R/C COVERED | 3 GAPs final aggregate; no demonstrated CHALLENGE | Ev: 2 GAP (MCP annotations lost before policy evaluation; exception fidelity lost) + 2 OPEN. Au: 4 GAPs (incl. retrospective authorization provenance). St: 1 GAP (compaction change metadata) + 2 OPEN. Tr: partial (T-3, T-4). Ex: 1 GAP (structured exception fidelity) + 3 OPEN. Re: not sufficiently recovered. Six conceptual families recovered; exact mapping from families to the final 3 GAPs not recovered. | Substantial sweeps. Receipt freeze, 3-GAP mapping, and exact runtime version not yet recovered; launch-blog citation insufficient alone. |
 
-Legend: ✓ = COVERED under the frozen review method. * = COVERED in the contemporaneously frozen review; primitive-level archival receipt/source citation pending recovery/publication. It does NOT mean inferred COVERED from zero aggregate gaps. ? = the artifact recovery could not establish this primitive's frozen classification; not inferred from gap counts. † Gap counts are a previously recorded aggregate (0/0/0/0/1/3) pending primitive-level receipt publication/audit: descriptive summaries only — not additive, not ordinal, not scores, and not rankings. ‡ Primitive identification pending frozen-receipt publication.
+Notes. DRC 3/3 COVERED is the frozen comparative overlay result; individual D/R/C primitive receipts are not yet recovered for most systems. EASTER whole-system dispositions and aggregates are previously recorded frozen results — descriptive summaries only, not additive, not ordinal, not scores, not rankings. Primitive-level cells show only what the recovery artifact establishes; "unknown" is preserved explicitly and never filled from aggregate counts or recollection.
+
+The recovered record corrects a natural misreading: 0 GAP did not mean six uncomplicated COVERED primitives. Hermes, OpenClaw, and LangGraph each retained surviving OPEN findings at the primitive level while whole-system composition produced no demonstrated GAP — primitive sweeps and whole-system composition are distinct layers of the method. Preservation quality is uneven across the corpus (strong for Hermes, OpenClaw, LangGraph, and Antigravity's sweeps; aggregate-only for Anthropic and OpenAI's decomposition), and the manuscript distinguishes recovered primitive evidence from aggregate frozen results throughout.
 
 This is comparative architectural evidence, not a statistical sample. The six systems are mature agent architectures and are therefore selected toward rich representations. Nevertheless, the observed asymmetry is informative. Within the examined corpus, DRC coverage did not entail EASTER coverage. OpenAI Agents SDK and Google Antigravity are observed cases under the frozen review method in which DRC was COVERED while one or more EASTER properties were GAP within the inspected boundary.
-
-Antigravity's primitive classifications are unchanged for now, but they require frozen-receipt and source audit before submission: the launch-blog citation currently in the repository is insufficient by itself to justify three GAPs rather than OPENs.
 
 # 9. Interpretation
 
