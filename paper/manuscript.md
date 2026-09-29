@@ -22,7 +22,7 @@ Initial working paper — Draft 0.2
 
 # Abstract
 
-Agent systems are commonly discussed in terms of memory, context, persistence, and orchestration, but these terms conflate at least two architectural problems: whether a system can represent enough structure for work to remain functionally meaningful, and whether consequential work can remain inspectable and recoverable across changes in session, model, agent, runtime, or machine. This paper introduces two independently derived lenses. DRC — Distinction, Relation, and Constraint — is proposed as a candidate minimal lens for functional or structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, and Receipt — is a six-primitive model and reference kernel for consequential continuity. We apply both lenses to a frozen, pre-disclosure corpus of six materially different agent architectures: Hermes Agent, OpenClaw, LangGraph, Anthropic Claude Agent SDK, OpenAI Agents SDK, and Google Antigravity. Across the corpus, DRC coverage is invariant (3/3 covered), while previously conducted EASTER reviews vary (0, 0, 0, 0, 1, and 3 gaps respectively). This pattern does not establish universality or statistical independence, but it is consistent with the hypothesis that EASTER coverage does not follow from DRC coverage — the demonstrated direction of the separability claim. The reverse direction (EASTER-covered without DRC-covered) is predicted by the model but was not observed in the present corpus. We further argue that EASTER can operate as an external, vendor-neutral continuity layer, provided userland exposes enough consequential structure for projection. The paper contributes a bounded vocabulary, an adversarial reverse-review method, a comparative architectural result, and an open implementation path for studying semantic work-state portability.
+Agent systems are commonly discussed in terms of memory, context, persistence, and orchestration, but these terms conflate at least two architectural problems: whether a system can represent enough structure for work to remain functionally meaningful, and whether consequential work can remain inspectable and recoverable across changes in session, model, agent, runtime, or machine. This paper introduces two independently derived lenses. DRC — Distinction, Relation, and Constraint — is proposed as a candidate minimal lens for functional or structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, and Receipt — is a six-primitive model and reference kernel for consequential continuity. We apply both lenses to a frozen, pre-disclosure corpus of six materially different agent architectures: Hermes Agent, OpenClaw, LangGraph, Anthropic Claude Agent SDK, OpenAI Agents SDK, and Google Antigravity. Across the corpus, DRC coverage is invariant (3/3 covered), while previously conducted EASTER reviews vary (0, 0, 0, 0, 1, and 3 gaps respectively). This pattern does not establish universality or statistical independence. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction (EASTER-covered without DRC-covered) is predicted by the model but was not observed in the present corpus. We further argue that EASTER can operate as an external, vendor-neutral continuity layer, provided userland exposes enough consequential structure for projection. The paper contributes a bounded vocabulary, an adversarial reverse-review method, a comparative architectural result, and an open implementation path for studying semantic work-state portability.
 
 Keywords: agent systems; continuity; memory; state; provenance; authority; durable execution; semantic portability; DRC; EASTER
 
@@ -90,15 +90,13 @@ DRC = {Distinction, Relation, Constraint}
 
 The claim is not that every meaningful representation literally stores three fields named D, R, and C. The claim is that these three categories form a compact candidate lens for asking whether a userland representation retains enough functional structure to be interpreted. The present paper treats minimality as a research hypothesis, not a proof.
 
-## 4.4 Falsifiability and the unobserved negative case
+## 4.4 Negative classification, falsification, and the unobserved negative case
 
-No DRC-negative case has been observed in this research program to date: every reviewed architecture covered D, R, and C. That absence reflects corpus selection — the corpus contains mature agent architectures selected toward rich representations — not a proven universal. Stating what would falsify each primitive under the frozen definitions keeps the lens honest:
+No DRC-negative case has been observed in this research program to date: every reviewed architecture covered D, R, and C. That absence reflects corpus selection — the corpus contains mature agent architectures selected toward rich representations — not a proven universal. We retain the limitation, and we distinguish two different things a future specimen could do.
 
-- **D** would be falsified by a system performing consequential agent work through a genuinely undifferentiated representation: no separable message types, roles, tools, sessions, or state objects, with consequentially different entities not told apart. A stateless prompt-in/prompt-out oracle — no tool surface, no session scoping, no typed artifacts — is the predicted D-negative.
-- **R** would be falsified by a system with distinguishable entities but no represented relations among them: a bag of typed objects with no parent/child structure, no call/result linkage, no lineage or dependency — relations neither explicit nor recoverable from the representation.
-- **C** would be falsified by a system with no admissibility conditions on configurations: no allowlists, schemas, policies, permissions, or validity rules — every arrangement of distinguishables admissible.
+A **negative classification** is a system that lacks D, R, or C under the frozen definitions. Predicted examples, retained as out-of-sample replication targets (see §7.3): a stateless prompt-in/prompt-out oracle with no tool surface, no session scoping, and no typed artifacts (predicted D-negative); a bag of typed objects with no parent/child structure, call/result linkage, lineage, or dependency (predicted R-negative); a substrate with no allowlists, schemas, policies, or validity rules, where every arrangement of distinguishables is admissible (predicted C-negative). Such a finding would challenge the corpus, not the lens.
 
-These predicted negatives are out-of-sample replication targets, retained for later work rather than consumed during initial theory formation (see §7.3). If such systems are found and the lens cannot classify them, the lens — not just the corpus — is challenged.
+**Falsification** — a genuine CHALLENGED-class result against the primitive itself — would require more: a system demonstrating adequate functional/structural meaning (work remains interpretable and continuable across the demands the lens describes) while *lacking* the allegedly necessary primitive under the frozen definitions. A DRC-negative specimen shows the primitive absent; only a meaningful-without-the-primitive specimen shows the primitive unnecessary. No such case has been observed, and the present corpus was not designed to seek one.
 
 # 5. EASTER: a six-primitive model for consequential continuity
 
@@ -119,7 +117,7 @@ A key design choice is that EASTER does not select a single current branch and d
 
 Meaning / userland  →  DRC  →  consequential projection  →  EASTER  →  continuity
 
-DRC and EASTER operate at different layers. DRC asks whether userland has enough representational structure for functional meaning. EASTER asks whether consequential work crossing a continuity boundary is durably admitted with provenance and outcome. A DRC-complete system can still lose consequential continuity — this direction is demonstrated by the corpus. The converse — an EASTER-complete persistence mechanism preserving opaque payloads whose userland representation is inadequate for functional interpretation — is predicted by the model but was not observed; it remains an open empirical direction, not an established finding.
+DRC and EASTER operate at different layers. DRC asks whether userland has enough representational structure for functional meaning. EASTER asks whether consequential work crossing a continuity boundary is durably admitted with provenance and outcome. Within the examined corpus, DRC coverage did not entail EASTER coverage. The converse — an EASTER-complete persistence mechanism preserving opaque payloads whose userland representation is inadequate for functional interpretation — is predicted by the model but was not observed; it remains an open empirical direction, not an established finding.
 
 Demonstrated: DRC-covered ⇏ EASTER-covered
 
@@ -147,22 +145,22 @@ The reviews rely on inspectable public documentation/source where available and 
 
 # 8. Comparative architectural results
 
-| **System** | **DRC** | **EASTER gaps** | **Selected public architectural evidence** |
-| --- | --- | --- | --- |
-| Hermes Agent | 3/3 COVERED | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
-| OpenClaw | 3/3 COVERED | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
-| LangGraph | 3/3 COVERED | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
-| Anthropic Claude Agent SDK | 3/3 COVERED | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
-| OpenAI Agents SDK | 3/3 COVERED | 1 | Agents, handoffs, guardrails, sessions and tracing; tracing can be disabled/unavailable under ZDR. [10][11][12] |
-| Google Antigravity | 3/3 COVERED | 3 | Agent-first development platform with autonomous planning, execution and verification across editor, terminal and browser. [13] |
+Primitive-level status matrix. Columns D/R/C are the DRC lens; Ev/Au/St/Tr/Ex/Re are the EASTER primitives (Evidence, Authority, State, Transition, Exception, Receipt).
 
-Across the frozen corpus, DRC coverage is invariant while EASTER findings vary:
+| **System** | **D** | **R** | **C** | **Ev** | **Au** | **St** | **Tr** | **Ex** | **Re** | **Gaps†** | **Selected public architectural evidence** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Hermes Agent | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
+| OpenClaw | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
+| LangGraph | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
+| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
+| OpenAI Agents SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 1‡ | Agents, handoffs, guardrails, sessions and tracing; tracing can be disabled/unavailable under ZDR. [10][11][12] |
+| Google Antigravity | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 3‡ | Agent-first development platform with autonomous planning, execution and verification across editor, terminal and browser. [13] |
 
-DRC = {3/3, 3/3, 3/3, 3/3, 3/3, 3/3}
+Legend: ✓ = COVERED under the frozen review method. * = primitive-level receipt pending publication (see §14); the status reflects the frozen review summary, which reported 0 gaps and no OPEN findings. ? = primitive-level status not identified in Draft 0.2; frozen receipt pending — not inferred from gap counts. † Gap counts are descriptive summaries only: they are not additive, not ordinal, not scores, and not rankings. ‡ Primitive identification pending frozen-receipt publication.
 
-EASTER gaps = {0, 0, 0, 0, 1, 3}
+This is comparative architectural evidence, not a statistical sample. The six systems are mature agent architectures and are therefore selected toward rich representations. Nevertheless, the observed asymmetry is informative. Within the examined corpus, DRC coverage did not entail EASTER coverage. OpenAI Agents SDK and Google Antigravity are observed cases under the frozen review method in which DRC was COVERED while one or more EASTER properties were GAP within the inspected boundary.
 
-This is comparative architectural evidence, not a statistical sample. The six systems are mature agent architectures and are therefore selected toward rich representations. Nevertheless, the observed asymmetry is informative: within this corpus, complete DRC coverage does not entail complete EASTER coverage. OpenAI Agents SDK and Google Antigravity are the observed counterexamples to that implication under the frozen review methodology.
+Antigravity's primitive classifications are unchanged for now, but they require frozen-receipt and source audit before submission: the launch-blog citation currently in the repository is insufficient by itself to justify three GAPs rather than OPENs.
 
 # 9. Interpretation
 
@@ -177,6 +175,8 @@ EASTER need not be natively implemented by every vendor. Its reference architect
 Runtime A  →  EASTER_external  →  Runtime B
 
 The critical precondition is observability/exportability. If userland exposes the consequential distinctions, relations, constraints, evidence, authority facts, states, transitions, failures and outcomes needed for projection, an external kernel can preserve them. If a managed runtime exposes only input and final output, an external continuity layer cannot reconstruct hidden consequential structure. We treat this as a boundary condition on projection, not as a seventh EASTER primitive.
+
+A further boundary condition is projection fidelity: EASTER preserves what crosses the boundary, but it cannot establish the completeness or semantic fidelity of the userland projection. A lossy or distorted projection is preserved as faithfully as a sound one; the kernel attests to what it admitted, not to what it should have received.
 
 ## 9.3 Deliberate omissions are not automatically defects
 
@@ -193,7 +193,8 @@ An EASTER GAP is not synonymous with a bad system. Privacy, deletion guarantees,
 - No statistical independence claim. The invariant DRC / varying EASTER pattern is descriptive comparative evidence, not an inferential statistical result.
 - Observer effect after disclosure. Once the framework is public, vendors or open-source maintainers may change architectures in response; the present corpus should therefore be preserved as pre-disclosure evidence.
 - Goodhart risk. If DRC/EASTER becomes a checklist, systems may adopt labels without preserving behavior. Coverage must remain behavior/source demonstrated rather than name-based.
-- Independent lineage is not independent evaluation. The six architectures were not designed in response to the framework, and DRC definitions were frozen before overlay — but the reviews themselves were conducted within a single research program with substantial human–AI collaboration. They were not blinded and not performed by independent research teams. Cross-agent agreement within the program (including AI collaborators sharing a human collaborator and overlapping research vocabulary) is corroboration of process, not independent replication.
+- Projection fidelity. EASTER preserves what crosses the continuity boundary but cannot establish that the projection was complete or semantically faithful. A system can satisfy every EASTER primitive on a projection that omits consequential facts.
+- Independent lineage is not independent evaluation. The six architectures were not designed in response to the framework, and DRC definitions were frozen before overlay — but the reviews themselves were conducted within a single research program with substantial human–AI collaboration. They were not blinded and not performed by independent research teams. Cross-agent agreement within the program (including AI collaborators sharing a human collaborator and overlapping research vocabulary) is evidence of response convergence within the research process, not independent replication.
 - Shadow-review independence is response isolation, not historical independence. The adversarial review round for this draft was conducted by two reviewers with no direct contact, sharing only the manuscript via a human relay — but both reviewers share the same human collaborator and overlapping research vocabulary. Agreement between them demonstrates independent responses to the same text, not historically independent observation.
 
 # 11. Publication and ecosystem effects
@@ -212,7 +213,7 @@ The target is semantic work-state portability rather than checkpoint portability
 
 # 13. Conclusion
 
-This paper proposes that two architectural problems commonly conflated under “memory” should be treated separately. DRC — Distinction, Relation, Constraint — provides a candidate minimal lens for functional/structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, Receipt — provides a six-primitive model and reference kernel for consequential continuity. Across six pre-disclosure agent architectures, DRC coverage remained invariant while EASTER findings varied. The result is consistent with the demonstrated direction of the separability claim: EASTER coverage does not follow from DRC coverage. The reverse direction remains a model prediction, not an observed finding. The bounded contribution is not a universal theory of meaning and not a vendor leaderboard. It is a vocabulary, an implementation boundary, and a reverse-review method for making continuity loss more inspectable.
+This paper proposes that two architectural problems commonly conflated under “memory” should be treated separately. DRC — Distinction, Relation, Constraint — provides a candidate minimal lens for functional/structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, Receipt — provides a six-primitive model and reference kernel for consequential continuity. Across six pre-disclosure agent architectures, DRC coverage remained invariant while EASTER findings varied. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction remains a model prediction, not an observed finding. The bounded contribution is not a universal theory of meaning and not a vendor leaderboard. It is a vocabulary, an implementation boundary, and a reverse-review method for making continuity loss more inspectable.
 
 # 14. Reproducibility status and next publication steps
 
@@ -260,7 +261,7 @@ This Draft 0.2 intentionally distinguishes paper-ready claims from archival work
 
 # Appendix A. Frozen comparative claim
 
-Frozen initial-paper claim: Across a pre-disclosure corpus of six materially different agent architectures, the DRC functional-meaning lens found 3/3 coverage in all six, while previously conducted EASTER continuity reviews found 0, 0, 0, 0, 1, and 3 gaps. This supports continued investigation of the demonstrated direction — that EASTER coverage does not follow from DRC coverage — without establishing universality, formal minimality, statistical independence, or the reverse direction.
+Frozen initial-paper claim: Across a pre-disclosure corpus of six materially different agent architectures, the DRC functional-meaning lens found 3/3 coverage in all six, while previously conducted EASTER continuity reviews found 0, 0, 0, 0, 1, and 3 gaps. This supports continued investigation — within the examined corpus, DRC coverage did not entail EASTER coverage — without establishing universality, formal minimality, statistical independence, or the reverse direction.
 
 # Appendix B. Co-creation provenance
 
