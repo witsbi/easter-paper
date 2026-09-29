@@ -149,10 +149,10 @@ Primitive-level status matrix. Columns D/R/C are the DRC lens; Ev/Au/St/Tr/Ex/Re
 
 | **System** | **D** | **R** | **C** | **Ev** | **Au** | **St** | **Tr** | **Ex** | **Re** | **Gaps†** | **Selected public architectural evidence** |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Hermes Agent | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
-| OpenClaw | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
-| LangGraph | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
-| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
+| Hermes Agent | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Persistent sessions, memory, skills, tool results and profile-scoped state. [3][4] |
+| OpenClaw | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Workspace/bootstrap distinctions, durable sessions/transcripts, memory and scoped recall. [5][6] |
+| LangGraph | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Checkpoint state, metadata, parent lineage and pending writes for durable recovery. [7][8] |
+| Anthropic Claude Agent SDK | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | ✓* | 0 | Agent options, tool permissions/allowlists and Claude Code tool surface. [9] |
 | OpenAI Agents SDK | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 1‡ | Agents, handoffs, guardrails, sessions and tracing; tracing can be disabled/unavailable under ZDR. [10][11][12] |
 | Google Antigravity | ✓* | ✓* | ✓* | ? | ? | ? | ? | ? | ? | 3‡ | Agent-first development platform with autonomous planning, execution and verification across editor, terminal and browser. [13] |
 
