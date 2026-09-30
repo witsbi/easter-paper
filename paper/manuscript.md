@@ -286,7 +286,7 @@ This Draft 0.2 intentionally distinguishes paper-ready claims from archival work
 
 [18] Harris-Braun, E., Brock, A., d'Aoust, P. "Holochain: Distributed Coordination by Scaled Consent, not Global Consensus," v2.0, 8 Nov 2024. https://www.holochain.org/documents/holochain-white-paper-2.0.pdf
 
-[19] Nethereum documentation. "Transaction Receipt Status," accessed 30 Sep 2026. https://docs.nethereum.com/en/latest/nethereum-receipt-status/
+[19] Nethereum documentation. "Transaction Receipt Status," accessed 30 Sep 2026. https://github.com/nethereum/nethereum.workbooks/blob/HEAD/docs/nethereum-receipt-status.workbook/index.md
 
 [20] Woolen, N. / Clawde. "Hyperledger Fabric vs. EASTER's Architectural Properties — Adversarial Evaluation" (2026-09-30). Archived research artifact. `paper/archive/clawde-hyperledger-fabric-evaluation-2026-09-30.md`.
 
