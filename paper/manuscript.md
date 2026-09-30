@@ -22,7 +22,7 @@ Initial working paper — Draft 0.2
 
 # Abstract
 
-Agent systems are commonly discussed in terms of memory, context, persistence, and orchestration, but these terms conflate at least two architectural problems: whether a system can represent enough structure for work to remain functionally meaningful, and whether consequential work can remain inspectable and recoverable across changes in session, model, agent, runtime, or machine. This paper introduces two independently derived lenses. DRC — Distinction, Relation, and Constraint — is proposed as a candidate minimal lens for functional or structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, and Receipt — is a six-primitive model and reference kernel for consequential continuity. We apply both lenses to a frozen, pre-disclosure corpus of six materially different agent architectures: Hermes Agent, OpenClaw, LangGraph, Anthropic Claude Agent SDK, OpenAI Agents SDK, and Google Antigravity. Across the corpus, DRC coverage is invariant (3/3 covered), while previously conducted EASTER reviews vary (0, 0, 0, 0, 1, and 3 gaps respectively). This pattern does not establish universality or statistical independence. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction (EASTER-covered without DRC-covered) is predicted by the model but was not observed in the present corpus. We further argue that EASTER can operate as an external, vendor-neutral continuity layer, provided userland exposes enough consequential structure for projection. The paper contributes a bounded vocabulary, an adversarial reverse-review method, a comparative architectural result, and an open implementation path for studying semantic work-state portability.
+Agent systems are commonly discussed in terms of memory, context, persistence, and orchestration, but these terms conflate at least two architectural problems: whether a system can represent enough structure for work to remain functionally meaningful, and whether consequential work can remain inspectable and recoverable across changes in session, model, agent, runtime, or machine. This paper introduces two independently derived lenses. DRC — Distinction, Relation, and Constraint — is proposed as a deliberately minimal cross-domain vocabulary for describing meaning-bearing structure in AI-agent userland. EASTER — Evidence, Authority, State, Transition, Exception, and Receipt — is a six-primitive model and reference kernel for consequential continuity. We apply both lenses to a frozen, pre-disclosure corpus of six materially different agent architectures: Hermes Agent, OpenClaw, LangGraph, Anthropic Claude Agent SDK, OpenAI Agents SDK, and Google Antigravity. Across the corpus, DRC coverage is invariant (3/3 covered), while previously conducted EASTER reviews varied across the same corpus (see §8; aggregates are descriptive summaries with unequal archival resolution, not equivalent measurements). This pattern does not establish universality, statistical independence, or discriminative power: no DRC-negative system was observed, and necessity, sufficiency, and universality are not established. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction (EASTER-covered without DRC-covered) is predicted by the model but was not observed in the present corpus. We further argue that EASTER can operate as an external, vendor-neutral continuity layer, provided userland exposes enough consequential structure for projection. The paper contributes a bounded vocabulary, an adversarial reverse-review method, a comparative architectural result, and an open implementation path for studying semantic work-state portability.
 
 Keywords: agent systems; continuity; memory; state; provenance; authority; durable execution; semantic portability; DRC; EASTER
 
@@ -34,7 +34,7 @@ Functional meaning: can the system represent what things are, how they relate, a
 
 Consequential continuity: can the system preserve what happened, under whose authority, from which state, with what evidence and outcome?
 
-The first question led to DRC: Distinction, Relation, Constraint. The second led independently to EASTER: Evidence, Authority, State, Transition, Exception, Receipt. EASTER predates DRC in this research program. Its primitives were developed through implementation, subtraction, adversarial testing, recovery experiments, and whole-kernel review. DRC emerged later from attempts to reduce the structures needed for functional meaning. This chronology matters because the two lenses were not jointly designed to fit the comparative corpus.
+The first question led to DRC: Distinction, Relation, Constraint. The second led independently to EASTER: Evidence, Authority, State, Transition, Exception, Receipt. EASTER predates DRC in this research program. Its primitives were developed through implementation, subtraction, adversarial testing, recovery experiments, and whole-kernel review. DRC emerged later from attempts to reduce the structures needed for functional meaning. This chronology matters because the two lenses were not jointly designed to fit the comparative corpus. We position DRC as a deliberately minimal cross-domain vocabulary for describing meaning-bearing structure in AI-agent userland — a working representational floor, not a claim about the novelty of its primitives against prior representational traditions (see §4.4, §10).
 
 Our central hypothesis is deliberately bounded: functional meaning and consequential continuity are separable architectural properties. We do not claim to solve philosophical meaning, consciousness, intrinsic intentionality, or model understanding. DRC is restricted to functional/structural meaning: the information a system must be able to differentiate, relate, and constrain for work to be interpreted and continued. EASTER is restricted to consequential continuity: the durable record needed to inspect and continue work without silently converting guesses into authoritative history.
 
@@ -65,7 +65,7 @@ These definitions preserve the paper’s central separation: userland owns funct
 
 # 3. Contributions
 
-- A candidate three-part lens for functional meaning: Distinction (D), Relation (R), and Constraint (C).
+- A deliberately minimal cross-domain vocabulary for describing meaning-bearing structure in AI-agent userland: Distinction (D), Relation (R), and Constraint (C).
 - A six-primitive continuity model and implemented reference kernel: Evidence, Authority, State, Transition, Exception, and Receipt (EASTER).
 - A methodological separation between representational meaning in userland and durable consequential continuity at the kernel boundary.
 - A pre-disclosure comparative reverse review of six independently developed agent architectures using both lenses.
@@ -89,6 +89,8 @@ Constraint describes how distinguishable and related entities may admissibly sta
 DRC = {Distinction, Relation, Constraint}
 
 The claim is not that every meaningful representation literally stores three fields named D, R, and C. The claim is that these three categories form a compact candidate lens for asking whether a userland representation retains enough functional structure to be interpreted. The present paper treats minimality as a research hypothesis, not a proof.
+
+We therefore position DRC as a deliberately minimal cross-domain vocabulary for describing meaning-bearing structure in AI-agent userland — a working representational floor, not a novelty claim about its primitives. The observed 3/3 saturation across the six-system corpus is a frozen empirical observation; it does not establish discriminative power, and no DRC-negative system was observed in this program. Necessity, sufficiency, and universality are not established. DRC's lineage with entity/relation/constraint traditions in ER modeling, description logic, conceptual graphs, property graphs, and related representational traditions must be addressed in Draft 2 Related Work rather than implied as primitive novelty here.
 
 ## 4.4 Negative classification, falsification, and the unobserved negative case
 
@@ -182,6 +184,17 @@ A further boundary condition is projection fidelity: EASTER preserves what cross
 
 An EASTER GAP is not synonymous with a bad system. Privacy, deletion guarantees, security boundaries, cost, simplicity, and product design can justify intentionally omitting recoverability. OpenAI’s tracing documentation, for example, notes that tracing can be disabled and is unavailable for organizations using Zero Data Retention. [11] The framework therefore identifies a continuity tradeoff; it does not prescribe that every system maximize persistence.
 
+## 9.4 Candidate integration observation (bounded)
+
+Independent prior-art comparison (Hyperledger Fabric [16][20], R3 Corda [17][21], Holochain [18][21], Ethereum [19]) identified a candidate conjunction that no examined system was found to combine:
+
+- revocable authority validation inside the consequential admission path;
+- uniform durable ACCEPTED / REJECTED / FAILED outcome recording;
+- durable Exception/failure records excluded from accepted State;
+- no substrate-designated canonical current State.
+
+In the systems and literature examined to date, we did not identify any architecture combining all four. These four properties are independently documented EASTER commitments predating the comparison (see the pre-prior-art provenance record, `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`); they were not selected post-hoc to fit the comparison. One methodological limitation remains: the properties predate the comparison, but the decision to foreground exactly these four as a potentially distinguishing conjunction emerged through the subsequent comparative analysis. This observation is a candidate integration and boundary-discipline contribution, not an established architectural-novelty claim, and it remains open to future counterevidence. Full per-property, primary-source classifications (COVERED / PARTIAL / NOT COVERED / UNKNOWN, with quotations and citations) and the reconciliation of two independently-decomposed evaluations are archived at [20][21][22]; no single closest architecture is named here, and none should be inferred pending Draft 2 Related Work.
+
 # 10. Threats to validity and limitations
 
 - Selection bias. The corpus contains sophisticated agent systems; 6/6 DRC coverage cannot establish universality.
@@ -196,6 +209,13 @@ An EASTER GAP is not synonymous with a bad system. Privacy, deletion guarantees,
 - Projection fidelity. EASTER preserves what crosses the continuity boundary but cannot establish that the projection was complete or semantically faithful. A system can satisfy every EASTER primitive on a projection that omits consequential facts.
 - Independent lineage is not independent evaluation. The six architectures were not designed in response to the framework, and DRC definitions were frozen before overlay — but the reviews themselves were conducted within a single research program with substantial human–AI collaboration. They were not blinded and not performed by independent research teams. Cross-agent agreement within the program (including AI collaborators sharing a human collaborator and overlapping research vocabulary) is evidence of response convergence within the research process, not independent replication.
 - Shadow-review independence is response isolation, not historical independence. The adversarial review round for this draft was conducted by two reviewers with no direct contact, sharing only the manuscript via a human relay — but both reviewers share the same human collaborator and overlapping research vocabulary. Agreement between them demonstrates independent responses to the same text, not historically independent observation.
+- Operator/reviewer entanglement. Hermes Agent and OpenClaw are operated and configured within Nathan Woolen's research environment. Independent system lineage — neither was designed in response to the framework — must not be confused with independent evaluation: the reviews were conducted inside a single research program. Their zero-GAP aggregate findings must not be framed as independent validation of those systems or of EASTER.
+- Antigravity observability asymmetry. Google Antigravity has the weakest inspected boundary in the corpus while carrying the largest frozen EASTER GAP aggregate (3). Its evidence therefore carries greater uncertainty than the strongly archived systems, and the larger GAP count must not be read as establishing architectural inferiority.
+- DRC lineage outstanding. DRC's relationship to ER modeling, description logic, conceptual graphs, property graphs, and related representational traditions is not addressed in this draft; it belongs to Draft 2 Related Work. No primitive-novelty claim is made here.
+- Authority traditions outstanding. EASTER's Authority primitive should be situated against reference-monitor, capability, and delegation traditions in Draft 2 Related Work; the present draft does not establish its novelty against them.
+- Confused deputy and principal binding. EASTER's structural authority guarantees do not by themselves solve confused-deputy or principal-binding/delegation problems; these are explicitly outside the kernel's claims.
+- Maturity boundaries. Idempotency and exactly-once semantics, cryptographic tamper-evidence, snapshotting strategy, and compensation/Saga semantics are implementation and maturity boundaries. Their absence as EASTER primitives must not be mistaken for the absence of the corresponding operational risks.
+- Integration, not primitive novelty. EASTER's candidate contribution is integration and boundary discipline across its six primitives, not the novelty of Evidence, Authority, State, Transition, Exception, or Receipt individually.
 
 # 11. Publication and ecosystem effects
 
@@ -213,7 +233,7 @@ The target is semantic work-state portability rather than checkpoint portability
 
 # 13. Conclusion
 
-This paper proposes that two architectural problems commonly conflated under “memory” should be treated separately. DRC — Distinction, Relation, Constraint — provides a candidate minimal lens for functional/structural meaning in agent userland. EASTER — Evidence, Authority, State, Transition, Exception, Receipt — provides a six-primitive model and reference kernel for consequential continuity. Across six pre-disclosure agent architectures, DRC coverage remained invariant while EASTER findings varied. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction remains a model prediction, not an observed finding. The bounded contribution is not a universal theory of meaning and not a vendor leaderboard. It is a vocabulary, an implementation boundary, and a reverse-review method for making continuity loss more inspectable.
+This paper proposes that two architectural problems commonly conflated under “memory” should be treated separately. DRC — Distinction, Relation, Constraint — provides a deliberately minimal cross-domain vocabulary for describing meaning-bearing structure in AI-agent userland. EASTER — Evidence, Authority, State, Transition, Exception, Receipt — provides a six-primitive model and reference kernel for consequential continuity. Across six pre-disclosure agent architectures, DRC coverage remained invariant while EASTER findings varied. Within the examined corpus, DRC coverage did not entail EASTER coverage. The reverse direction remains a model prediction, not an observed finding. The bounded contribution is not a universal theory of meaning and not a vendor leaderboard. It is a vocabulary, an implementation boundary, and a reverse-review method for making continuity loss more inspectable. The DRC vocabulary is positioned as a minimal working representational floor; its lineage against prior representational traditions, and any assessment of novelty, belong to Draft 2 Related Work.
 
 # 14. Reproducibility status and next publication steps
 
@@ -226,6 +246,7 @@ This Draft 0.2 intentionally distinguishes paper-ready claims from archival work
 - Add a chronology appendix showing that EASTER and relevant EASTER reviews preceded DRC, and that DRC definitions were frozen before overlay.
 - Run an independent source audit of every GAP/COVERED claim before submission.
 - Adapt the authorship/byline disclosure to the target venue’s AI authorship policy while preserving the co-creation record.
+- Draft 2 Related Work placeholders (not written in this pass): situate DRC against ER modeling, description-logic, conceptual-graph, and property-graph traditions; situate EASTER Authority against reference-monitor, capability, and delegation traditions; address confused-deputy and principal-binding boundaries; treat idempotency, cryptographic tamper-evidence, snapshotting strategy, and compensation/Saga semantics as maturity boundaries.
 
 # References
 
@@ -258,6 +279,20 @@ This Draft 0.2 intentionally distinguishes paper-ready claims from archival work
 [14] OpenClaw. Main-session continuity documentation, accessed 25 Sep 2026. https://github.com/openclaw/openclaw/blob/main/docs/concepts/main-session.md
 
 [15] Nous Research. Hermes Agent tools reference, accessed 25 Sep 2026. https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/tools-reference.md
+
+[16] Androulaki, E. et al. "Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains." EuroSys 2018. arXiv:1801.10228. Also: Hyperledger Fabric documentation, accessed 30 Sep 2026. https://hyperledger-fabric.readthedocs.io/
+
+[17] Hearn, M. and Brown, R.G. "Corda: A Distributed Ledger" (Technical Whitepaper), v1.0, 20 Aug 2019. https://docs.r3.com/en/pdf/corda-technical-whitepaper.pdf
+
+[18] Harris-Braun, E., Brock, A., d'Aoust, P. "Holochain: Distributed Coordination by Scaled Consent, not Global Consensus," v2.0, 8 Nov 2024. https://www.holochain.org/documents/holochain-white-paper-2.0.pdf
+
+[19] Nethereum documentation. "Transaction Receipt Status," accessed 30 Sep 2026. https://github.com/nethereum/nethereum.workbooks/blob/HEAD/docs/nethereum-receipt-status.workbook/index.md
+
+[20] Woolen, N. / Clawde. "Hyperledger Fabric vs. EASTER's Architectural Properties — Adversarial Evaluation" (2026-09-30). Archived research artifact. `paper/archive/clawde-hyperledger-fabric-evaluation-2026-09-30.md`.
+
+[21] Woolen, N. / Clawde. "Corda and Holochain vs. EASTER's Architectural Properties — Primary-Source Evaluation" (2026-09-30). Archived research artifact. `paper/archive/clawde-corda-holochain-evaluation-2026-09-30.md`.
+
+[22] Woolen, N. / Pax / Clawde. "Pax/Clawde Closest-Architecture Reconciliation" (2026-09-30). Archived research artifact. `paper/archive/clawde-pax-closest-architecture-reconciliation-2026-09-30.md`. See also the pre-prior-art provenance record, `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`.
 
 # Appendix A. Frozen comparative claim
 
