@@ -186,14 +186,14 @@ An EASTER GAP is not synonymous with a bad system. Privacy, deletion guarantees,
 
 ## 9.4 Candidate integration observation (bounded)
 
-Independent prior-art comparison (Hyperledger Fabric, R3 Corda, Holochain, Ethereum) identified a candidate conjunction that no examined system was found to combine:
+Independent prior-art comparison (Hyperledger Fabric [16][20], R3 Corda [17][21], Holochain [18][21], Ethereum [19]) identified a candidate conjunction that no examined system was found to combine:
 
 - revocable authority validation inside the consequential admission path;
 - uniform durable ACCEPTED / REJECTED / FAILED outcome recording;
 - durable Exception/failure records excluded from accepted State;
 - no substrate-designated canonical current State.
 
-In the systems and literature examined to date, we did not identify any architecture combining all four. These four properties are independently documented EASTER commitments predating the comparison (see the pre-prior-art provenance record, `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`); they were not selected post-hoc to fit the comparison. One methodological limitation remains: the properties predate the comparison, but the decision to foreground exactly these four as a potentially distinguishing conjunction emerged through the subsequent comparative analysis. This observation is a candidate integration and boundary-discipline contribution, not an established architectural-novelty claim, and it remains open to future counterevidence.
+In the systems and literature examined to date, we did not identify any architecture combining all four. These four properties are independently documented EASTER commitments predating the comparison (see the pre-prior-art provenance record, `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`); they were not selected post-hoc to fit the comparison. One methodological limitation remains: the properties predate the comparison, but the decision to foreground exactly these four as a potentially distinguishing conjunction emerged through the subsequent comparative analysis. This observation is a candidate integration and boundary-discipline contribution, not an established architectural-novelty claim, and it remains open to future counterevidence. Full per-property, primary-source classifications (COVERED / PARTIAL / NOT COVERED / UNKNOWN, with quotations and citations) and the reconciliation of two independently-decomposed evaluations are archived at [20][21][22]; no single closest architecture is named here, and none should be inferred pending Draft 2 Related Work.
 
 # 10. Threats to validity and limitations
 
@@ -279,6 +279,20 @@ This Draft 0.2 intentionally distinguishes paper-ready claims from archival work
 [14] OpenClaw. Main-session continuity documentation, accessed 25 Sep 2026. https://github.com/openclaw/openclaw/blob/main/docs/concepts/main-session.md
 
 [15] Nous Research. Hermes Agent tools reference, accessed 25 Sep 2026. https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/tools-reference.md
+
+[16] Androulaki, E. et al. "Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains." EuroSys 2018. arXiv:1801.10228. Also: Hyperledger Fabric documentation, accessed 30 Sep 2026. https://hyperledger-fabric.readthedocs.io/
+
+[17] Hearn, M. and Brown, R.G. "Corda: A Distributed Ledger" (Technical Whitepaper), v1.0, 20 Aug 2019. https://docs.r3.com/en/pdf/corda-technical-whitepaper.pdf
+
+[18] Harris-Braun, E., Brock, A., d'Aoust, P. "Holochain: Distributed Coordination by Scaled Consent, not Global Consensus," v2.0, 8 Nov 2024. https://www.holochain.org/documents/holochain-white-paper-2.0.pdf
+
+[19] Nethereum documentation. "Transaction Receipt Status," accessed 30 Sep 2026. https://docs.nethereum.com/en/latest/nethereum-receipt-status/
+
+[20] Woolen, N. / Clawde. "Hyperledger Fabric vs. EASTER's Architectural Properties — Adversarial Evaluation" (2026-09-30). Archived research artifact. `paper/archive/clawde-hyperledger-fabric-evaluation-2026-09-30.md`.
+
+[21] Woolen, N. / Clawde. "Corda and Holochain vs. EASTER's Architectural Properties — Primary-Source Evaluation" (2026-09-30). Archived research artifact. `paper/archive/clawde-corda-holochain-evaluation-2026-09-30.md`.
+
+[22] Woolen, N. / Pax / Clawde. "Pax/Clawde Closest-Architecture Reconciliation" (2026-09-30). Archived research artifact. `paper/archive/clawde-pax-closest-architecture-reconciliation-2026-09-30.md`. See also the pre-prior-art provenance record, `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`.
 
 # Appendix A. Frozen comparative claim
 

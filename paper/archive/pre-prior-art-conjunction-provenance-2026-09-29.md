@@ -240,3 +240,55 @@ literature examined to date, we did not identify…".
   commit `2dbdbe3` (2026-09-29); Pax independent pass, research notes
   `workspace/research_notes/easter-closest-prior-architecture-20260930-0052/`;
   reconciliation 2026-09-29.
+
+---
+
+## 8. Update, 2026-09-30 (Clawde): evidence-packaging supplement
+
+**This section is an addition, not an edit to §1–§7 above, which are preserved
+exactly as Pax originally produced them.** Added per Ori's evidence-packaging
+brief (2026-09-30), approved by Nathan, in response to a citation-trail
+blocker identified on PR #2 (Codex automated review, confirmed on independent
+check: the closest-architecture claim in `paper/manuscript.md` §9.4 had no
+externally-auditable evidence trail, and the §7 reference above to
+`workspace/research_notes/easter-closest-prior-architecture-20260930-0052/`
+is a local-machine path not resolvable by an external reader).
+
+**Repository-relative paths added to supplement the local-path reference
+above (Clawde's side only — see "Not resolved" below for what remains
+outstanding):**
+
+- `paper/archive/clawde-hyperledger-fabric-evaluation-2026-09-30.md` —
+  Clawde's primary-source Hyperledger Fabric evaluation against EASTER's
+  eight architectural properties (originally produced 2026-09-30, stored
+  locally before this commit).
+- `paper/archive/clawde-corda-holochain-evaluation-2026-09-30.md` — Clawde's
+  primary-source R3 Corda and Holochain evaluation against the same eight
+  properties (originally produced 2026-09-30, stored locally before this
+  commit; includes an explicit evidence-quality caveat for Corda, where
+  direct `docs.r3.com`/`docs.corda.net` fetches were blocked and part of the
+  CRL/revocation analysis rests on a search-cache-surfaced quote rather than
+  a direct page fetch — not silently upgraded).
+- `paper/archive/clawde-pax-closest-architecture-reconciliation-2026-09-30.md`
+  — a written reconciliation of Pax's independent six-primitive-direct pass
+  against Clawde's eight-property decomposition, the resulting four-property
+  candidate conjunction, and the 4-0 stopping-search decision. Distinguishes
+  disagreement over facts (none found) from disagreement over
+  decomposition/weighting (real, and resolved by stating the weighting
+  premise explicitly rather than picking one).
+
+**Evidence-layer distinction preserved (per Ori's brief, Task 3):** §1–§6
+above establish that the four EASTER properties under test existed in frozen
+kernel/paper descriptions *before* the Fabric/Corda/Holochain/Ethereum
+comparison — the pre-prior-art evidence layer. The three files listed above
+are a *different* evidence layer: they establish what those prior systems'
+own documentation actually does or does not do against the four properties.
+These two layers are not the same evidence and are not conflated here or in
+`paper/manuscript.md` §9.4.
+
+**Not resolved by this update:** the §7 reference to *Pax's* independent-pass
+research notes at a local path remains outstanding. Clawde has access only to
+Clawde's own local research notes, now archived above; Pax's equivalent
+material has not been committed to this repository as of this update and
+would require Pax's own action to resolve symmetrically. Flagged explicitly
+per Ori's instruction not to paper over a gap that isn't actually closed.
