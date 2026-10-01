@@ -75,31 +75,23 @@ This produced two complementary layers:
 
 **Git → artifact content and revision history**
 
-**EASTER → attributable consequential record of deposit, authority, and outcome**
+**EASTER → attributable consequential records for operations that reached the kernel boundary**
 
-The distinction is important. EASTER did not need to duplicate Git's version-control function in order to preserve that a particular Git artifact had become consequential to the research process.
+The distinction is important. EASTER did not need to duplicate Git's version-control function in order to preserve that a particular Git artifact had become consequential to the research process. Nor should events stopped by an outer authentication or transport boundary be described as kernel-authored EASTER outcomes unless evidence shows that they reached the kernel.
 
-## 8.6 Authority failure during the workflow
+## 8.6 Gateway authentication failure during the workflow
 
-The workflow also produced an unplanned Authority event.
+The workflow also produced an unplanned boundary event that is useful precisely because it clarifies what EASTER did **not** record.
 
-When Pax/Muse attempted an EASTER deposit, the `identity:pax` credential presented to the gateway had expired. The gateway remained reachable, but the attempted write was refused.
+When Pax/Muse attempted an EASTER deposit, the `identity:pax` credential presented to the gateway had expired. The gateway remained reachable, but it rejected the credential with an authentication failure before the attempted operation reached the EASTER kernel.
 
-After the credential was refreshed through the authorized operational path, the deposit was retried and accepted.
+After the credential was refreshed through the authorized operational path, the deposit was retried and the later operation reached the kernel and was accepted.
 
-The significance of this episode is narrow but concrete.
+The first event is therefore **not evidence of kernel Authority enforcement**. No EASTER Authority grant was evaluated for the gateway-rejected request, and the manuscript does not claim a kernel REJECTED Receipt for that attempt. It is an authentication-boundary event in the surrounding deployment.
 
-The participant possessed a legitimate research role and the intended payload was valid research material, yet the attempted consequential write was not admitted while the presented Authority was invalid.
+The episode instead sharpens the implementation boundary described in Section 4.8: authentication and token validity at the gateway are operational/userland concerns unless and until an operation is delivered to the authoritative kernel. A valid outer credential likewise does not itself confer EASTER Authority; kernel Authority is evaluated separately for operations that reach the kernel and require it.
 
-The rejected attempt and the later accepted operation are different historical events.
-
-This behavior illustrates the separation described in Sections 3 and 4:
-
-**semantic legitimacy of a payload does not substitute for valid Authority at admission time.**
-
-Likewise, a rejected attempt can become part of the inspectable operational history without becoming an accepted State mutation or conferring Authority.
-
-The event was not staged as a test and should not be treated as a controlled security evaluation. It is simply an observed instance of the reference system enforcing the Authority boundary during ordinary use.
+The event was not staged as a test and should not be treated as a controlled security evaluation. Its evidentiary value here is narrower: it prevents the surrounding gateway from being conflated with the EASTER Authority primitive.
 
 ## 8.7 Merge anchoring
 
@@ -123,16 +115,16 @@ The case demonstrates that the reference implementation can support a multi-part
 - missing first-party evidence can remain explicitly pending rather than being fabricated;
 - later corrections can supplement earlier records without requiring historical erasure;
 - artifact preservation and consequential-event preservation can be separated between Git and EASTER;
-- invalid Authority can prevent admission despite the semantic legitimacy of the intended work;
-- later authorized action can proceed without rewriting the earlier failed attempt; and
+- gateway authentication and kernel Authority remain distinct boundaries;
+- later kernel-admitted action can proceed without rewriting an earlier gateway-level authentication failure; and
 - consequential integration events can be durably anchored without asking the kernel to determine semantic truth.
 
 These are implementation observations, not universality claims.
 
-The episode does not establish that EASTER captures every form of research provenance, that the six primitives are sufficient for every multi-participant workflow, or that use of EASTER makes the resulting attribution historically correct.
+The episode does not establish that EASTER captures every form of research provenance, that the six primitives are sufficient for every multi-participant workflow, or that use of EASTER makes the resulting attribution historically correct. It also does not demonstrate all six primitives through every event in the workflow; the case should be read only for the records and relationships actually preserved.
 
 It demonstrates something narrower:
 
-**the reference implementation was able to preserve the consequential structure of this attribution workflow while leaving interpretation, correction, reconciliation, and publication judgment outside the kernel.**
+**the reference implementation was used to preserve consequential portions of this attribution workflow while leaving interpretation, correction, reconciliation, publication judgment, and outer authentication outside the kernel.**
 
 That is the boundary the implementation was designed to maintain.
