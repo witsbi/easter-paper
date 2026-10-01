@@ -6,7 +6,7 @@ These layers are not interchangeable.
 
 The archival record is uneven. For some systems, substantial primitive-level findings were recovered; for others, only an aggregate result survived. Missing classifications remain unknown. We do not reconstruct them from aggregate counts, present-day recollection, or later re-analysis.
 
-The recovered-review artifact used here is itself a reconstruction created on September 29, 2026 from previously preserved research state. It is not represented as the original freeze.
+The recovered-review artifact used here is itself a reconstruction created on September 29, 2026 from previously preserved research state. It is not represented as the original freeze. The detailed recovered findings in this section are grounded in `paper/archive/recovered-review-state-2026-09-29.md`; public architecture sources used by the earlier review are listed in References [3]–[15].
 
 ## 6.1 Comparative summary
 
@@ -17,7 +17,7 @@ The recovered-review artifact used here is itself a reconstruction created on Se
 | **LangGraph** | D/R/C COVERED | Evidence findings substantially recovered, including an UntrackedValue OPEN. Transition: 7 COVERED / 4 OPEN. Exception: 7 COVERED / 4 OPEN. Receipt: 5 COVERED / 5 OPEN. Authority and State were reviewed but their exact matrices were not recovered. | Composition among checkpoints, tasks, pending writes, metadata, authorization/control, and fault-tolerance mechanisms closed many primitive-level OPENs. | 0 demonstrated GAP; 0 CHALLENGED. | Substantial recovery; Authority/State matrices, individual DRC receipts, and exact source SHA not recovered. |
 | **Anthropic Claude Agent SDK** | D/R/C COVERED | Primitive-level EASTER classifications not recovered. | Not recovered. | 0 demonstrated GAP. | Aggregate recovery only. Primitive decomposition remains unknown. |
 | **OpenAI Agents SDK** | D/R/C COVERED | Primitive-level decomposition not recovered. | Not recovered. | Exactly 1 GAP. | Aggregate result and existence of one real GAP recovered; owning primitive remains unknown. |
-| **Google Antigravity** | D/R/C COVERED | Substantial primitive sweeps recovered: Evidence, Authority, State, Transition, and Exception contain documented GAP/OPEN/COVERED findings; Receipt is not sufficiently recovered. | Six conceptual families survived recovery, but their exact mapping to the final three GAPs did not. | 3 GAPs; no demonstrated CHALLENGE. | Substantial primitive recovery; final composition mapping, Receipt freeze, and exact runtime version remain incomplete. |
+| **Google Antigravity** | D/R/C COVERED | Substantial primitive sweeps recovered: Evidence, Authority, State, Transition, and Exception contain documented GAP/OPEN/COVERED findings; Receipt is not sufficiently recovered. | Six conceptual families survived recovery, but their exact mapping to the final three GAPs did not. | 3 GAPs; no demonstrated CHALLENGED. | Substantial primitive recovery; final composition mapping, Receipt freeze, and exact runtime version remain incomplete. |
 
 The table is descriptive, not ordinal. GAP counts are not system scores, and the aggregate column cannot be used to reconstruct missing primitive classifications.
 
@@ -68,7 +68,7 @@ This treatment intentionally sacrifices apparent completeness in favor of proven
 
 ## 6.4 Google Antigravity
 
-Google Antigravity retains the most substantial recovered GAP set in the initial corpus.
+Google Antigravity retains the most substantial recovered GAP set in the initial corpus. The public launch material provides product-level context [13], while the detailed primitive findings below come from the recovered review artifact `paper/archive/recovered-review-state-2026-09-29.md`; the launch source alone is not treated as sufficient support for those primitive classifications.
 
 Recovered Evidence findings include loss of MCP annotations before policy evaluation and loss of exception fidelity, alongside COVERED call/result/step correlation and OPEN questions involving truncation and context fragmentation.
 
@@ -93,7 +93,9 @@ At whole-system level, six conceptual families survived archival recovery:
 
 The exact mapping from these six families to the frozen final aggregate of **three GAPs** was not recovered. We therefore do not reverse-engineer that mapping.
 
-No CHALLENGE to an EASTER primitive was demonstrated in the recovered Antigravity review.
+No CHALLENGED disposition against an EASTER primitive was demonstrated in the recovered Antigravity review.
+
+Antigravity also has the weakest inspected boundary in the corpus while carrying the largest frozen EASTER GAP aggregate (3). Its evidence therefore carries greater uncertainty than the more strongly archived systems, and the larger GAP count must not be read as establishing architectural inferiority.
 
 ## 6.5 DRC/EASTER asymmetry observed in the corpus
 
