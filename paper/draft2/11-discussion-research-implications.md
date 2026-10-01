@@ -254,7 +254,7 @@ At minimum, a candidate EASTER-compatible kernel should expose observable behavi
 - the new State and its Transition are durably admitted atomically;
 - previously admitted State is not mutated in place;
 - branching from an admitted predecessor is permitted without the kernel designating a canonical semantic successor; and
-- an ACCEPTED Receipt durably identifies the admitted operation when the receipt transaction succeeds.
+- the new State, its Transition, and the ACCEPTED Receipt identifying the admitted operation commit atomically as one accepted authoritative outcome.
 
 **Rule-rejection postconditions**
 
@@ -265,7 +265,7 @@ At minimum, a candidate EASTER-compatible kernel should expose observable behavi
 **Execution-failure postconditions**
 
 - partial authoritative mutation from the attempted operation is unwound;
-- a subsequent diagnostic-recording transaction may durably persist a FAILED Receipt and Exception describing the failed attempt; and
+- after the attempted authoritative transaction has unwound, a separate diagnostic-recording transaction durably persists a FAILED Receipt and linked Exception describing the failed attempt when that diagnostic transaction succeeds; and
 - if that diagnostic transaction itself cannot persist, the implementation must not expose phantom durable failure records.
 
 **Authority postconditions**
