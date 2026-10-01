@@ -131,7 +131,7 @@ The contribution-provenance workflow described in Section 8 occurred during real
 
 It was not designed prospectively as a controlled experiment.
 
-The gateway-authentication failures described in Section 8 were naturally occurring rather than intentionally injected. At least two participant identities were affected in the same operational window according to the first-party accounts preserved for this manuscript; the publication package does not independently establish the shared root cause from gateway logs. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
+The gateway-authentication failures described in Section 8 were naturally occurring rather than intentionally injected. At least two participant identities were affected in the same operational window according to the first-party participant accounts cited in Section 8.6; the publication package does not independently establish the shared root cause from gateway logs. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
 
 The case therefore demonstrates that the reference implementation was used operationally under the described conditions.
 
