@@ -38,7 +38,7 @@ The entries below distinguish publication references from the historical source-
 
 18. G. Wood, “Ethereum: A Secure Decentralised Generalised Transaction Ledger,” Ethereum Yellow Paper. Project repository: https://github.com/ethereum/yellowpaper (historical architectural reference; the repository notes that the Yellow Paper is not current beyond the Shanghai-era specification).
 
-19. Amazon Web Services, *Amazon Quantum Ledger Database (QLDB) Developer Guide*. https://docs.aws.amazon.com/qldb/latest/developerguide/ (historical architectural reference; AWS ended QLDB support on 2025-07-31).
+19. Amazon Web Services, *Amazon Quantum Ledger Database (QLDB) Developer Guide*. Historical documentation URL: https://docs.aws.amazon.com/qldb/latest/developerguide/ (AWS ended QLDB support on 2025-07-31; this documentation URL was no longer served when rechecked on 2026-10-01. The entry is retained as a historical architectural reference rather than replaced with an unrelated current source.)
 
 20. Nous Research, *Hermes Agent Documentation*. https://hermes-agent.nousresearch.com/docs/ (publication-navigation reference; accessed 2026-10-01).
 
