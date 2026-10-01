@@ -7,7 +7,7 @@ welcome via pull request but the author keeps every merge decision.
 
 ## How
 
-- The manuscript is Markdown (`paper/manuscript.md`). One idea per commit;
+- The manuscript is Markdown (`paper/draft2/` section files). One idea per commit;
   keep commits small and reviewable.
 - Thinking that isn't manuscript-ready goes in `paper/notes.md`, not the
   manuscript.

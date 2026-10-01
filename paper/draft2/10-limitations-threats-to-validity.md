@@ -73,7 +73,7 @@ Where disagreement mattered, the intended resolution mechanism was inspection of
 
 ## 10.6 No proof of EASTER minimality
 
-The six EASTER primitives survived the architectural reviews without a demonstrated CHALLENGE in the recovered corpus.
+The six EASTER primitives survived the architectural reviews without a demonstrated CHALLENGED disposition in the recovered corpus.
 
 That observation does not establish that the primitive set is minimal.
 

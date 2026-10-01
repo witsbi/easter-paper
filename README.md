@@ -21,7 +21,7 @@ being worked out.
 
 ## Layout
 
-- `paper/manuscript.md` — the manuscript itself.
+- `paper/draft2/` — the manuscript itself (section files; assembled only for review copies).
 - `paper/notes.md` — parking lot: open questions, backstory decisions, rejected framings.
 - `CONTRIBUTING.md` — how to contribute.
 

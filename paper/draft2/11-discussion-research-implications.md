@@ -219,7 +219,7 @@ This creates a conservative evolution rule for the primitive set:
 
 **do not add a primitive because a feature is useful; add one only when consequential continuity cannot be represented without it.**
 
-The absence of a demonstrated CHALLENGE in the initial corpus provides some support for restraint, but not proof that the six-primitive boundary is final.
+The absence of a demonstrated CHALLENGED disposition in the initial corpus provides some support for restraint, but not proof that the six-primitive boundary is final.
 
 ## 11.10 Future experimental program
 
