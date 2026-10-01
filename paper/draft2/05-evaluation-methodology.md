@@ -62,7 +62,7 @@ An aggregate finding may establish that a review reached a particular dispositio
 
 Unverified recollections are not used to fill those gaps.
 
-The September 29 recovered-review artifact is itself an archival reconstruction from previously preserved research state. It records both recovered findings and explicit non-recovery. It is evidence for what the research program successfully preserved; it is not represented as the original primitive-by-primitive review package.
+The September 29 recovered-review artifact [28] is itself an archival reconstruction from previously preserved research state. It records both recovered findings and explicit non-recovery. It is evidence for what the research program successfully preserved; it is not represented as the original primitive-by-primitive review package.
 
 ## 5.4 Review boundary
 
@@ -76,14 +76,14 @@ This observability asymmetry is particularly important when comparing open and m
 
 ## 5.5 Corpus and chronology
 
-The initial corpus contains six mature agent architectures:
+The initial corpus contains six mature agent architectures. Current official documentation is provided for publication navigation, while the historical source/version limits remain those recorded in Appendix A:
 
-- Hermes Agent
-- OpenClaw
-- LangGraph
-- Anthropic Claude Agent SDK
-- OpenAI Agents SDK
-- Google Antigravity
+- Hermes Agent [20]
+- OpenClaw [21]
+- LangGraph [22]
+- Anthropic Claude Agent SDK [23]
+- OpenAI Agents SDK [24]
+- Google Antigravity [25]
 
 The corpus is **pre-disclosure** with respect to the combined EASTER/DRC framework: these systems were not designed in response to the framework as presented in this paper.
 
@@ -131,7 +131,7 @@ The present corpus has uneven archival completeness. The comparative result is t
 
 For Hermes Agent, OpenClaw, and LangGraph, substantial primitive-level findings survive. For Anthropic Claude Agent SDK, only the zero-GAP aggregate survives. For OpenAI Agents SDK, the one-GAP aggregate survives but its owning primitive does not. For Google Antigravity, substantial primitive findings and six issue families survive, but the exact composition mapping to the frozen three-GAP aggregate and the Receipt freeze do not.
 
-The publication package should preserve, where available:
+The publication package preserves, where available:
 
 - exact source commit, tag, version, or review date;
 - primitive-level findings;
@@ -140,7 +140,7 @@ The publication package should preserve, where available:
 - source evidence supporting consequential classifications; and
 - explicit unknowns where those materials were not recovered.
 
-The September 29 recovered-review artifact is the **authoritative reporting artifact for the recovered comparative state** used by the manuscript. It is not the original review package, and its explicit unknowns are part of the result.
+The September 29 recovered-review artifact [28] is the **authoritative reporting artifact for the recovered comparative state** used by the manuscript. It is pinned, together with the comparative evidence register, in the public artifact manifest associated with reference [27]. It is not the original review package, and its explicit unknowns are part of the result.
 
 Accordingly, a reader can reproduce the derivation of the manuscript's comparative table only to the resolution preserved by that artifact. The paper does **not** claim that a reader can independently derive every historical primitive classification or the aggregate sequence `(0, 0, 0, 0, 1, 3)` from a complete original review dataset, because that dataset was not preserved.
 
