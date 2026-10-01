@@ -10,7 +10,37 @@ The relevant question is narrower:
 
 We conducted a dedicated closest-prior investigation to test that question rather than treating absence from the initial agent-system corpus as evidence of novelty.
 
-## 9.1 Architectural neighborhoods
+## 9.1 Search method and evidentiary warrant
+
+The closest-prior work was a **bounded adversarial investigation, not a systematic or exhaustive literature review**. This characterization is supported by two independently deposited first-party methodology accounts and the contemporaneous research artifacts.
+
+Two AI-assisted passes approached the question with different decompositions and different search shapes.
+
+**Pax pass.** Pax designed a six-property rubric corresponding to the EASTER combination, an explicit kill condition, and a bounded research brief, then delegated web investigation to an isolated deep-research agent. The brief pre-identified Hyperledger Fabric as the lead candidate and named adjacent candidates including Ethereum, QLDB, Temporal/Cadence, Kafka, Git, CRDT stores, Certificate Transparency, TUF, Axon, and provenance/lineage systems. The research agent inspected documentation, specifications, repositories, RFCs, and related sources and returned a report that Pax reviewed. Pax did not personally re-open the twelve cited sources during that pass. The resulting investigation is therefore best described as a directed kill-attempt against a pre-named strong contender, not as an open-ended discovery survey.
+
+**Clawde pass.** Clawde separately used a deep-research workflow for a broader prior-art investigation: six parallel research subagents examined pre-selected traditions including event sourcing/ledgers, durable execution/fault recovery, provenance, capability security, ER/type systems, and ontology/knowledge representation, followed by a synthesis agent. A later closest-architecture pass then examined Fabric and, reactively after Fabric's canonicality weakness became salient, Corda and Holochain. That later pass used an eight-property decomposition whose pre-use derivation artifact was not recovered. Whether the later Fabric/Corda/Holochain dispatch itself formally used the named deep-research skill is also unrecovered; its delegation pattern was similar, but the record does not justify treating that as confirmed.
+
+The two passes were independent of one another in the relevant sense: their analyses were produced without either participant first harmonizing its result to the other's. They were **not independent of AI research tooling**, and most source reading occurred in delegated research contexts rather than being personally re-fetched by the orchestrating participant.
+
+The passes were subsequently reconciled against their cited source claims. The preserved reconciliation records no material contradiction in the underlying primary-source facts; the principal difference was decomposition and weighting. The four-property behavioral conjunction reported below emerged from that reconciliation rather than from either pass alone.
+
+This procedure supports a narrow warrant: strong pre-identified and adjacent candidate architectures were subjected to differently decomposed attempts to defeat the conjunction, and none of the examined systems did so. It does **not** support the claim that the literature contains no closer architecture or that the candidate space was exhausted.
+
+### Source discipline
+
+The investigations preferred primary technical sources where accessible: official project documentation and repositories, specifications and RFCs, project or vendor whitepapers, and academic papers. Preserved source records include, among others, Hyperledger Fabric documentation and source plus the EuroSys Fabric paper; the Corda technical whitepaper; the Holochain whitepaper and developer documentation; W3C PROV material; RFC 6749; primary capability-security literature; Temporal, Kafka, Axon, EventStoreDB, and Git documentation; and a formal CRDT treatment.
+
+Primary-source access was not complete. The Pax pass used a third-party mirror for the Corda whitepaper. Clawde's pass records inaccessible or unparsed primary material in several areas and labels secondary or search-cache substitution rather than silently presenting it as direct primary inspection. Neither first-party account documents a primary-vs-primary factual conflict requiring adjudication.
+
+The final submission bibliography should cite the authoritative original source for each manuscript claim where an equivalent accessible original can be verified. Replacing a historical mirror with an authoritative bibliographic citation improves the publication apparatus; it does not rewrite which source was actually inspected during the historical pass.
+
+### Search limitations preserved rather than repaired retrospectively
+
+The historical search has known holes. Pax's brief named TUF, OpenLineage, Marquez, DataHub, and Atlas, but the resulting report does not show whether those candidates were examined and rejected or never examined. Clawde's reconstruction identifies an unexamined class of permissioned distributed architectures combining hard revocable admission with non-canonical or sharded replication. Candidate selection was not governed by formal inclusion/exclusion criteria, database queries, citation chaining, or a PRISMA-like screening protocol. The work was time-boxed to essentially one evening.
+
+These gaps are not filled retrospectively. A later search of them would constitute additional prior-art work, not recovery of the historical procedure.
+
+## 9.2 Architectural neighborhoods
 
 Several neighboring traditions overlap with EASTER while solving different primary problems.
 
@@ -26,7 +56,7 @@ Several neighboring traditions overlap with EASTER while solving different prima
 
 These overlaps motivate a conjunction claim rather than a primitive-by-primitive novelty claim.
 
-## 9.2 Hyperledger Fabric
+## 9.3 Hyperledger Fabric
 
 Hyperledger Fabric was one of the strongest neighboring architectures found.
 
@@ -42,7 +72,7 @@ Third, Fabric's evidence-like material is generally carried within transaction s
 
 Fabric therefore demonstrates substantial overlap without reproducing the full EASTER boundary.
 
-## 9.3 Corda
+## 9.4 Corda
 
 Corda provides a different neighboring architecture.
 
@@ -56,7 +86,7 @@ Likewise, the investigation did not identify a uniform EASTER-like durable outco
 
 Corda therefore overlaps strongly on non-global state and explicit transitions while diverging on the admission boundary EASTER makes central.
 
-## 9.4 Holochain
+## 9.5 Holochain
 
 Holochain provided useful counterevidence because it makes a substantially different architectural tradeoff.
 
@@ -68,7 +98,7 @@ EASTER chooses differently. It accepts an authoritative kernel boundary while re
 
 The distinction is architectural rather than a claim that one tradeoff is universally preferable.
 
-## 9.5 Other examined candidates
+## 9.6 Other examined candidates
 
 The closest-prior investigation also considered Ethereum, Certificate Transparency, Apache Kafka, Amazon QLDB, in-toto, Temporal/Cadence, Axon Framework, Git, CRDT-oriented stores, and related systems.
 
@@ -86,7 +116,7 @@ in-toto strongly represents signed supporting evidence but is principally a veri
 
 No individual overlap is therefore presented as surprising. The research question concerns their conjunction.
 
-## 9.6 The surviving behavioral conjunction
+## 9.7 The surviving behavioral conjunction
 
 Across the closest-prior investigations, four behavioral properties emerged as the narrowest architectural conjunction supported independently by the preserved analyses. They are stated behaviorally here so a prior architecture need not use EASTER's names or data partitioning to satisfy them:
 
@@ -109,7 +139,7 @@ This result supports the following bounded statement:
 
 This is a non-identification claim, not a universal novelty theorem.
 
-## 9.7 Pre-prior-art provenance of the conjunction
+## 9.8 Pre-prior-art provenance of the conjunction
 
 Because a conjunction can be manufactured after examining prior art, we separately tested whether these four properties had been selected retrospectively to occupy an empty region.
 
@@ -132,13 +162,13 @@ This evidence addresses a specific methodological objection:
 
 It does not establish that the conjunction is globally novel.
 
-## 9.8 Independent decomposition and reconciliation
+## 9.9 Independent decomposition and reconciliation
 
-Two closest-architecture passes used different decompositions.
+The two closest-architecture passes used different decompositions and should not be flattened into a single search procedure.
 
-Pax evaluated candidates directly against EASTER's six named properties and identified Hyperledger Fabric as the closest individual architecture.
+Pax's pass used the six-property EASTER combination and pre-identified Fabric as the lead candidate. It identified Fabric as the strongest candidate in that bounded evaluation. Clawde's later closest-architecture work used an eight-property decomposition and deliberately added Corda and Holochain after Fabric's canonicality weakness surfaced.
 
-Clawde used an eight-property decomposition. Under an equal-weight reading of those properties, Corda compared more closely on some axes, particularly canonicality, evidence separation, and transition explicitness.
+Under an equal-weight reading of Clawde's properties, Corda compared more closely on some axes, particularly canonicality, evidence separation, and transition explicitness. Pax's differently structured pass retained Fabric as the closest candidate.
 
 The subsequent reconciliation found no material contradiction in the underlying primary-source facts. The difference arose from decomposition and weighting.
 
@@ -148,13 +178,13 @@ Rather than hiding that disagreement or converting it into a supposedly objectiv
 
 The novelty boundary therefore does not depend on declaring a single architecture the universally “closest” prior system.
 
-## 9.9 Search stopping and remaining candidate classes
+## 9.10 Search stopping and remaining candidate classes
 
 The dedicated closest-architecture search was stopped after the bounded conjunction survived the examined candidate set.
 
-That stopping decision was not treated as proof of exhaustion.
+That stopping decision was not treated as proof of exhaustion. A later 4–0 participant vote favored stopping additional dedicated search while preserving the claim as provisional and bounded. The vote records a research-governance decision, not evidence that no counterexample exists.
 
-The preserved rationale was that the search had already crossed several materially different architectural families; independently decomposed passes converged on the same underlying factual gap; and the manuscript claim had been deliberately bounded to the systems and literature examined rather than strengthened into an exhaustive statement.
+The preserved rationale was that the search had already crossed several materially different architectural families; differently decomposed passes converged on the same underlying factual gap; and the manuscript claim had been deliberately bounded to the systems and literature examined rather than strengthened into an exhaustive statement.
 
 A particularly relevant untested candidate class remains:
 
@@ -162,17 +192,19 @@ A particularly relevant untested candidate class remains:
 
 Such a system could weaken or kill the present non-identification claim if it also provided the bounded outcome recording and durable non-state failure behavior described above at the same boundary.
 
-That class should therefore be treated as future prior-art work rather than silently assumed absent.
+Pax's historical brief also names TUF, OpenLineage, Marquez, DataHub, and Atlas, but its surviving report does not establish whether those candidates were actually examined. They therefore cannot be counted as negative findings from that pass.
 
-## 9.10 Novelty boundary
+These classes should be treated as future prior-art work rather than silently assumed absent.
+
+## 9.11 Novelty boundary
 
 The related-work investigation supports three different levels of claim, which should not be collapsed.
 
 **Supported:** individual EASTER mechanisms have substantial prior art.
 
-**Supported within the examined set:** the four-property behavioral conjunction above was not identified in the systems and literature examined.
+**Supported within the examined set:** the four-property behavioral conjunction above was not identified in the systems and literature actually evidenced as examined.
 
-**Not established:** that no prior system anywhere implements the conjunction, that EASTER is universally novel, or that the conjunction is necessary or optimal.
+**Not established:** that no prior system anywhere implements the conjunction, that EASTER is universally novel, that every candidate named in a historical brief was actually screened, or that the conjunction is necessary or optimal.
 
 Accordingly, Draft 2 adopts the bounded formulation:
 
@@ -182,4 +214,4 @@ This formulation is intentionally falsifiable.
 
 A documented prior architecture satisfying the behavioral conjunction—even with different terminology or internal record types—would narrow or defeat the claim without invalidating the EASTER implementation itself.
 
-That separation between **what the system does** and **what the literature search has established about its novelty** is essential to the evidentiary boundary of this paper.
+That separation between **what the system does** and **what the bounded prior-art investigation has established about its novelty** is essential to the evidentiary boundary of this paper.
