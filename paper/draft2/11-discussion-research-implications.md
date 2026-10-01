@@ -8,7 +8,7 @@ Those questions should not be confused with demonstrated results. In particular,
 
 What it provides is a concrete architecture from which those questions can be tested.
 
-## 11.1 Continuity as an accountability problem
+## 11.1 Continuity as a mechanically inspectable record
 
 EASTER began as a continuity problem: how can consequential intelligent work survive changes in models, agents, processes, sessions, machines, and runtimes without depending on the private state of the system that originally performed the work?
 
@@ -27,11 +27,11 @@ For consequential work, later participants may need to determine:
 
 These questions correspond directly to EASTER's six primitives.
 
-In that sense, EASTER can be understood as an **accountability machine**: a substrate designed to preserve enough consequential structure that later participants can inspect what occurred without requiring access to the originating runtime's private computational state.
+In a deliberately mechanical sense, EASTER can therefore be described as an **accountability machine**: a substrate designed to preserve inspectable attribution and outcome structure without requiring access to the originating runtime's private computational state.
 
-This phrase should not be interpreted normatively.
+The phrase does **not** mean moral, legal, institutional, or democratic accountability. EASTER does not establish identity assurance, legitimacy of the policy that granted Authority, fairness, due process, enforcement, remedy, or whether an action was morally, legally, or semantically correct. Those require mechanisms and judgments outside the kernel.
 
-EASTER does not determine whether an action was morally, legally, or semantically correct. It preserves structures from which responsibility, provenance, and continuity can be investigated according to rules owned elsewhere.
+The kernel provides records that an external accountability process may inspect; it does not itself constitute that process.
 
 ## 11.2 Observation is not accountability
 
@@ -41,9 +41,9 @@ A system may record extensive logs, traces, messages, prompts, model outputs, an
 
 Observation provides information.
 
-Accountability requires that consequential records can matter in a bounded and inspectable way.
+Mechanical accountability requires that consequential records can be attributed and inspected in a bounded way. Broader accountability additionally requires external governance capable of contesting records and making that contest consequential.
 
-The present architecture therefore separates mere retention from admission semantics.
+The present architecture addresses only the mechanical layer.
 
 Evidence may exist without becoming State.
 
@@ -79,7 +79,7 @@ The distinction may also be useful beyond EASTER. Systems that require strong go
 
 ## 11.4 Refusal and failure as first-class history
 
-The reference implementation treats ACCEPTED, REJECTED, and FAILED outcomes as historically meaningful.
+The reference implementation treats ACCEPTED, REJECTED, and FAILED outcomes as historically meaningful for operations that reach the receipt-capable kernel path and whose outcome records can be persisted.
 
 This has a consequence for continuity.
 
@@ -91,9 +91,9 @@ Both may influence later reasoning about what was attempted, what Authority exis
 
 Preserving these outcomes therefore increases the reconstructability of consequential work without requiring unsuccessful operations to mutate accepted State.
 
-The contribution-provenance case in Section 8 illustrates this distinction operationally: an unauthorized deposit attempt and the later authorized deposit are separate historical events.
+The contribution-provenance case in Section 8 also illustrates the boundary of this claim: the gateway-rejected expired credential did not reach the kernel and therefore is not a kernel Receipt event; the later accepted deposit did.
 
-Future work should test whether uniform outcome preservation materially improves recovery after more severe runtime changes.
+Future work should test whether bounded outcome preservation materially improves recovery after more severe runtime changes.
 
 ## 11.5 Branching as preserved disagreement
 
@@ -111,7 +111,7 @@ Contestability, adjudication, reconciliation, and consequences remain userland r
 
 This distinction matters for systems involving multiple intelligent participants. Preserving a counter-record is not equivalent to providing due process, and inspectability alone does not ensure that a challenge can affect an outcome.
 
-## 11.6 Semantic work-state portability
+## 11.6 Semantic work-state portability and its oracle
 
 The architecture motivates a stronger experimental hypothesis:
 
@@ -125,29 +125,27 @@ It is also distinct from context portability, in which messages, prompts, summar
 
 The proposed target is **semantic work-state portability**.
 
-The receiving system need not recreate the original runtime.
+The receiving system need not recreate the original runtime. It must produce an acceptable next consequential action from the preserved work-state under the same externally specified task constraints.
 
-It needs enough durable consequential structure to continue the work correctly.
+This hypothesis has not been demonstrated by the present six-system review or the attribution case study. A future test therefore needs an oracle defined **before** migration rather than judging continuation after seeing Runtime B's answer.
 
-This hypothesis has not been demonstrated by the present six-system review or the attribution case study.
+For a portability trial, the experiment should specify prospectively:
 
-It is a direct candidate for future experimentation.
+1. **task contract** — the goal, admissible actions, invariants, and stopping conditions that define the work independently of either runtime;
+2. **migration cut** — the exact point at which Runtime A loses authority to continue and the EASTER projection is frozen for transfer;
+3. **information boundary** — Runtime B receives the designated EASTER records and declared public task inputs, but not Runtime A's private conversation, hidden memory, caches, scratch state, or implementation-specific checkpoint;
+4. **acceptable-successor set** — where multiple next actions are valid, the oracle defines a set or predicate of acceptable consequential successors rather than requiring byte-for-byte reproduction of Runtime A's hypothetical next output;
+5. **invalid-successor conditions** — violations of task invariants, Authority, preserved evidence constraints, or required ancestry count as failures even if the resulting output appears useful;
+6. **baselines** — compare EASTER transfer against at least a no-transfer condition and a context-transfer baseline such as a conventional summary or transcript package; and
+7. **measures** — record continuation validity, consequential errors, information transferred, recovery time or work required, and any human intervention needed before the next accepted transition.
 
-A strong test would:
+Under this oracle, **correct continuation** means that Runtime B can produce a successor satisfying the predeclared task contract and continuity constraints from the permitted transfer package. It does not mean that Runtime B must make the same stylistic or internal reasoning choices Runtime A would have made.
 
-1. begin consequential work in Runtime A;
-2. project only the relevant EASTER records;
-3. remove access to Runtime A's private state, conversation, memory, and implementation machinery;
-4. provide the EASTER representation to heterogeneous Runtime B; and
-5. test whether Runtime B can make the next correct consequential transition.
-
-More demanding experiments could extend this to multi-hop migration:
+A stronger multi-hop experiment would repeat the same rule across:
 
 **Runtime A → EASTER → Runtime B → EASTER → Runtime C**
 
-Successful continuation across heterogeneous runtimes would provide evidence that EASTER captures portable work structure rather than merely recording the behavior of one implementation.
-
-Failure would be equally informative because it could expose missing primitives, inadequate projection fidelity, or userland structure that EASTER does not preserve.
+Success across heterogeneous runtimes would provide evidence that EASTER captures portable work structure rather than merely recording one implementation. Failure would be equally informative because it could expose missing primitives, inadequate projection fidelity, an underspecified task oracle, or necessary userland structure that EASTER does not preserve.
 
 ## 11.7 The macroscopic-variable hypothesis
 
@@ -173,7 +171,7 @@ The six-system reviews establish that the primitives form a useful architectural
 
 None establishes that the six variables are sufficient for arbitrary cross-runtime continuation.
 
-That question requires direct portability experiments.
+That question requires direct portability experiments using a prospectively defined oracle such as Section 11.6.
 
 ## 11.8 Compounding capability without centralizing runtime state
 
@@ -221,21 +219,79 @@ This creates a conservative evolution rule for the primitive set:
 
 The absence of a demonstrated CHALLENGE in the initial corpus provides some support for restraint, but not proof that the six-primitive boundary is final.
 
-## 11.10 Future experimental program
+## 11.10 Falsification program for DRC
+
+The present corpus cannot distinguish a genuinely general representational vocabulary from categories broad enough to classify almost any mature system. Future DRC work should therefore include specimens selected to produce negative and borderline cases, not only additional mature architectures expected to satisfy all three categories.
+
+A useful test matrix would include deliberately reduced representations:
+
+- **Distinction-negative:** records whose purported entities cannot be stably distinguished from one another or from their attributes;
+- **Relation-negative:** distinguishable records presented without recoverable structural relationships among them;
+- **Constraint-negative:** distinguishable, related records for which no rule, admissibility condition, invariant, or other limiting structure governs the represented relationships; and
+- **borderline specimens:** structures in which a category is only weakly or implicitly recoverable, forcing reviewers to state what evidence is sufficient for COVERED versus OPEN.
+
+The test should freeze category definitions and disposition rules before classification. Independent reviewers should classify the same specimens without seeing one another's results. If deliberately negative specimens still receive 3/3 coverage because reviewers can always reinterpret some feature as Distinction, Relation, or Constraint, that would be evidence that DRC is too permissive to function as a discriminating analytical vocabulary.
+
+Conversely, stable negative classifications and informative borderline disagreements would strengthen the claim that the categories have falsifiable content.
+
+This program tests discriminability; it would still not establish that DRC is a universal or minimal theory of meaning.
+
+## 11.11 Toward an implementation-independent EASTER contract
+
+The Python/SQLite kernel is one realization of EASTER, not the definition of every possible conforming implementation. A compact behavioral contract can nevertheless make the present architecture more machine-checkable without requiring another implementation to copy its schema.
+
+At minimum, a candidate EASTER-compatible kernel should expose observable behavior satisfying the following conditions:
+
+**Admission preconditions**
+
+- an ordinary consequential transition references an existing admitted predecessor State;
+- the acting identity has a live, non-revoked Authority grant when the operation requires Authority;
+- the proposed successor State and Transition satisfy structural validity before admission; and
+- Evidence, when referenced, is independently addressable rather than becoming State merely by being supplied.
+
+**Accepted-operation postconditions**
+
+- the new State and its Transition are durably admitted atomically;
+- previously admitted State is not mutated in place;
+- branching from an admitted predecessor is permitted without the kernel designating a canonical semantic successor; and
+- an ACCEPTED Receipt durably identifies the admitted operation when the receipt transaction succeeds.
+
+**Rule-rejection postconditions**
+
+- a rule-rejected operation does not mutate accepted State;
+- where the request has reached the receipt-capable kernel path and persistence succeeds, a REJECTED Receipt durably records the outcome; and
+- rejection does not require fabrication of an Exception representing an execution failure.
+
+**Execution-failure postconditions**
+
+- partial authoritative mutation from the attempted operation is unwound;
+- a subsequent diagnostic-recording transaction may durably persist a FAILED Receipt and Exception describing the failed attempt; and
+- if that diagnostic transaction itself cannot persist, the implementation must not expose phantom durable failure records.
+
+**Authority postconditions**
+
+- grant, revoke, and revoke-all operations preserve an inspectable Authority history rather than silently rewriting prior grants; and
+- a revoked or expired grant cannot authorize a later protected transition under the same grant.
+
+These statements are a manuscript-level behavioral contract, not yet a complete formal specification or conformance suite. They intentionally describe observable semantics rather than SQLite tables, triggers, or Python call structure.
+
+Future conformance work should encode them as executable tests against at least one independently implemented kernel. A second implementation that passes the behavioral suite while using different storage and interface mechanisms would provide stronger evidence that EASTER is an architecture rather than merely the current codebase.
+
+## 11.12 Future experimental program
 
 The next research phase should prioritize falsification over additional descriptive confirmation.
 
 Several experiments follow directly from the current limitations.
 
-**Cross-runtime continuation.** Test semantic work-state portability between heterogeneous agent runtimes while denying the receiver access to the originator's private state.
+**Cross-runtime continuation.** Test semantic work-state portability between heterogeneous agent runtimes using the prospectively frozen oracle, information boundary, baselines, and failure metrics in Section 11.6.
 
 **Primitive ablation.** Remove or collapse individual EASTER primitives and measure which continuity properties become unrecoverable.
 
-**DRC-negative specimens.** Construct or identify systems that deliberately fail Distinction, Relation, or Constraint and test whether the DRC vocabulary remains discriminative.
+**DRC-negative specimens.** Execute the negative/borderline program in Section 11.10 and test whether the vocabulary remains discriminative under frozen classification rules.
 
 **Projection-fidelity failures.** Supply incomplete or distorted userland projections and determine which failures EASTER can detect and which it faithfully preserves.
 
-**Conformance testing.** Define implementation-independent observable behaviors required for an alternative kernel to claim EASTER compatibility.
+**Conformance testing.** Turn the behavioral contract in Section 11.11 into executable implementation-independent tests and run them against a second kernel implementation.
 
 **Independent reverse review.** Have researchers outside the development process reproduce or challenge the six-system classifications from primary sources.
 
@@ -247,7 +303,7 @@ The goal of these experiments should not be to protect the current architecture.
 
 It should be to discover where it breaks.
 
-## 11.11 Research implication
+## 11.13 Research implication
 
 The strongest implication of the present work is therefore not that six primitives solve continuity universally.
 
