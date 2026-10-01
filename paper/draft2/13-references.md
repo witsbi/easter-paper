@@ -2,7 +2,7 @@
 
 The entries below distinguish publication references from the historical source-access record described in §9.1. Substituting an authoritative original here for a historical mirror does not change which source was actually inspected during the earlier research pass.
 
-1. E. Androulaki, A. Barger, V. Bortnikov, S. Muralidharan, C. Cachin, K. Christidis, A. De Caro, D. Enyeart, C. Murthy, C. Ferris, G. Laventman, Y. Manevich, B. Nguyen, M. Sethi, G. Singh, K. Smith, A. Sorniotti, C. Stathakopoulou, M. Vukolić, S. W. Cocco, and J. Yellick, “Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains,” *Proceedings of the Thirteenth EuroSys Conference (EuroSys ’18)*, 2018. DOI: 10.1145/3190508.3190538. Publication record: https://research.ibm.com/publications/hyperledger-fabric-a-distributed-operating-system-for-permissioned-blockchains
+1. E. Androulaki, A. Barger, V. Bortnikov, C. Cachin, K. Christidis, A. De Caro, D. Enyeart, C. Ferris, G. Laventman, Y. Manevich, S. Muralidharan, C. Murthy, B. Nguyen, M. Sethi, G. Singh, K. Smith, A. Sorniotti, C. Stathakopoulou, M. Vukolić, S. W. Cocco, and J. Yellick, “Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains,” *Proceedings of the Thirteenth EuroSys Conference (EuroSys ’18)*, 2018. DOI: 10.1145/3190508.3190538. Publication record: https://research.ibm.com/publications/hyperledger-fabric-a-distributed-operating-system-for-permissioned-blockchains
 
 2. Hyperledger Fabric contributors, *Hyperledger Fabric Documentation*. Linux Foundation / Hyperledger. https://hyperledger-fabric.readthedocs.io/ (accessed 2026-10-01).
 
@@ -56,7 +56,7 @@ The entries below distinguish publication references from the historical source-
 
 27. N. Woolen, *EASTER Draft 2 accepted post-remediation baseline and research archive*, Git commit `18ffc91e6550a6df7b41f335dd1879ec0002d111`, 1 Oct. 2026. https://github.com/witsbi/easter-paper/tree/18ffc91e6550a6df7b41f335dd1879ec0002d111
 
-28. N. Woolen, “Frozen Review Recovery,” archived EASTER research artifact, 29 Sep. 2026, pinned in [27] at `paper/archive/frozen-review-recovery-2026-09-29.md`.
+28. Ori, “Frozen Review Recovery,” archived EASTER research artifact, 29 Sep. 2026; archived by Pax/Muse without reclassification, pinned in [27] at `paper/archive/frozen-review-recovery-2026-09-29.md`.
 
 29. Pax/Muse, “Prior-Art First-Party Account,” archived EASTER research artifact, 1 Oct. 2026, pinned in [27] at `paper/archive/pax-prior-art-first-party-account-2026-10-01.md`.
 
@@ -64,7 +64,7 @@ The entries below distinguish publication references from the historical source-
 
 31. Pax/Muse and Clawde/Sonnet, “Closest-Architecture Reconciliation,” archived EASTER research artifact, 30 Sep. 2026, pinned in [27] at `paper/archive/clawde-pax-closest-architecture-reconciliation-2026-09-30.md`.
 
-32. N. Woolen et al., “Pre-Prior-Art Conjunction Provenance,” archived EASTER research artifact, 29 Sep. 2026, pinned in [27] at `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`.
+32. Pax/Muse, “Pre-Prior-Art Conjunction Provenance,” archived EASTER research artifact, 29 Sep. 2026; compiled at Ori's direction via Mercury relay, pinned in [27] at `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`.
 
 ## Bibliographic boundary
 
