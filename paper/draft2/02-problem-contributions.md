@@ -76,7 +76,7 @@ This paper makes five contributions.
    We implement the model in Python and SQLite and demonstrate structural invariants while leaving semantic interpretation, authentication, application policy, orchestration, and model behavior outside the kernel. The implementation does not designate a canonical current State and permits branching rather than resolving semantic alternatives internally.
 
 3. **A comparative reverse review across six agent architectures.**  
-   We apply the EASTER primitives as a common architectural lens to six mature systems and classify recovered support as COVERED, GAP, or CHALLENGED. The recovered corpus produces an aggregate primitive GAP vector of **{0, 0, 0, 0, 1, 3}**, with no demonstrated CHALLENGED primitive. We separately apply a Distinction–Relation–Constraint overlay to distinguish representational structure from consequential continuity.
+   We apply the EASTER primitives as a common architectural lens to six mature systems and classify recovered support as COVERED, OPEN, GAP, or CHALLENGED. The recovered corpus produces an aggregate primitive GAP vector of **{0, 0, 0, 0, 1, 3}**, with no demonstrated CHALLENGED primitive. We separately apply a Distinction–Relation–Constraint overlay to distinguish representational structure from consequential continuity.
 
 4. **An operational provenance case using EASTER itself.**  
    During preparation of this manuscript, the reference implementation preserves contribution claims and corrections across multiple human and AI participants, including rejected and accepted operations and repository integration. This provides an in-use example of the kernel preserving consequential provenance while leaving semantic judgment and publication authority outside the kernel.

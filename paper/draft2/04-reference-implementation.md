@@ -72,7 +72,7 @@ Neither SQLite nor the Python kernel interprets whether Evidence is substantivel
 
 ## 4.6 Receipts and Exceptions
 
-Receipts provide a uniform record of kernel operation outcomes. The schema currently recognizes bootstrap, accepted, rejected, and failed outcomes.
+Receipts provide a uniform record of kernel operation outcomes. For ordinary consequential operations, the reference kernel distinguishes ACCEPTED, REJECTED, and FAILED outcomes. Bootstrap is represented separately as an initialization receipt/status because it occurs before the ordinary Authority-mediated operation model exists.
 
 An ACCEPTED Receipt may refer to an admitted Transition, but Receipt is not structurally dependent on Transition. Authority operations can succeed without producing a State Transition and still produce Receipts.
 
