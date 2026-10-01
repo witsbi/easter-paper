@@ -139,6 +139,8 @@ For a portability trial, the experiment should specify prospectively:
 6. **baselines** — compare EASTER transfer against at least a no-transfer condition and a context-transfer baseline such as a conventional summary or transcript package; and
 7. **measures** — record continuation validity, consequential errors, information transferred, recovery time or work required, and any human intervention needed before the next accepted transition.
 
+The task contract, acceptable-successor predicate, invalid-successor conditions, and adjudication procedure should be frozen before the migration trial. Where practicable, the person or system defining those criteria and the evaluator judging trial success should be independent of the EASTER development team or blinded to treatment condition. If that independence is unavailable, the resulting limitation should be reported explicitly rather than treating contributor agreement as independent validation.
+
 Under this oracle, **correct continuation** means that Runtime B can produce a successor satisfying the predeclared task contract and continuity constraints from the permitted transfer package. It does not mean that Runtime B must make the same stylistic or internal reasoning choices Runtime A would have made.
 
 A stronger multi-hop experiment would repeat the same rule across:
