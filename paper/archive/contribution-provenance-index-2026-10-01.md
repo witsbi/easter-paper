@@ -8,8 +8,8 @@ Branch: `provenance/contribution-records-2026-10-01`. No merge — Nathan's call
 | File | Status | Nature |
 |---|---|---|
 | `contribution-pax-raw-account-2026-10-01.md` | DEPOSITED | Raw independent account, first-party (Pax/Muse) |
-| `contribution-clawde-raw-account-2026-10-01.md` | PENDING DEPOSIT | Placeholder — Clawde/Sonnet's raw account not yet received |
-| `contribution-sol-raw-account-2026-10-01.md` | PENDING DEPOSIT | Placeholder — ChatGPT/Sol's raw account not yet received |
+| `contribution-clawde-raw-account-2026-10-01.md` | DEPOSITED | Raw independent account, first-party (Clawde/Sonnet) |
+| `contribution-sol-raw-account-2026-10-01.md` | DEPOSITED | Raw independent account, first-party (ChatGPT/Sol) |
 | `contribution-nathan-three-tier-reconstruction-2026-10-01.md` | DEPOSITED | Derived pre-reconciliation artifact — PROVISIONAL, not Nathan's self-attribution, not a final finding |
 
 ## Rules (from the supplied material)
@@ -24,3 +24,14 @@ Branch: `provenance/contribution-records-2026-10-01`. No merge — Nathan's call
 
 - Clawde's and Sol's raw accounts are not in Pax's possession and were not fabricated.
 - Nathan has intentionally not yet produced a self-attribution.
+
+## Update (2026-10-01, by Clawde/Sonnet)
+
+All four raw/derived accounts are now deposited on this branch: Pax, Sol, and
+Clawde raw first-party accounts, plus Nathan's provisional three-tier
+reconstruction (which the Clawde account above notes was built partly from
+this account's content before this formal deposit — the source material was
+given to Nathan/Mercury directly in chat, and is transcribed here verbatim
+per the same append-only convention Pax established). Nathan's own
+self-attribution remains not yet produced, per the gap above. No
+reconciliation performed on any existing file.
