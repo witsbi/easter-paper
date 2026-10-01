@@ -19,7 +19,7 @@ This appendix maps the manuscript's externally grounded architectural claims to 
 | --- | --- |
 | Hyperledger Fabric is a permissioned blockchain architecture with endorsement/validation, immutable transaction history, and a maintained world state | [1], [2] |
 | Corda uses transaction-local state evolution, signatures/participants, attachments, and avoids a single globally broadcast ledger state | [3] |
-| Holochain uses agent source chains, DHT validation, distributed authority, and non-global state; validation rules can govern write permissions while time-sensitive revocation is architecturally difficult | [4] |
+| Holochain uses agent source chains, DHT validation, distributed authority, and non-global state; its design explicitly resists externally revocable authorship authority | [4] |
 | W3C PROV provides an interoperable provenance model centered on entities, activities, agents, and their relations | [5], [6] |
 | OAuth 2.0 provides delegated authorization rather than EASTER's continuity semantics | [7] |
 | Capability systems are a mature prior architectural tradition for authority and protected object access | [8], [9] |
