@@ -87,9 +87,7 @@ The frozen DRC overlay classified all three categories as COVERED for each of th
 | OpenAI Agents SDK | COVERED | COVERED | COVERED |
 | Google Antigravity | COVERED | COVERED | COVERED |
 
-Thus the observed corpus produced:
-
-**DRC = {3/3 × 6}**
+Thus, all three DRC categories were classified COVERED in all six examined systems.
 
 This result is descriptive.
 
@@ -101,17 +99,19 @@ The absence of a DRC-negative specimen is consequently both an observation and a
 
 The same six-system corpus produced a different pattern under EASTER.
 
-The frozen aggregate EASTER GAP vector was:
+In corpus order, the frozen per-system aggregate GAP-count sequence was:
 
-**{0, 0, 0, 0, 1, 3}**
+**(0, 0, 0, 0, 1, 3)**
 
-OpenAI Agents SDK and Google Antigravity therefore received D/R/C COVERED dispositions while retaining one or more EASTER GAPs within their inspected boundaries.
+This is a system-level aggregate summary, not a primitive-level vector.
+
+OpenAI Agents SDK and Google Antigravity were classified COVERED for Distinction, Relation, and Constraint while retaining one or more EASTER GAPs within their inspected boundaries.
 
 Within this corpus:
 
 **DRC-covered ⇏ EASTER-covered**
 
-This is the strongest empirical reason to keep the two lenses separate.
+This establishes one bounded empirical asymmetry: DRC coverage did not entail zero EASTER GAPs in the examined corpus.
 
 A system may preserve enough Distinction, Relation, and Constraint for functional interpretation while failing to durably preserve some consequential Evidence, Authority, State, Transition, Exception, or Receipt property across a continuity boundary.
 
@@ -119,7 +119,7 @@ DRC coverage therefore does not establish consequential continuity.
 
 ## 7.7 The converse remains unobserved
 
-The conceptual separation also permits the opposite possibility.
+The userland/continuity boundary also permits the opposite possibility in principle.
 
 An EASTER-compatible continuity mechanism could faithfully preserve opaque consequential payloads whose userland representation is inadequate for functional interpretation.
 
@@ -131,7 +131,7 @@ Conceptually:
 
 However, this converse was **not observed in the present six-system corpus**.
 
-It therefore remains a prediction of the architectural separation rather than an empirical result of this study.
+It therefore remains an unobserved possibility under the model boundary rather than an empirical result of this study.
 
 ## 7.8 Projection fidelity
 
@@ -151,7 +151,7 @@ This is why semantic truth and application meaning remain outside the kernel.
 
 The combined DRC/EASTER analysis supports a narrower result than either a universal theory of meaning or a universal continuity theorem.
 
-Within the examined corpus, **functional representational structure and consequential continuity behaved as separable architectural properties**.
+Within the examined corpus, **functional representational structure and consequential continuity were non-equivalent under the applied classifications: DRC coverage did not entail zero EASTER GAPs**.
 
 DRC provides a compact vocabulary for examining the first.
 
@@ -161,4 +161,4 @@ The relationship is therefore not one of reduction but of projection:
 
 **functional structure in userland → consequential projection → continuity boundary**
 
-This separation allows EASTER to remain semantically narrow while still preserving consequential work whose meaning is owned elsewhere.
+This division of analytical roles allows EASTER to remain semantically narrow while still preserving consequential work whose meaning is owned elsewhere.
