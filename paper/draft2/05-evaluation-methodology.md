@@ -19,6 +19,21 @@ These labels are architectural dispositions, not scores. They are not additive m
 
 A GAP can represent an intentional product or architectural tradeoff. Privacy requirements, deletion guarantees, security boundaries, simplicity, cost, or limited observability may all justify not preserving a property that EASTER would preserve. Conversely, COVERED does not establish that an implementation is complete, correct, secure, or optimal.
 
+### Operational decision rule
+
+The surviving research record supports a common decision rule even though the original reviews were not conducted from a single preregistered coding manual.
+
+For each primitive-level question, the reviewer identifies the continuity property being tested, the inspectable boundary, and the strongest source or behavior available inside that boundary. The disposition is then assigned as follows:
+
+1. **COVERED** only when the inspected evidence demonstrates the property within the stated boundary.
+2. **OPEN** when the evidence does not establish either coverage or absence—for example because the relevant behavior is hidden behind a managed or compiled boundary, documentation is ambiguous, or an external-effect window cannot be resolved.
+3. **GAP** when the inspected architecture exposes enough of the relevant boundary to show that the property is not provided there. Absence of public evidence alone is not sufficient for GAP when the underlying mechanism is unobservable; that case remains OPEN.
+4. **CHALLENGED** when the evidence indicates that the EASTER primitive or lens itself is inadequate to describe the continuity problem, rather than merely showing a missing mechanism in the inspected system.
+
+A disposition is therefore a claim about **evidence within a bounded architecture**, not a claim about an entire vendor or product beyond what was inspected.
+
+This operational statement is a reconstruction of the method evidenced by the surviving reviews and their dispositions. It is included to make the interpretation of the labels reproducible. It must not be read as a claim that every historical review was executed from this exact written checklist; no such preregistered coding manual was preserved.
+
 ## 5.2 Primitive review and whole-system composition
 
 The review method separates two analytical layers.
@@ -30,6 +45,10 @@ The review method separates two analytical layers.
 This distinction became important in the recovered corpus. Hermes, OpenClaw, and LangGraph each retained OPEN findings during primitive-level review while producing no demonstrated aggregate GAP after whole-system composition. A primitive-level OPEN therefore cannot be mechanically promoted into a system-level GAP, nor can an aggregate zero-GAP result be interpreted as uncomplicated primitive-by-primitive coverage.
 
 The method consequently preserves primitive findings and composition findings separately.
+
+Whole-system composition is not an arithmetic reduction. A reviewer must identify the primitive-level concern and the additional mechanism or interaction that resolves it, leaves it OPEN, or demonstrates a GAP at the composed boundary. Where that reasoning was not preserved, Draft 2 does not reconstruct it from the final aggregate.
+
+This limitation is particularly important for Google Antigravity. Six conceptual issue families survive archival recovery, while the frozen whole-system result contains three GAPs. The rule or case-by-case reasoning that reduced those six families to the final three was not recovered. Draft 2 therefore reports both facts and explicitly leaves the mapping unknown.
 
 Aggregate dispositions are descriptive summaries of the frozen review outcome. They are not calculated scores and must not be reverse-engineered to invent missing primitive classifications.
 
@@ -43,13 +62,15 @@ An aggregate finding may establish that a review reached a particular dispositio
 
 Unverified recollections are not used to fill those gaps.
 
+The September 29 recovered-review artifact is itself an archival reconstruction from previously preserved research state. It records both recovered findings and explicit non-recovery. It is evidence for what the research program successfully preserved; it is not represented as the original primitive-by-primitive review package.
+
 ## 5.4 Review boundary
 
 Every disposition is bounded by what could actually be inspected.
 
 For open-source systems, this may include source code and repository documentation. For managed systems, the observable boundary may be limited to public documentation, exposed interfaces, or behavior visible to the research program.
 
-A GAP therefore means that the property was not demonstrated within the inspected boundary. It does not establish that no corresponding mechanism exists anywhere inside a vendor's private implementation.
+A GAP therefore means that the property was not demonstrated within the inspected boundary **where that boundary was sufficiently observable to support an absence finding**. If available evidence cannot distinguish absence from an unobservable private mechanism, the appropriate disposition is OPEN rather than GAP.
 
 This observability asymmetry is particularly important when comparing open and managed systems and is one reason the review is not a vendor ranking.
 
@@ -106,9 +127,11 @@ Likewise, the later DRC overlay and EASTER review operate at different layers. D
 
 ## 5.9 Reproducibility status
 
-The present corpus has uneven archival completeness.
+The present corpus has uneven archival completeness. The comparative result is therefore **partially reproducible from the preserved package, not fully reproducible at primitive level for all six systems**.
 
-The publication record should preserve, where available:
+For Hermes Agent, OpenClaw, and LangGraph, substantial primitive-level findings survive. For Anthropic Claude Agent SDK, only the zero-GAP aggregate survives. For OpenAI Agents SDK, the one-GAP aggregate survives but its owning primitive does not. For Google Antigravity, substantial primitive findings and six issue families survive, but the exact composition mapping to the frozen three-GAP aggregate and the Receipt freeze do not.
+
+The publication package should preserve, where available:
 
 - exact source commit, tag, version, or review date;
 - primitive-level findings;
@@ -117,6 +140,12 @@ The publication record should preserve, where available:
 - source evidence supporting consequential classifications; and
 - explicit unknowns where those materials were not recovered.
 
-The recovered review-state artifact remains the current source of truth for the comparative table. Missing evidence is not silently regenerated from the manuscript.
+The September 29 recovered-review artifact is the **authoritative reporting artifact for the recovered comparative state** used by the manuscript. It is not the original review package, and its explicit unknowns are part of the result.
 
-This methodology supports a bounded claim: the paper reports what the preserved review process demonstrated within its inspected boundaries. It does not claim exhaustive architectural knowledge, statistical representativeness, or independent replication.
+Accordingly, a reader can reproduce the derivation of the manuscript's comparative table only to the resolution preserved by that artifact. The paper does **not** claim that a reader can independently derive every historical primitive classification or the aggregate sequence `(0, 0, 0, 0, 1, 3)` from a complete original review dataset, because that dataset was not preserved.
+
+A future replication may re-review the same systems under the now-explicit decision rules, but its results would constitute a **new replication**, not a reconstruction of the missing historical cells. Such a study may confirm, narrow, or disagree with the frozen historical aggregate without changing what the original record preserved.
+
+Missing evidence is not silently regenerated from the manuscript.
+
+This methodology therefore supports a bounded claim: the paper reports what the preserved review process demonstrated within its inspected boundaries and identifies where that demonstration is no longer independently reproducible from the surviving archive. It does not claim exhaustive architectural knowledge, statistical representativeness, complete historical reproducibility, or independent replication.
