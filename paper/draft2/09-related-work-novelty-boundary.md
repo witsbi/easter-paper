@@ -16,9 +16,9 @@ The closest-prior work was a **bounded adversarial investigation, not a systemat
 
 Two AI-assisted passes approached the question with different decompositions and different search shapes.
 
-**Pax pass.** Pax designed a six-property rubric corresponding to the EASTER combination, an explicit kill condition, and a bounded research brief, then delegated web investigation to an isolated deep-research agent. The brief pre-identified Hyperledger Fabric as the lead candidate and named adjacent candidates including Ethereum, QLDB, Temporal/Cadence, Kafka, Git, CRDT stores, Certificate Transparency, TUF, Axon, and provenance/lineage systems. The research agent inspected documentation, specifications, repositories, RFCs, and related sources and returned a report that Pax reviewed. Pax did not personally re-open the twelve cited sources during that pass. The resulting investigation is therefore best described as a directed kill-attempt against a pre-named strong contender, not as an open-ended discovery survey.
+**Pax/Muse pass.** Pax/Muse designed a six-property rubric corresponding to the EASTER combination, an explicit kill condition, and a bounded research brief, then delegated web investigation to an isolated deep-research agent. The brief pre-identified Hyperledger Fabric as the lead candidate and named adjacent candidates including Ethereum, QLDB, Temporal/Cadence, Kafka, Git, CRDT stores, Certificate Transparency, TUF, Axon, and provenance/lineage systems. The research agent inspected documentation, specifications, repositories, RFCs, and related sources and returned a report that Pax/Muse reviewed. Pax did not personally re-open the twelve cited sources during that pass. The resulting investigation is therefore best described as a directed kill-attempt against a pre-named strong contender, not as an open-ended discovery survey.
 
-**Clawde pass.** Clawde separately used a deep-research workflow for a broader prior-art investigation: six parallel research subagents examined pre-selected traditions including event sourcing/ledgers, durable execution/fault recovery, provenance, capability security, ER/type systems, and ontology/knowledge representation, followed by a synthesis agent. A later closest-architecture pass then examined Fabric and, reactively after Fabric's canonicality weakness became salient, Corda and Holochain. That later pass used an eight-property decomposition whose pre-use derivation artifact was not recovered. Whether the later Fabric/Corda/Holochain dispatch itself formally used the named deep-research skill is also unrecovered; its delegation pattern was similar, but the record does not justify treating that as confirmed.
+**Clawde/Sonnet pass.** Clawde/Sonnet separately used a deep-research workflow for a broader prior-art investigation: six parallel research subagents examined pre-selected traditions including event sourcing/ledgers, durable execution/fault recovery, provenance, capability security, ER/type systems, and ontology/knowledge representation, followed by a synthesis agent. A later closest-architecture pass then examined Fabric and, reactively after Fabric's canonicality weakness became salient, Corda and Holochain. That later pass used an eight-property decomposition whose pre-use derivation artifact was not recovered. Whether the later Fabric/Corda/Holochain dispatch itself formally used the named deep-research skill is also unrecovered; its delegation pattern was similar, but the record does not justify treating that as confirmed.
 
 The two passes were independent of one another in the relevant sense: their analyses were produced without either participant first harmonizing its result to the other's. They were **not independent of AI research tooling**, and most source reading occurred in delegated research contexts rather than being personally re-fetched by the orchestrating participant.
 
@@ -30,13 +30,13 @@ This procedure supports a narrow warrant: strong pre-identified and adjacent can
 
 The investigations preferred primary technical sources where accessible: official project documentation and repositories, specifications and RFCs, project or vendor whitepapers, and academic papers. Preserved source records include, among others, Hyperledger Fabric documentation and source plus the EuroSys Fabric paper; the Corda technical whitepaper; the Holochain whitepaper and developer documentation; W3C PROV material; RFC 6749; primary capability-security literature; Temporal, Kafka, Axon, EventStoreDB, and Git documentation; and a formal CRDT treatment.
 
-Primary-source access was not complete. The Pax pass used a third-party mirror for the Corda whitepaper. Clawde's pass records inaccessible or unparsed primary material in several areas and labels secondary or search-cache substitution rather than silently presenting it as direct primary inspection. Neither first-party account documents a primary-vs-primary factual conflict requiring adjudication.
+Primary-source access was not complete. The Pax pass used a third-party mirror for the Corda whitepaper. Clawde/Sonnet's pass records inaccessible or unparsed primary material in several areas and labels secondary or search-cache substitution rather than silently presenting it as direct primary inspection. Neither first-party account documents a primary-vs-primary factual conflict requiring adjudication.
 
 The final submission bibliography should cite the authoritative original source for each manuscript claim where an equivalent accessible original can be verified. Replacing a historical mirror with an authoritative bibliographic citation improves the publication apparatus; it does not rewrite which source was actually inspected during the historical pass.
 
 ### Search limitations preserved rather than repaired retrospectively
 
-The historical search has known holes. Pax's brief named TUF, OpenLineage, Marquez, DataHub, and Atlas, but the resulting report does not show whether those candidates were examined and rejected or never examined. Clawde's reconstruction identifies an unexamined class of permissioned distributed architectures combining hard revocable admission with non-canonical or sharded replication. Candidate selection was not governed by formal inclusion/exclusion criteria, database queries, citation chaining, or a PRISMA-like screening protocol. The work was time-boxed to essentially one evening.
+The historical search has known holes. Pax's brief named TUF, OpenLineage, Marquez, DataHub, and Atlas, but the resulting report does not show whether those candidates were examined and rejected or never examined. Clawde/Sonnet's reconstruction identifies an unexamined class of permissioned distributed architectures combining hard revocable admission with non-canonical or sharded replication. Candidate selection was not governed by formal inclusion/exclusion criteria, database queries, citation chaining, or a PRISMA-like screening protocol. The work was time-boxed to essentially one evening.
 
 These gaps are not filled retrospectively. A later search of them would constitute additional prior-art work, not recovery of the historical procedure.
 
@@ -166,9 +166,9 @@ It does not establish that the conjunction is globally novel.
 
 The two closest-architecture passes used different decompositions and should not be flattened into a single search procedure.
 
-Pax's pass used the six-property EASTER combination and pre-identified Fabric as the lead candidate. It identified Fabric as the strongest candidate in that bounded evaluation. Clawde's later closest-architecture work used an eight-property decomposition and deliberately added Corda and Holochain after Fabric's canonicality weakness surfaced.
+Pax/Muse's pass used the six-property EASTER combination and pre-identified Fabric as the lead candidate. It identified Fabric as the strongest candidate in that bounded evaluation. Clawde/Sonnet's later closest-architecture work used an eight-property decomposition and deliberately added Corda and Holochain after Fabric's canonicality weakness surfaced.
 
-Under an equal-weight reading of Clawde's properties, Corda compared more closely on some axes, particularly canonicality, evidence separation, and transition explicitness. Pax's differently structured pass retained Fabric as the closest candidate.
+Under an equal-weight reading of Clawde/Sonnet's properties, Corda compared more closely on some axes, particularly canonicality, evidence separation, and transition explicitness. Pax/Muse's differently structured pass retained Fabric as the closest candidate.
 
 The subsequent reconciliation found no material contradiction in the underlying primary-source facts. The difference arose from decomposition and weighting.
 
@@ -192,7 +192,7 @@ A particularly relevant untested candidate class remains:
 
 Such a system could weaken or kill the present non-identification claim if it also provided the bounded outcome recording and durable non-state failure behavior described above at the same boundary.
 
-Pax's historical brief also names TUF, OpenLineage, Marquez, DataHub, and Atlas, but its surviving report does not establish whether those candidates were actually examined. They therefore cannot be counted as negative findings from that pass.
+Pax/Muse's historical brief also names TUF, OpenLineage, Marquez, DataHub, and Atlas, but its surviving report does not establish whether those candidates were actually examined. They therefore cannot be counted as negative findings from that pass.
 
 These classes should be treated as future prior-art work rather than silently assumed absent.
 
