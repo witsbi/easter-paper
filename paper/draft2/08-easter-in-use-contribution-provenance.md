@@ -53,7 +53,7 @@ This is an example of the distinction between **historical record** and **accept
 
 GitHub preserved the human-readable provenance artifacts and their revision history.
 
-The first provenance-set commit, `90a1239`, created the contribution archive with the provisional reconstruction, Pax's first-party account, pending-deposit placeholders, and an index documenting known gaps.
+The first provenance-set commit, `90a1239`, created the contribution archive with the provisional reconstruction, Pax/Muse's first-party account, pending-deposit placeholders, and an index documenting known gaps.
 
 Later commits replaced the placeholders with first-party deposits rather than inferred reconstructions. ChatGPT/Sol's account was deposited in commit `791b8af`; Clawde/Sonnet's account was deposited in commit `843dec1`.
 
