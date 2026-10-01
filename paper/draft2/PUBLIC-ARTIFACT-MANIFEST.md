@@ -1,6 +1,6 @@
 # Draft 2 Public Artifact Manifest
 
-**Purpose.** This manifest identifies immutable public Git objects for the Draft 2 reference implementation and the accepted post-remediation manuscript/research baseline. The completed publication package introduced by PR #13 must be pinned separately after merge, because its immutable merge commit does not exist while the pull request is still open. Branch names are intentionally not used as authoritative identifiers because branches can move.
+**Purpose.** This manifest identifies immutable public Git objects for the Draft 2 reference implementation, the accepted post-remediation manuscript/research baseline, and the completed publication package used for adversarial review. Branch names are intentionally not used as authoritative identifiers because branches can move.
 
 ## A. Reference implementation pin
 
@@ -53,17 +53,19 @@ This pin contains the accepted Draft 2 manuscript source plus the preserved arch
 - Clawde/Sonnet raw account: https://github.com/witsbi/easter-paper/blob/18ffc91e6550a6df7b41f335dd1879ec0002d111/paper/archive/contribution-clawde-raw-account-2026-10-01.md
 - Nathan three-tier reconstruction: https://github.com/witsbi/easter-paper/blob/18ffc91e6550a6df7b41f335dd1879ec0002d111/paper/archive/contribution-nathan-three-tier-reconstruction-2026-10-01.md
 
-## C. Publication-package pin to be created after PR #13 merge
+## C. Completed publication package and adversarial-review candidate
 
-PR #13 adds the finalized Draft 2 bibliography, publication reference map, this manifest, and citation wiring needed for adversarial review. While the pull request remains open, no immutable merge commit can identify that completed package.
+**Repository:** `witsbi/easter-paper`  
+**Immutable commit:** `6386f9927c6111205ca0b188c10c0c32353f5b50`  
+**Commit date:** 2026-10-01  
+**Meaning:** merge commit for PR #13, containing the completed Draft 2 publication package used as the frozen Clawde/Sonnet adversarial-review target.  
+**Pinned tree:** https://github.com/witsbi/easter-paper/tree/6386f9927c6111205ca0b188c10c0c32353f5b50
 
-After PR #13 is merged, its merge commit SHALL be recorded as the immutable **Draft 2 adversarial-review candidate**. That post-merge identifier, together with the implementation pin in Section A and the accepted manuscript/research baseline in Section B, closes the publication-side location boundary without pretending that an earlier commit contains later packaging work.
-
-No adversarial-review handoff should identify the moving branch head as the review target.
+This pin contains the finalized Draft 2 bibliography, publication reference map, public-artifact manifest, and citation wiring supplied to the adversarial reviewer. Clawde/Sonnet's frozen adversarial review therefore applies to this exact commit, not to a moving branch head or to later post-review corrections.
 
 ## D. Interpretation rule
 
-The pins above make the surviving implementation, accepted manuscript baseline, and research evidence inspectable at immutable Git objects. The post-merge PR #13 identifier will additionally freeze the completed publication package. None of these identifiers converts unrecovered historical material into recovered evidence. In particular:
+The pins above make the surviving implementation, accepted manuscript baseline, research evidence, and adversarial-review publication package inspectable at immutable Git objects. None of these identifiers converts unrecovered historical material into recovered evidence. In particular:
 
 - an exact historical source/version pin that Appendix A marks unrecovered remains unrecovered;
 - the Antigravity six-family-to-three-GAP primitive mapping remains unrecovered;
