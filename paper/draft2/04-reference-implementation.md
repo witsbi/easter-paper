@@ -44,7 +44,7 @@ The current implementation supports direct revocation of a grant and `REVOKE_ALL
 
 Grant and revocation records share an Authority-owned monotonically ordered sequence. Authority validity is determined from this ledger rather than inferred from Receipt payloads or wall-clock ordering.
 
-This separation was strengthened through adversarial remediation. A prior design derived revocation information from Receipts and used timestamps in ways that allowed clock-ordering anomalies. The current implementation makes Authority's own records the source of truth for Authority validity while leaving Receipts responsible for recording what the kernel did.
+This separation was strengthened through adversarial remediation. A prior design derived revocation information from Receipts and used timestamps in ways that allowed clock-ordering anomalies. The current implementation makes Authority's own records the authoritative basis for Authority validity while leaving Receipts responsible for recording what the kernel did.
 
 Root capabilities are likewise represented as mechanically enforced Authority properties. Root-authorized operations govern Authority definition, grant, and revocation, while ordinary state transition does not create or mutate Authority.
 
