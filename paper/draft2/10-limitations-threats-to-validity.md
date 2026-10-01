@@ -73,7 +73,7 @@ Where disagreement mattered, the intended resolution mechanism was inspection of
 
 ## 10.6 No proof of EASTER minimality
 
-The six EASTER primitives survived the architectural reviews without a demonstrated CHALLENGE in the recovered corpus.
+No preserved review artifact records a CHALLENGED disposition against an EASTER primitive in the recovered corpus.
 
 That observation does not establish that the primitive set is minimal.
 
@@ -131,7 +131,7 @@ The contribution-provenance workflow described in Section 8 occurred during real
 
 It was not designed prospectively as a controlled experiment.
 
-The expired-Authority event was naturally occurring rather than intentionally injected. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
+The expired gateway-credential event was naturally occurring rather than intentionally injected. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
 
 The case therefore demonstrates that the reference implementation was used operationally under the described conditions.
 
@@ -214,7 +214,7 @@ It shows that:
 - a six-primitive continuity model can be instantiated as a working reference kernel;
 - the model can be applied as an architectural review lens;
 - the examined corpus contains both substantial overlap with EASTER and bounded demonstrated gaps;
-- DRC-style functional structure and EASTER-style continuity behaved as separable properties within that corpus;
+- DRC coverage did not entail zero EASTER GAPs under the applied classifications in that corpus;
 - the reference implementation supported one real multi-participant provenance workflow; and
 - the closest-prior investigation did not identify the surviving four-property conjunction in the systems and literature examined.
 

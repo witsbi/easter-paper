@@ -24,9 +24,15 @@ This ordering is consequential. An earlier implementation allowed authority vali
 
 Accordingly, an accepted operation is evaluated against the Authority state visible at its position in the kernel's serialized write order.
 
-For accepted state transitions, the requested State, Transition, associated Evidence links, and Receipt are committed as one transaction. An exception causes rollback rather than partial admission.
+For accepted state transitions, the requested State, Transition, associated Evidence links, and ACCEPTED Receipt are committed as one transaction. If an exception escapes that transaction, the transaction context rolls back its writes rather than leaving partial admission.
 
-The implementation therefore relies on SQLite transaction atomicity as an implementation mechanism for the EASTER requirement that an accepted consequential operation not leave a partially admitted authoritative result.
+The supported operation then handles the failure outside that rolled-back transaction. `record_failure()` opens a new `BEGIN IMMEDIATE` transaction and writes the unsuccessful outcome as a Receipt plus linked Exception; for submitted Evidence identifiers that already exist, it may also preserve Receipt–Evidence associations. The failure-recording transaction creates no requested State or authoritative Transition. A successful failure-recording transaction therefore leaves the attempted authoritative change absent while preserving the fact and diagnostic classification of the unsuccessful attempt.
+
+This two-stage behavior is important: the FAILED Receipt and Exception are **not survivors of the transaction that failed**. The attempted operation transaction is unwound first; the failure record is a subsequent kernel transaction. If failure-record persistence itself cannot commit, that second transaction also rolls back. The implementation therefore does not claim that every catastrophic storage/process failure can produce a durable Receipt.
+
+Regression evidence exercises this boundary directly. A genuine SQLite integrity failure and a generic unexpected exception both produce a FAILED Receipt linked to an Exception while leaving zero requested authoritative effects. Separate Exception red-team tests exercise all six supported write entry points and verify that unsuccessful operations leave no authoritative effect other than their Receipt/Exception failure record. Tests also distinguish a genuine persistence failure in `record_failure()` itself: if even the fallback failure record cannot be persisted, the transaction rolls back with no phantom Receipt.
+
+The implementation therefore relies on SQLite transaction atomicity as an implementation mechanism for two separate guarantees: accepted authoritative effects commit together with their ACCEPTED Receipt, while unsuccessful attempted effects are rolled back before any durable failure record is written.
 
 ## 4.3 Authority implementation
 
@@ -38,15 +44,17 @@ The current implementation supports direct revocation of a grant and `REVOKE_ALL
 
 Grant and revocation records share an Authority-owned monotonically ordered sequence. Authority validity is determined from this ledger rather than inferred from Receipt payloads or wall-clock ordering.
 
-This separation was strengthened through adversarial remediation. A prior design derived revocation information from Receipts and used timestamps in ways that allowed clock-ordering anomalies. The current implementation makes Authority's own records the source of truth for Authority validity while leaving Receipts responsible for recording what the kernel did.
+This separation was strengthened through adversarial remediation. A prior design derived revocation information from Receipts and used timestamps in ways that allowed clock-ordering anomalies. The current implementation makes Authority's own records the authoritative basis for Authority validity while leaving Receipts responsible for recording what the kernel did.
 
 Root capabilities are likewise represented as mechanically enforced Authority properties. Root-authorized operations govern Authority definition, grant, and revocation, while ordinary state transition does not create or mutate Authority.
+
+The v0.1 scope is deliberately limited. For ordinary State transitions, a currently valid non-root grant held by the requesting identity is sufficient under the kernel's Authority rules; `authority_id` is not a fine-grained RBAC or object-capability policy for State content. Root grants additionally authorize Authority administration. Application-specific roles, object permissions, and semantic approval rules remain userland concerns unless they are represented by mechanically enforced kernel structure.
 
 The result is a deliberate separation:
 
 **State history cannot manufacture Authority, and Receipt history does not determine Authority validity.**
 
-An unauthorized attempt may still produce a REJECTED Receipt documenting the kernel outcome, while producing no authoritative mutation. Receipt records the attempt's disposition; it does not confer or substitute for Authority.
+An unauthorized attempt that reaches a supported kernel operation may produce a REJECTED Receipt documenting the kernel outcome, while producing no requested authoritative mutation. Receipt records the attempt's disposition; it does not confer or substitute for Authority. Authentication or transport refusal before the kernel is reached is outside this Receipt claim.
 
 ## 4.4 State and Transition implementation
 
@@ -72,15 +80,17 @@ Neither SQLite nor the Python kernel interprets whether Evidence is substantivel
 
 ## 4.6 Receipts and Exceptions
 
-Receipts provide a uniform record of kernel operation outcomes. The schema currently recognizes bootstrap, accepted, rejected, and failed outcomes.
+Receipts provide a uniform record **within the reference kernel's receipt-capable operation boundary**. The schema currently recognizes bootstrap, accepted, rejected, and failed outcomes.
 
 An ACCEPTED Receipt may refer to an admitted Transition, but Receipt is not structurally dependent on Transition. Authority operations can succeed without producing a State Transition and still produce Receipts.
 
-This decoupling allows Receipt to describe the kernel's operation boundary uniformly rather than treating every consequential operation as a State change.
+This decoupling allows Receipt to describe supported kernel operation outcomes without treating every consequential operation as a State change. It does not imply that requests refused before reaching the kernel—for example by gateway authentication—or catastrophic failures that prevent receipt persistence themselves must have kernel Receipts.
 
-REJECTED and FAILED operations do not produce authoritative Transitions. FAILED operations may additionally produce immutable Exception records containing diagnostic detail.
+REJECTED and FAILED operations do not produce requested authoritative Transitions. The supported entry points catch kernel-rule rejection and unexpected failure after the attempted operation transaction has unwound, then call the separate failure-recording path. `record_failure()` atomically inserts the REJECTED or FAILED Receipt and its linked Exception in a new transaction. FAILED Receipts carry a minimal kernel-authored failure classification; the Exception owns the detailed diagnostics.
 
-The implementation therefore preserves failure without promoting failed work into authoritative State.
+The failure-recording path is itself transactional. If it cannot persist a valid failure record, it rolls back rather than leaving only part of the Receipt/Exception pair. This bounds the durability claim to outcomes the kernel is able to commit; EASTER does not manufacture a durable record through an unavailable or failed persistence substrate.
+
+The implementation therefore preserves recoverable failure without promoting failed work into authoritative State.
 
 Receipt is also deliberately excluded from determining Authority validity. It records that the kernel performed an Authority operation; the resulting Authority records themselves determine later validity.
 
