@@ -63,6 +63,8 @@ Receipt is the kernel-authored record of an operation's outcome once an attempte
 - **REJECTED** — the kernel refused admission under its rules and the requested authoritative effects were not committed.
 - **FAILED** — an exception prevented completion; the attempted authoritative effects were unwound, and a separate failure-recording transaction preserves a FAILED Receipt and diagnostic Exception when that recording transaction succeeds.
 
+Each Receipt carries the identifier of its attempted operation. One identifier denotes one attempted operation, and the kernel admits at most one terminal Receipt per identifier (see §3.2).
+
 Receipt therefore answers a narrower question than semantic correctness: **what durable outcome did the authoritative kernel boundary record for this attempted operation?**
 
 This scope excludes requests refused by authentication, transport, parsing, or other components before the kernel's receipt-capable path. It also excludes the stronger claim that a Receipt must survive a storage failure that prevents the Receipt itself from being committed. If failure-record persistence itself fails, the reference implementation rolls that recording transaction back rather than leaving a partial or phantom failure record.
@@ -92,6 +94,8 @@ The six primitives obtain their architectural meaning from the relationships enf
 **Exceptions remain diagnostically distinct from accepted State.** Recording why an operation failed does not convert the failed operation into a successful transition.
 
 **Receipts describe kernel outcomes, not semantic endorsement.** ACCEPTED means that the kernel admitted the operation according to its contract. It does not mean that the payload is true, useful, desirable, or complete.
+
+**One attempted operation has at most one terminal Receipt.** An operation identifier identifies one attempted kernel operation. At most one terminal Receipt may exist for that identifier, and when durable outcome recording succeeds, exactly one exists. The reference kernel enforces this cardinality in the database schema — a unique constraint on the Receipt's operation identifier — rather than by application-level existence pre-checks, so the guarantee does not depend on entry-point discipline or race-prone read-before-write tests.
 
 Together these invariants define the authoritative boundary more precisely than the six primitive names alone. EASTER is therefore not simply a taxonomy of records. It is a continuity model in which the primitive types have constrained relationships and distinct responsibilities.
 

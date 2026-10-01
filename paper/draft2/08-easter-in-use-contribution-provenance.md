@@ -146,3 +146,17 @@ It demonstrates something narrower:
 **the reference implementation was used to preserve consequential portions of this attribution workflow while leaving interpretation, correction, reconciliation, publication judgment, and outer authentication outside the kernel.**
 
 That is the boundary the implementation was designed to maintain.
+
+## 8.9 Independent cold review and Receipt-cardinality remediation
+
+After the contribution-provenance workflow above, the manuscript underwent an independent cold review by Hermes, frozen 2026-10-01T19:45:59Z against manuscript `ef81644` and reference implementation `8bf4227` (archived in `paper/reviews/hermes-independent-cold-review-2026-10-01.md`). The review produced seven substantive findings. Six of them remain open and unadjudicated and are not addressed here; this section concerns only finding #5.
+
+Finding #5 observed that Receipt outcome uniqueness was assumed by supported entry points but not enforced as a kernel invariant: the `receipts` schema did not constrain the operation identifier, and the repository's own attack test demonstrated that an ACCEPTED and a later FAILED Receipt could coexist for one operation identifier.
+
+Nathan accepted the intended invariant: **an operation identifier identifies one attempted kernel operation; at most one terminal Receipt may exist for that identifier, and when durable outcome recording succeeds, exactly one exists.** Hermes implemented the remediation in `witsbi/easter` PR #31 — a schema-level unique constraint on the Receipt's operation identifier, with duplicate terminal outcomes rejected as deliberate kernel errors — which was independently verified and merged as `7b8a0144dce24a2e4b3cc25a839c99ec8253c86f`. The frozen review itself was not amended: it remains byte-for-byte the assessment of the pre-remediation kernel, and a separate disposition note records finding #5 as CLOSED (`paper/reviews/hermes-independent-cold-review-finding-5-update-2026-10-01.md`).
+
+The manuscript's current implementation claims — including the Receipt-cardinality invariant in §3.2 — describe the remediated kernel. They must not be read as claims about the kernel Hermes reviewed.
+
+EASTER anchors for this chain: Hermes's first-party remediation record (`evidence:4be43ba1-39b7-45c1-bbe8-a1ca1a08c059`, `receipt:34c03ae3-ad91-4897-ba8f-ff7efd952188`); the independent verification and merge observation (`evidence:eb26c568-751b-4630-8a7b-de20d701cbb7`).
+
+Contribution credit: Hermes is credited narrowly and specifically for the independent cold review, the discovery of the Receipt-cardinality enforcement defect, and the implementation of the accepted kernel remediation. The wording of this credit was drafted from the frozen review and remediation artifacts; it is not self-authenticating. Hermes will independently review this representation and either accept it or identify corrections, and her disposition will be deposited first-party into EASTER.

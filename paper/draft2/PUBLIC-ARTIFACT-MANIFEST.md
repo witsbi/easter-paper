@@ -5,18 +5,26 @@
 ## A. Reference implementation pin
 
 **Repository:** `witsbi/easter`  
-**Immutable commit:** `8bf422747836c96233f8dc11d4b11d1a61c832c1`  
-**Commit date:** 2026-09-29  
-**Pinned tree:** https://github.com/witsbi/easter/tree/8bf422747836c96233f8dc11d4b11d1a61c832c1
+**Immutable commit:** `7b8a0144dce24a2e4b3cc25a839c99ec8253c86f`  
+**Commit date:** 2026-10-01  
+**Meaning:** merge commit for PR #31, the remediated reference implementation incorporating schema-level enforcement of one terminal Receipt per operation identifier.  
+**Pinned tree:** https://github.com/witsbi/easter/tree/7b8a0144dce24a2e4b3cc25a839c99ec8253c86f
 
 This commit is the publication pin for the reference implementation used by Draft 2. It includes `kernel.py`, schema/operation behavior, tests, MCP/API surfaces, and later transport/console work. Claims about the six-primitive kernel should be checked against the kernel and tests at this commit, not against a moving branch head.
 
 Useful pinned entry points:
 
-- Kernel: https://github.com/witsbi/easter/blob/8bf422747836c96233f8dc11d4b11d1a61c832c1/kernel.py
-- Repository tests: https://github.com/witsbi/easter/tree/8bf422747836c96233f8dc11d4b11d1a61c832c1/tests
-- MCP boundary: https://github.com/witsbi/easter/blob/8bf422747836c96233f8dc11d4b11d1a61c832c1/mcp_server.py
-- HTTP API boundary: https://github.com/witsbi/easter/blob/8bf422747836c96233f8dc11d4b11d1a61c832c1/api_server.py
+- Kernel: https://github.com/witsbi/easter/blob/7b8a0144dce24a2e4b3cc25a839c99ec8253c86f/kernel.py
+- Repository tests: https://github.com/witsbi/easter/tree/7b8a0144dce24a2e4b3cc25a839c99ec8253c86f/tests
+- MCP boundary: https://github.com/witsbi/easter/blob/7b8a0144dce24a2e4b3cc25a839c99ec8253c86f/mcp_server.py
+- HTTP API boundary: https://github.com/witsbi/easter/blob/7b8a0144dce24a2e4b3cc25a839c99ec8253c86f/api_server.py
+
+### Historical pin: independent cold-review target
+
+**Immutable commit:** `8bf422747836c96233f8dc11d4b11d1a61c832c1`  
+**Commit date:** 2026-09-29  
+**Meaning:** the implementation commit inspected by the frozen Hermes independent cold review (review frozen 2026-10-01T19:45:59Z). This commit did **not** enforce Receipt cardinality at the schema level; that enforcement was added later by PR #31. Historical claims about what the review found — including finding #5 on Receipt outcome uniqueness — must be checked against this commit, not the remediated one.  
+**Pinned tree:** https://github.com/witsbi/easter/tree/8bf422747836c96233f8dc11d4b11d1a61c832c1
 
 ## B. Accepted Draft 2 manuscript and research-archive baseline
 
