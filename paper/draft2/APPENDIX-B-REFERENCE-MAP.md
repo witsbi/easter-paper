@@ -53,7 +53,7 @@ A publication reference answers **where a reader can inspect an authoritative so
 Accordingly:
 
 - [20]–[25] must not be used to fill unrecovered historical version cells in Appendix A;
-- [3] may replace a historical third-party Corda mirror in the publication bibliography without changing the manuscript's statement that the mirror was what Pax/Muse actually inspected;
+- [3] identifies the same Corda v1.0 whitepaper cited and quoted in the preserved closest-prior evaluation; using the authoritative R3-hosted copy for publication does not change the manuscript's statement about the historical access path used by Pax/Muse;
 - [16] retains RFC 6962 because that specification family belongs to the historical search record even though RFC 9162 supersedes it; and
 - [18] and [19] are explicitly historical architectural references whose current maintenance/service status is disclosed rather than hidden.
 

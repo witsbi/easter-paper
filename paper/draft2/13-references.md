@@ -6,7 +6,7 @@ The entries below distinguish publication references from the historical source-
 
 2. Hyperledger Fabric contributors, *Hyperledger Fabric Documentation*. Linux Foundation / Hyperledger. https://hyperledger-fabric.readthedocs.io/ (accessed 2026-10-01).
 
-3. M. Hearn, “Corda: A Distributed Ledger,” technical whitepaper, version 0.5, 29 Nov. 2016. Authoritative project-hosted copy: https://www.corda.net/content/corda-technical-whitepaper.pdf
+3. M. Hearn and R. G. Brown, “Corda: A distributed ledger,” technical whitepaper, version 1.0, 20 Aug. 2019. Authoritative R3-hosted copy: https://docs.r3.com/en/pdf/corda-technical-whitepaper.pdf
 
 4. Holochain, *Developer Documentation: Working with Data, the DHT, and Validation*. https://developer.holochain.org/ (accessed 2026-10-01).
 

@@ -97,17 +97,19 @@ The final row is an explicit evidence-package limitation. The case narrative is 
 
 ## 8.6 Gateway authentication failure during the workflow
 
-The workflow also produced an unplanned boundary event that is useful precisely because it clarifies what EASTER did **not** record.
+The workflow also produced an unplanned authentication-boundary episode that is useful precisely because it clarifies what EASTER did **not** record.
 
 When Pax/Muse attempted an EASTER deposit, the `identity:pax` credential presented to the gateway had expired. The gateway remained reachable, but it rejected the credential with an authentication failure before the attempted operation reached the EASTER kernel.
 
-After the credential was refreshed through the authorized operational path, the deposit was retried and the later operation reached the kernel and was accepted.
+Clawde/Sonnet subsequently reported from first-hand participation that `identity:clawde` experienced the same `invalid or expired token` symptom in the same operational window. Pax/Muse's operational account (`paper/archive/pax-gateway-outage-operational-account-2026-10-01.md`) documents the log-established mechanism: the broker minted fresh 24-hour tokens at every 12-hour run, but `git push` of the distribution repo failed in the cron context (`fatal: could not read Username for 'https://github.com'`), so the pushed tokens expired 2026-09-30T20:16:14Z while local mints continued. Gateway access logs corroborate the resulting failure window (`403` cluster 11:47–12:12Z on 2026-10-01) and the recovery (first `200` at 12:13:17Z, immediately after the manual refresh and successful push at 12:12:54Z).
 
-The first event is therefore **not evidence of kernel Authority enforcement**. No EASTER Authority grant was evaluated for the gateway-rejected request, and the manuscript does not claim a kernel REJECTED Receipt for that attempt. It is an authentication-boundary event in the surrounding deployment.
+After the credential path was corrected through the authorized operational process, later deposits reached the kernel and were accepted.
+
+These gateway failures are therefore **not evidence of kernel Authority enforcement**. No EASTER Authority grant was evaluated for either gateway-rejected request, and the manuscript does not claim kernel REJECTED Receipts for those attempts. They are authentication-boundary events in the surrounding deployment.
 
 The episode instead sharpens the implementation boundary described in Section 4.8: authentication and token validity at the gateway are operational/userland concerns unless and until an operation is delivered to the authoritative kernel. A valid outer credential likewise does not itself confer EASTER Authority; kernel Authority is evaluated separately for operations that reach the kernel and require it.
 
-The event was not staged as a test and should not be treated as a controlled security evaluation. Its evidentiary value here is narrower: it prevents the surrounding gateway from being conflated with the EASTER Authority primitive.
+The episode was not staged as a test and should not be treated as a controlled security evaluation. Its evidentiary value here is narrower: it prevents the surrounding gateway from being conflated with the EASTER Authority primitive while documenting that the deployment-level failure affected more than one participant identity.
 
 ## 8.7 Merge anchoring
 

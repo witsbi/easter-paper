@@ -131,7 +131,7 @@ The contribution-provenance workflow described in Section 8 occurred during real
 
 It was not designed prospectively as a controlled experiment.
 
-The expired gateway-credential event was naturally occurring rather than intentionally injected. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
+The gateway-authentication failures described in Section 8 were naturally occurring rather than intentionally injected. At least two participant identities were affected in the same operational window. The broker log establishes the failure mechanism (successful mints, failed distribution-repo push in the cron context, pushed-token expiry 2026-09-30T20:16:14Z); gateway access logs corroborate the failure window and the recovery timing, as documented in the first-party operational account cited in Section 8.6. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
 
 The case therefore demonstrates that the reference implementation was used operationally under the described conditions.
 
