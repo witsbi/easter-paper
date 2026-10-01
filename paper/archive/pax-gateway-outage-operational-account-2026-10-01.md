@@ -15,3 +15,11 @@ Clawde/Sonnet reported from first-hand participation that `identity:clawde` expe
 ## What is not established
 
 The surviving publication package does not include gateway logs from the episode, so a common root cause (missed broker rotations affecting both identities) is an operational attribution, not an independently proven fact. Draft 2 reports it as such: shared timing and first-party accounts, without treating a single root cause as established.
+
+## Addendum — gateway/broker log check, 2026-10-01 (afternoon)
+
+Nathan ran the log check the manuscript's cautious wording called for. Findings:
+
+- **Token-broker cron log** (`~/easter-token-refresh.log`): 0 bytes, mtime 2026-09-30 00:00. The cron entry (`0 */12 * * * ... >> log 2>&1`) produced no output at all. The empty log neither confirms nor refutes the missed-rotations attribution; it is consistent with the machine being asleep during scheduled runs, but that is not proven.
+- **Gateway access logs** (docker `easter-nginx` / `easter-gateway`, window 06:00–13:00Z): a cluster of `403` rejections on `/tools/*` endpoints between 11:47Z and 12:12Z, then the first `200` on `POST /tools/record_evidence` at 12:13:17Z — immediately after the manual refresh (~12:12Z). The logs record neither which identities were rejected nor the reason, so they corroborate the failure window and the recovery timing but do **not** independently establish the missed-rotations root cause, nor that two distinct participant identities were affected.
+- The manuscript's statement stands as written: the shared root cause is an operational attribution, not a log-proven fact. (Internet background-scan noise — `/.env`, `/global-protect/login.esp`, zgrab probes — appears in the same window and is unrelated.)
