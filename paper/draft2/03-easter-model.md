@@ -17,7 +17,7 @@ The reference implementation realizes this model as a small authoritative kernel
 | **Exception** | Durable diagnostic material describing an operation that failed rather than becoming accepted consequential State. | An Exception is not an accepted Transition and does not itself alter authoritative State. |
 | **Receipt** | Immutable kernel-authored record of the outcome of an attempted operation that reached the kernel's receipt-capable admission path. | A Receipt records the kernel outcome; it does not cover requests rejected before that boundary, guarantee persistence through storage catastrophe, semantically endorse the payload, or establish external-world causality. |
 
-These primitives are intentionally narrow. They do not attempt to reproduce an agent runtime, workflow engine, policy language, semantic model, or reasoning system inside the kernel.
+These primitives are intentionally narrow. Throughout the manuscript, **Evidence, Authority, State, Transition, Exception, and Receipt are capitalized when they refer to EASTER primitives or their corresponding kernel record types; lowercase forms retain their ordinary-language meaning.** They do not attempt to reproduce an agent runtime, workflow engine, policy language, semantic model, or reasoning system inside the kernel.
 
 ### Evidence
 
