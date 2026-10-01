@@ -18,7 +18,7 @@ Several neighboring traditions overlap with EASTER while solving different prima
 
 **Distributed ledgers** provide particularly strong neighboring examples because they combine immutable histories, validation rules, identity or endorsement mechanisms, and transaction outcomes. Hyperledger Fabric, Corda, Ethereum, and Holochain therefore received dedicated comparison.
 
-**Version-control and append-only structures** such as Git, Certificate Transparency, CRDT-oriented stores, and related systems demonstrate that branching or refusal of a single application-level canonical state can coexist with durable history. These systems generally do not also provide EASTER's combination of in-path revocable Authority, uniform rejected/failed outcome recording, and durable Exceptions outside accepted State.
+**Version-control and append-only structures** such as Git, Certificate Transparency, CRDT-oriented stores, and related systems demonstrate that branching or refusal of a single application-level canonical state can coexist with durable history. These systems generally do not also provide the behavioral combination examined below: revocable permission checked on the admission path, durable outcomes for accepted/rejected/failed attempts that reach that authoritative path, durable failure diagnostics excluded from accepted work-state, and no substrate-designated canonical current work-state.
 
 **Provenance and supply-chain systems**, including in-toto-like designs, strongly represent evidence and attestation but do not necessarily own the admission and continuity semantics EASTER places inside the kernel.
 
@@ -36,7 +36,7 @@ The comparison nevertheless identified several differences from EASTER.
 
 First, Fabric explicitly maintains a mutable **world state** representing current ledger values. Its immutable transaction history can reconstruct earlier values, but EASTER instead admits immutable State objects and deliberately refuses to designate a canonical current State.
 
-Second, Fabric's outcome recording is not uniform across all attempted operations in the EASTER sense. Transactions that reach ordering receive valid/invalid outcomes, while proposal or endorsement failures that occur before ordering do not enter the ledger as corresponding durable transaction outcomes.
+Second, Fabric's outcome recording is not uniform across all attempted operations in the bounded sense used by the EASTER comparison. Transactions that reach ordering receive valid/invalid outcomes, while proposal or endorsement failures that occur before ordering do not enter the ledger as corresponding durable transaction outcomes.
 
 Third, Fabric's evidence-like material is generally carried within transaction structures rather than represented as an independently lifecycle-addressable Evidence primitive.
 
@@ -52,7 +52,7 @@ The dedicated review nevertheless found its Authority and outcome semantics mate
 
 Transaction signatures establish required participants for particular transactions, while identity revocation operates through a different network/security layer. The reviewed architecture did not demonstrate EASTER's specific rule that live revocable Authority be validated inside the consequential admission path immediately governing the authoritative write.
 
-Likewise, the investigation did not identify a uniform EASTER-like Receipt spanning accepted, rejected, and failed attempts.
+Likewise, the investigation did not identify a uniform EASTER-like durable outcome record spanning accepted, rejected, and failed attempts at the same authoritative operation boundary.
 
 Corda therefore overlaps strongly on non-global state and explicit transitions while diverging on the admission boundary EASTER makes central.
 
@@ -76,24 +76,26 @@ Different subsets of the target properties appear repeatedly.
 
 Ethereum provides durable transaction receipts and immutable history but maintains canonical world state.
 
-Certificate Transparency provides append-only history without defining a canonical trust state, but lacks EASTER-like in-path Authority, rejected/failed Receipts, and Exception semantics.
+Certificate Transparency provides append-only history without defining a canonical trust state, but lacks the examined combination of in-path revocable permission, rejected/failed outcome recording at the same boundary, and separate durable failure diagnostics.
 
-Git and CRDT-oriented systems demonstrate branching or non-canonical continuation particularly clearly but do not combine those properties with EASTER's admission Authority and outcome model.
+Git and CRDT-oriented systems demonstrate branching or non-canonical continuation particularly clearly but do not combine those properties with the same admission-permission and outcome behavior.
 
-Temporal and related durable-execution systems preserve rich execution and failure histories but treat failure as part of workflow execution semantics rather than EASTER's separation between accepted State, Exception, and uniform operation Receipt.
+Temporal and related durable-execution systems preserve rich execution and failure histories but treat failure as part of workflow execution semantics rather than EASTER's separation between accepted work-state, diagnostic failure record, and operation outcome.
 
 in-toto strongly represents signed supporting evidence but is principally a verification/provenance architecture rather than an authoritative transition kernel.
 
 No individual overlap is therefore presented as surprising. The research question concerns their conjunction.
 
-## 9.6 The surviving conjunction
+## 9.6 The surviving behavioral conjunction
 
-Across the closest-prior investigations, four properties emerged as the narrowest architectural conjunction supported independently by the preserved analyses:
+Across the closest-prior investigations, four behavioral properties emerged as the narrowest architectural conjunction supported independently by the preserved analyses. They are stated behaviorally here so a prior architecture need not use EASTER's names or data partitioning to satisfy them:
 
-1. **revocable Authority validation inside the consequential admission path;**
-2. **uniform durable ACCEPTED / REJECTED / FAILED outcome recording;**
-3. **durable Exception/failure records that do not become accepted State; and**
-4. **no substrate-designated canonical current State, with branching permitted.**
+1. **live revocable permission is validated on the authoritative admission path governing the consequential write;**
+2. **attempts that reach that authoritative operation boundary receive a durable outcome distinguishing accepted, rule-rejected, and execution-failed operations, provided the outcome record itself can be persisted;**
+3. **execution failure can leave durable diagnostic information without promoting the failed requested work into accepted authoritative work-state; and**
+4. **the authoritative substrate deliberately does not designate one admitted work-state as the canonical current semantic state, and permits branching continuation.**
+
+These are behavioral comparison criteria, not requirements that a prior system expose tables or objects named Authority, Receipt, Exception, or State. A differently partitioned architecture that provides equivalent behavior at the same boundary counts as satisfying the corresponding property.
 
 Evidence as a first-class primitive and immutable append-only history remain important parts of EASTER, but the prior-art investigation found closer analogues for those properties individually.
 
@@ -103,7 +105,7 @@ The dedicated Fabric, Corda, Holochain, and broader candidate analyses did not i
 
 This result supports the following bounded statement:
 
-**In the systems and literature examined to date, we did not identify an existing architecture that combines all four properties at the same consequential continuity boundary.**
+**In the systems and literature examined to date, we did not identify an existing architecture that combines all four behavioral properties at the same consequential continuity boundary.**
 
 This is a non-identification claim, not a universal novelty theorem.
 
@@ -142,7 +144,7 @@ The subsequent reconciliation found no material contradiction in the underlying 
 
 Rather than hiding that disagreement or converting it into a supposedly objective ranking, the manuscript retains the more defensible result:
 
-**Fabric and Corda expose different portions of the EASTER boundary, and neither examined architecture combines the surviving four-property conjunction.**
+**Fabric and Corda expose different portions of the EASTER boundary, and neither examined architecture combines the surviving four behavioral properties.**
 
 The novelty boundary therefore does not depend on declaring a single architecture the universally “closest” prior system.
 
@@ -158,7 +160,7 @@ A particularly relevant untested candidate class remains:
 
 **a permissioned distributed architecture combining hard revocable RBAC-like admission with non-canonical or sharded replication.**
 
-Such a system could weaken or kill the present non-identification claim if it also provided uniform outcome recording and durable non-state failure records at the same boundary.
+Such a system could weaken or kill the present non-identification claim if it also provided the bounded outcome recording and durable non-state failure behavior described above at the same boundary.
 
 That class should therefore be treated as future prior-art work rather than silently assumed absent.
 
@@ -168,16 +170,16 @@ The related-work investigation supports three different levels of claim, which s
 
 **Supported:** individual EASTER mechanisms have substantial prior art.
 
-**Supported within the examined set:** the four-property conjunction above was not identified in the systems and literature examined.
+**Supported within the examined set:** the four-property behavioral conjunction above was not identified in the systems and literature examined.
 
 **Not established:** that no prior system anywhere implements the conjunction, that EASTER is universally novel, or that the conjunction is necessary or optimal.
 
 Accordingly, Draft 2 adopts the bounded formulation:
 
-> **In the systems and literature examined to date, we did not identify an existing architecture that simultaneously combines revocable Authority validation inside the consequential admission path, uniform durable ACCEPTED / REJECTED / FAILED outcome recording, durable Exception records excluded from accepted State, and deliberate refusal to designate a canonical current State.**
+> **In the systems and literature examined to date, we did not identify an existing architecture that simultaneously combines live revocable permission validation on the consequential admission path, durable accepted/rejected/failed outcome distinction for attempts reaching that authoritative boundary when persistence succeeds, durable failure diagnostics excluded from accepted work-state, and deliberate refusal by the substrate to designate a canonical current semantic work-state.**
 
 This formulation is intentionally falsifiable.
 
-A documented prior architecture satisfying the conjunction would narrow or defeat the claim without invalidating the EASTER implementation itself.
+A documented prior architecture satisfying the behavioral conjunction—even with different terminology or internal record types—would narrow or defeat the claim without invalidating the EASTER implementation itself.
 
 That separation between **what the system does** and **what the literature search has established about its novelty** is essential to the evidentiary boundary of this paper.
