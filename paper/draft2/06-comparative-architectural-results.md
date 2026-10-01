@@ -12,14 +12,16 @@ The recovered-review artifact used here is itself a reconstruction created on Se
 
 | System | DRC frozen overlay | Recovered EASTER evidence | Whole-system composition | Frozen aggregate | Archival status |
 | --- | --- | --- | --- | --- | --- |
-| **Hermes Agent** | D/R/C COVERED | Evidence, Authority, State, Exception COVERED. Transition and Receipt COVERED with surviving H-OPEN-1. | H-OPEN-1, an unrecoverable external-effect window, survives composition and remains OPEN rather than GAP. | 0 demonstrated GAP; 0 CHALLENGED. | Strong primitive recovery; exact reviewed commit and individual DRC receipts not recovered. |
-| **OpenClaw** | D/R/C COVERED | Evidence, Authority, Exception COVERED. State and Transition COVERED + OC-OPEN-1. Receipt COVERED + OC-OPEN-1 + OC-OPEN-2. Initial sweep: 30 COVERED / 11 OPEN / 0 GAP / 0 CHALLENGED. | OC-OPEN-1 concerns an unrecoverable external-effect window. OC-OPEN-2 concerns delivery paths that may bypass a shared durable lifecycle. | 0 demonstrated GAP; 0 CHALLENGED. | Strong primitive recovery; abbreviated source commit recovered; individual DRC receipts not recovered. |
-| **LangGraph** | D/R/C COVERED | Evidence findings substantially recovered, including an UntrackedValue OPEN. Transition: 7 COVERED / 4 OPEN. Exception: 7 COVERED / 4 OPEN. Receipt: 5 COVERED / 5 OPEN. Authority and State were reviewed but their exact matrices were not recovered. | Composition among checkpoints, tasks, pending writes, metadata, authorization/control, and fault-tolerance mechanisms closed many primitive-level OPENs. | 0 demonstrated GAP; 0 CHALLENGED. | Substantial recovery; Authority/State matrices, individual DRC receipts, and exact source SHA not recovered. |
+| **Hermes Agent** | D/R/C COVERED | Evidence, Authority, State, Exception COVERED. Transition and Receipt COVERED with surviving H-OPEN-1. | H-OPEN-1, an unrecoverable external-effect window, survives composition and remains OPEN rather than GAP. | 0 demonstrated GAP; no preserved CHALLENGED disposition. | Strong primitive recovery; exact reviewed commit and individual DRC receipts not recovered. |
+| **OpenClaw** | D/R/C COVERED | Evidence, Authority, Exception COVERED. State and Transition COVERED + OC-OPEN-1. Receipt COVERED + OC-OPEN-1 + OC-OPEN-2. Initial sweep: 30 COVERED / 11 OPEN / 0 GAP / 0 CHALLENGED. | OC-OPEN-1 concerns an unrecoverable external-effect window. OC-OPEN-2 concerns delivery paths that may bypass a shared durable lifecycle. | 0 demonstrated GAP; no preserved CHALLENGED disposition. | Strong primitive recovery; abbreviated source commit recovered; individual DRC receipts not recovered. |
+| **LangGraph** | D/R/C COVERED | Evidence findings substantially recovered, including an UntrackedValue OPEN. Transition: 7 COVERED / 4 OPEN. Exception: 7 COVERED / 4 OPEN. Receipt: 5 COVERED / 5 OPEN. Authority and State were reviewed but their exact matrices were not recovered. | Composition among checkpoints, tasks, pending writes, metadata, authorization/control, and fault-tolerance mechanisms closed many primitive-level OPENs. | 0 demonstrated GAP; no preserved CHALLENGED disposition. | Substantial recovery; Authority/State matrices, individual DRC receipts, and exact source SHA not recovered. |
 | **Anthropic Claude Agent SDK** | D/R/C COVERED | Primitive-level EASTER classifications not recovered. | Not recovered. | 0 demonstrated GAP. | Aggregate recovery only. Primitive decomposition remains unknown. |
 | **OpenAI Agents SDK** | D/R/C COVERED | Primitive-level decomposition not recovered. | Not recovered. | Exactly 1 GAP. | Aggregate result and existence of one real GAP recovered; owning primitive remains unknown. |
-| **Google Antigravity** | D/R/C COVERED | Substantial primitive sweeps recovered: Evidence, Authority, State, Transition, and Exception contain documented GAP/OPEN/COVERED findings; Receipt is not sufficiently recovered. | Six conceptual families survived recovery, but their exact mapping to the final three GAPs did not. | 3 GAPs; no demonstrated CHALLENGE. | Substantial primitive recovery; final composition mapping, Receipt freeze, and exact runtime version remain incomplete. |
+| **Google Antigravity** | D/R/C COVERED | Substantial primitive sweeps recovered: Evidence, Authority, State, Transition, and Exception contain documented GAP/OPEN/COVERED findings; Receipt is not sufficiently recovered. | Six conceptual families survived recovery, but their exact mapping to the final three GAPs did not. | 3 GAPs; no preserved CHALLENGED disposition. | Substantial primitive recovery; final composition mapping, Receipt freeze, and exact runtime version remain incomplete. |
 
 The table is descriptive, not ordinal. GAP counts are not system scores, and the aggregate column cannot be used to reconstruct missing primitive classifications.
+
+In corpus order (Hermes Agent, OpenClaw, LangGraph, Anthropic Claude Agent SDK, OpenAI Agents SDK, Google Antigravity), the frozen **per-system aggregate GAP-count sequence** is **(0, 0, 0, 0, 1, 3)**. This is an ordered summary across systems, not a primitive-level vector. In particular, the surviving OpenAI aggregate does not identify which EASTER primitive owns its one GAP, and Antigravity's recovered primitive findings do not reconstruct the exact mapping from six conceptual families to its final three-GAP aggregate.
 
 ## 6.2 Zero aggregate GAP did not mean complete primitive coverage
 
@@ -93,7 +95,7 @@ At whole-system level, six conceptual families survived archival recovery:
 
 The exact mapping from these six families to the frozen final aggregate of **three GAPs** was not recovered. We therefore do not reverse-engineer that mapping.
 
-No CHALLENGE to an EASTER primitive was demonstrated in the recovered Antigravity review.
+No preserved Antigravity review artifact records a CHALLENGED disposition against an EASTER primitive. This is an archival statement, not evidence that every primitive was affirmatively challenged and survived.
 
 ## 6.5 DRC/EASTER asymmetry observed in the corpus
 
@@ -101,25 +103,25 @@ The frozen DRC overlay classified Distinction, Relation, and Constraint as COVER
 
 That result should be interpreted cautiously. The corpus consists of mature agent architectures selected toward rich representation, and individual DRC primitive receipts remain incomplete for much of the corpus.
 
-Nevertheless, the combined results establish one bounded asymmetry within the examined set:
+Nevertheless, the combined results establish one bounded relationship within the examined set:
 
-**DRC coverage did not entail EASTER coverage.**
+**under the applied classifications in this corpus, DRC coverage did not entail zero EASTER GAPs.**
 
 The OpenAI Agents SDK and Google Antigravity both received D/R/C COVERED dispositions while retaining one or more frozen EASTER GAPs within their inspected boundaries.
 
-The converse relationship was not observed. No system in the corpus demonstrated EASTER coverage while failing the DRC overlay. The corpus therefore does not establish whether EASTER-covered systems necessarily possess adequate DRC structure in userland.
+The converse relationship was not observed. No system in the corpus demonstrated EASTER coverage while failing the DRC overlay. The corpus therefore establishes only this observed one-way non-entailment; it does not establish a general architectural separation theorem or determine whether EASTER-covered systems necessarily possess adequate DRC structure in userland.
 
-## 6.6 No primitive was challenged in the recovered corpus
+## 6.6 No preserved primitive challenge in the recovered corpus
 
-The recovered six-system record contains no demonstrated CHALLENGED disposition against one of EASTER's six primitives.
+Across the recovered six-system record, **no preserved review artifact records a CHALLENGED disposition against one of EASTER's six primitives**.
 
-This does **not** establish that the six primitives are necessary, minimal, or universally sufficient.
+That archival absence is not equivalent to showing that every primitive was affirmatively stress-tested in every system and survived challenge. Recovery is incomplete, and the manuscript does not infer missing primitive-level dispositions from aggregate results.
 
-It establishes only that, under these reviews, observed deficiencies could still be described using the existing EASTER lenses without requiring a demonstrated replacement or additional primitive.
+Within the preserved material, observed deficiencies could still be described using the existing EASTER lenses without a recovered disposition proposing a replacement or additional primitive. This does **not** establish that the six primitives are necessary, minimal, or universally sufficient.
 
 One explicit subtraction test occurred during the LangGraph analysis. **Invariant** was considered as a possible seventh EASTER primitive and rejected. Invariant was useful for reasoning about equivalence or correctness across possible executions, but was not judged necessary for representing or reconstructing the execution that actually occurred.
 
-This is evidence of primitive-set testing, not proof of six-primitive minimality.
+This is evidence of one explicit primitive-set test, not proof of six-primitive minimality or evidence that every primitive underwent an equivalent test.
 
 ## 6.7 Archival result
 
