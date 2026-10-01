@@ -1,6 +1,6 @@
 # Draft 2 Public Artifact Manifest
 
-**Purpose.** This manifest closes the publication-side reproducibility boundary for Draft 2 by naming immutable public Git objects for the implementation and preserved evidence package. Branch names are intentionally not used as the authoritative identifiers because branches can move.
+**Purpose.** This manifest identifies immutable public Git objects for the Draft 2 reference implementation and the accepted post-remediation manuscript/research baseline. The completed publication package introduced by PR #13 must be pinned separately after merge, because its immutable merge commit does not exist while the pull request is still open. Branch names are intentionally not used as authoritative identifiers because branches can move.
 
 ## A. Reference implementation pin
 
@@ -18,15 +18,15 @@ Useful pinned entry points:
 - MCP boundary: https://github.com/witsbi/easter/blob/8bf422747836c96233f8dc11d4b11d1a61c832c1/mcp_server.py
 - HTTP API boundary: https://github.com/witsbi/easter/blob/8bf422747836c96233f8dc11d4b11d1a61c832c1/api_server.py
 
-## B. Accepted Draft 2 and research-archive pin
+## B. Accepted Draft 2 manuscript and research-archive baseline
 
 **Repository:** `witsbi/easter-paper`  
 **Immutable commit:** `18ffc91e6550a6df7b41f335dd1879ec0002d111`  
 **Commit date:** 2026-10-01  
-**Meaning:** merge commit for PR #12, the accepted post-Hermes-remediation Draft 2 baseline.  
+**Meaning:** merge commit for PR #12, the accepted post-Hermes-remediation Draft 2 manuscript and research-archive baseline.  
 **Pinned tree:** https://github.com/witsbi/easter-paper/tree/18ffc91e6550a6df7b41f335dd1879ec0002d111
 
-This pin contains the accepted Draft 2 manuscript source plus the preserved archive used to bound the comparative review, prior-art reconstruction, and contribution-provenance claims.
+This pin contains the accepted Draft 2 manuscript source plus the preserved archive used to bound the comparative review, prior-art reconstruction, and contribution-provenance claims. It intentionally predates the publication apparatus added by PR #13 and must not be described as the immutable identifier for that later package.
 
 ### Comparative-review recovery
 
@@ -53,13 +53,21 @@ This pin contains the accepted Draft 2 manuscript source plus the preserved arch
 - Clawde/Sonnet raw account: https://github.com/witsbi/easter-paper/blob/18ffc91e6550a6df7b41f335dd1879ec0002d111/paper/archive/contribution-clawde-raw-account-2026-10-01.md
 - Nathan three-tier reconstruction: https://github.com/witsbi/easter-paper/blob/18ffc91e6550a6df7b41f335dd1879ec0002d111/paper/archive/contribution-nathan-three-tier-reconstruction-2026-10-01.md
 
-## C. Interpretation rule
+## C. Publication-package pin to be created after PR #13 merge
 
-These pins make the surviving publication evidence inspectable and immutable at the Git-object level. They do **not** convert unrecovered historical material into recovered evidence. In particular:
+PR #13 adds the finalized Draft 2 bibliography, publication reference map, this manifest, and citation wiring needed for adversarial review. While the pull request remains open, no immutable merge commit can identify that completed package.
+
+After PR #13 is merged, its merge commit SHALL be recorded as the immutable **Draft 2 adversarial-review candidate**. That post-merge identifier, together with the implementation pin in Section A and the accepted manuscript/research baseline in Section B, closes the publication-side location boundary without pretending that an earlier commit contains later packaging work.
+
+No adversarial-review handoff should identify the moving branch head as the review target.
+
+## D. Interpretation rule
+
+The pins above make the surviving implementation, accepted manuscript baseline, and research evidence inspectable at immutable Git objects. The post-merge PR #13 identifier will additionally freeze the completed publication package. None of these identifiers converts unrecovered historical material into recovered evidence. In particular:
 
 - an exact historical source/version pin that Appendix A marks unrecovered remains unrecovered;
 - the Antigravity six-family-to-three-GAP primitive mapping remains unrecovered;
 - a current official documentation link used for publication navigation does not retroactively become the source inspected in the historical review; and
 - later research must be labeled as later research rather than recovery of the frozen procedure.
 
-The manifest therefore closes the public-location problem without weakening the manuscript's missing-remains-missing rule.
+The manifest therefore preserves the missing-remains-missing rule while distinguishing the accepted research baseline from the later publication-package freeze.
