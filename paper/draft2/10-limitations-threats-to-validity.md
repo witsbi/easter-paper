@@ -99,15 +99,19 @@ A demonstrated case of that kind should be treated as evidence against the prese
 
 The DRC overlay classified Distinction, Relation, and Constraint as COVERED for all six architectures.
 
-No DRC-negative specimen was observed.
+No DRC-negative or borderline specimen was observed in the selected corpus. The recovered DRC classifications are also incomplete at the primitive-receipt level for portions of the corpus, so the historical classifications cannot all be independently reconstructed from the surviving package.
+
+The six systems were selected as mature, representation-rich agent architectures for the EASTER investigation, not as specimens designed to probe DRC's discriminative lower bound. The uniform COVERED result therefore does not establish whether DRC would discriminate among less mature or representationally weaker systems.
 
 No ablation experiment demonstrated that removing one of the three categories necessarily destroys functional interpretability.
 
 No formal proof establishes that DRC is minimal, universally necessary, or sufficient for meaning.
 
-The observed 3/3 coverage across six mature systems is therefore compatible with several interpretations: DRC may identify highly general representational structure, the categories may be too broad to discriminate strongly, the corpus may be biased toward systems rich enough to satisfy them, or some combination of these may be true.
+The observed 3/3 coverage across six mature systems is therefore compatible with several interpretations: DRC may identify highly general representational structure, mature agent architectures may have converged on structures satisfying DRC, the categories may be too broad to discriminate strongly, the corpus may be biased toward systems rich enough to satisfy them, or some combination of these may be true.
 
-The present paper cannot distinguish among those possibilities.
+The present paper cannot distinguish among those possibilities and therefore does not establish DRC's discriminative lower bound.
+
+This limitation does not alter the narrower observation that, under the classifications applied in this corpus, DRC coverage did not entail zero EASTER GAPs. That statement reports the relationship among the preserved classifications; it is not a claim that DRC's lower bound has been independently established.
 
 DRC should consequently be treated as a candidate analytical vocabulary supporting the userland/continuity boundary, not as an established universal ontology.
 
