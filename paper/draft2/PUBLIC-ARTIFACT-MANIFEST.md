@@ -71,6 +71,13 @@ This pin contains the accepted Draft 2 manuscript source plus the preserved arch
 
 This pin contains the finalized Draft 2 bibliography, publication reference map, public-artifact manifest, and citation wiring supplied to the adversarial reviewer. Clawde/Sonnet's frozen adversarial review therefore applies to this exact commit, not to a moving branch head or to later post-review corrections.
 
+### Adversarial-review and remediation-verification artifacts
+
+The review and verification documents below are pinned at their own commits, which are later than the subject commit above: the review's *subject* is `6386f992` (pinned in Section C), but the review's *artifact file* was committed to the repository afterward, in a separate pull request. The two commits answer different questions — what was reviewed, versus when the review document itself became part of the repository — and must not be collapsed into one pin.
+
+- Clawde/Sonnet frozen adversarial review: https://github.com/witsbi/easter-paper/blob/4cb991f87f11a7efe8de81ad35aaf20a6901bae9/paper/reviews/clawde-draft2-adversarial-review-2026-10-01.md (artifact commit `4cb991f87f11a7efe8de81ad35aaf20a6901bae9`, merge of PR #14; reviewed subject commit `6386f9927c6111205ca0b188c10c0c32353f5b50`)
+- Clawde/Sonnet targeted remediation verification (findings #1–#4): https://github.com/witsbi/easter-paper/blob/ef81644f655294ecb7d863a9c6ce527f7fef214f/paper/reviews/clawde-draft2-remediation-verification-2026-10-01.md (artifact commit `ef81644f655294ecb7d863a9c6ce527f7fef214f`, merge of PR #16; verifies the remediation merged in PR #15, diffed `6386f992..0e6e06e`)
+
 ## D. Interpretation rule
 
 The pins above make the surviving implementation, accepted manuscript baseline, research evidence, and adversarial-review publication package inspectable at immutable Git objects. None of these identifiers converts unrecovered historical material into recovered evidence. In particular:
