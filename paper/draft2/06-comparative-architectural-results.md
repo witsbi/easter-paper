@@ -103,13 +103,13 @@ The frozen DRC overlay classified Distinction, Relation, and Constraint as COVER
 
 That result should be interpreted cautiously. The corpus consists of mature agent architectures selected toward rich representation, and individual DRC primitive receipts remain incomplete for much of the corpus.
 
-Nevertheless, the combined results establish one bounded relationship within the examined set:
+Within the recovered coding record, one bounded asymmetry was observed:
 
-**under the applied classifications in this corpus, DRC coverage did not entail zero EASTER GAPs.**
+**under the applied classifications in this corpus, DRC coverage co-occurred with one or more EASTER GAPs for some systems.**
 
 The OpenAI Agents SDK and Google Antigravity both received D/R/C COVERED dispositions while retaining one or more frozen EASTER GAPs within their inspected boundaries.
 
-The converse relationship was not observed. No system in the corpus demonstrated EASTER coverage while failing the DRC overlay. The corpus therefore establishes only this observed one-way non-entailment; it does not establish a general architectural separation theorem or determine whether EASTER-covered systems necessarily possess adequate DRC structure in userland.
+The converse pattern was not observed in the recovered corpus. No system in the corpus was recorded as demonstrating EASTER coverage while failing the DRC overlay. Given the selected mature-system corpus and incomplete primitive-level DRC receipts, this observation does not establish one-way non-entailment, a general architectural separation theorem, or whether EASTER-covered systems necessarily possess adequate DRC structure in userland. It is retained as an observed asymmetry that motivates prospective testing.
 
 ## 6.6 No preserved primitive challenge in the recovered corpus
 
