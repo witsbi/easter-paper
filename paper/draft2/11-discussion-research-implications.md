@@ -91,7 +91,7 @@ Both may influence later reasoning about what was attempted, what Authority exis
 
 Preserving these outcomes therefore increases the reconstructability of consequential work without requiring unsuccessful operations to mutate accepted State.
 
-The contribution-provenance case in Section 8 also illustrates the boundary of this claim: the gateway-rejected expired credential did not reach the kernel and therefore is not a kernel Receipt event; the later accepted deposit did.
+This claim is bounded to operations that reach the receipt-capable kernel path. Authentication or other deployment-layer events that terminate before that boundary are outside the kernel's Receipt semantics.
 
 Future work should test whether bounded outcome preservation materially improves recovery after more severe runtime changes.
 
