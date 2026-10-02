@@ -17,15 +17,11 @@ A Python/SQLite reference kernel demonstrates that these distinctions can be imp
 
 For operations that reach its receipt-capable path, the kernel admits immutable State, permits branching, validates revocable Authority in the consequential admission path, preserves Exceptions outside accepted State, and distinguishes ACCEPTED, REJECTED, and FAILED outcomes without designating a canonical semantic branch. Requests stopped before the kernel boundary and failures that prevent outcome-record persistence lie outside that Receipt guarantee.
 
-We then applied EASTER as a reverse-review lens to six mature agent architectures. In corpus order, the frozen **per-system aggregate GAP-count sequence** was:
+We also preserve a historical reverse-review of six mature agent architectures as a recovered methodological record. Its surviving archive retains a frozen system-level aggregate and substantial primitive-level material, but it does not preserve the complete original classification package, exact source pins for every target, or enough detail to reproduce every historical disposition. The numeric aggregate is therefore retained in Section 6 and Appendix A as part of the research record rather than presented here as a principal reproducible empirical result.
 
-**(0, 0, 0, 0, 1, 3)**
+No preserved review artifact records a CHALLENGED disposition against an EASTER primitive in the recovered corpus. That archival observation supports continued investigation of the six-primitive model but is not evidence that every primitive was affirmatively stress-tested in every system, and it does not establish minimality or universal sufficiency.
 
-This is an ordered summary across systems, not a primitive-level vector. The recovered archive does not identify every GAP's owning primitive.
-
-No preserved review artifact records a CHALLENGED disposition against an EASTER primitive in the recovered corpus. That archival result supports continued investigation of the six-primitive model but is not evidence that every primitive was affirmatively stress-tested in every system, and it does not establish minimality or universal sufficiency.
-
-A complementary DRC overlay — Distinction, Relation, and Constraint — classified all three DRC categories as COVERED in all six systems. Within this corpus, DRC coverage did not entail zero EASTER GAPs. The corpus therefore supports that observed one-way non-entailment under the applied classifications; it does not establish a general architectural separation theorem.
+A complementary DRC overlay — Distinction, Relation, and Constraint — records all three DRC categories as COVERED in all six systems while some systems retain EASTER GAPs. Because those classifications inherit the same archival limitations, this is best treated as an observed asymmetry in the recovered coding record and a motivation for prospective testing, not as an established architectural non-entailment result.
 
 The reference implementation was also used during preparation of this manuscript to preserve a real multi-participant contribution-provenance workflow. That case demonstrated operational preservation of independent claims, corrections, repository integration, and attributable kernel-admitted outcomes while leaving semantic truth and publication judgment outside the kernel.
 

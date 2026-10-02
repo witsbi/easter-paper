@@ -95,7 +95,7 @@ The systems were mature architectures selected toward comparatively rich agent f
 
 The absence of a DRC-negative specimen is consequently both an observation and a limitation.
 
-## 7.6 DRC coverage did not entail EASTER coverage
+## 7.6 Observed DRC/EASTER asymmetry
 
 The same six-system corpus produced a different pattern under EASTER.
 
@@ -107,15 +107,9 @@ This is a system-level aggregate summary, not a primitive-level vector.
 
 OpenAI Agents SDK and Google Antigravity were classified COVERED for Distinction, Relation, and Constraint while retaining one or more EASTER GAPs within their inspected boundaries.
 
-Within this corpus:
+The recovered coding record therefore contains cases in which DRC coverage co-occurred with one or more EASTER GAPs. Because the corpus was selected toward mature architectures and individual DRC primitive receipts are incomplete, this pattern is treated as an **observed asymmetry**, not as an established non-entailment result.
 
-**DRC-covered ⇏ EASTER-covered**
-
-This establishes one bounded empirical asymmetry: DRC coverage did not entail zero EASTER GAPs in the examined corpus.
-
-A system may preserve enough Distinction, Relation, and Constraint for functional interpretation while failing to durably preserve some consequential Evidence, Authority, State, Transition, Exception, or Receipt property across a continuity boundary.
-
-DRC coverage therefore does not establish consequential continuity.
+The observation is consistent with the possibility that a system may preserve enough Distinction, Relation, and Constraint for functional interpretation while failing to durably preserve some consequential Evidence, Authority, State, Transition, Exception, or Receipt property across a continuity boundary. Establishing that relationship generally requires prospective testing beyond this recovered corpus.
 
 ## 7.7 The converse remains unobserved
 
@@ -149,16 +143,16 @@ This is why semantic truth and application meaning remain outside the kernel.
 
 ## 7.9 Boundary result
 
-The combined DRC/EASTER analysis supports a narrower result than either a universal theory of meaning or a universal continuity theorem.
+The combined DRC/EASTER analysis supports a narrower observation than either a universal theory of meaning or a universal continuity theorem.
 
-Within the examined corpus, **functional representational structure and consequential continuity were non-equivalent under the applied classifications: DRC coverage did not entail zero EASTER GAPs**.
+Within the recovered corpus, **DRC coverage and EASTER GAP dispositions showed an observed asymmetry under the applied classifications: some systems classified DRC-covered retained one or more EASTER GAPs.** Given the corpus selection and incomplete DRC receipts, this observation does not establish a general non-entailment relationship.
 
-DRC provides a compact vocabulary for examining the first.
+DRC provides a compact candidate vocabulary for examining functional representational structure.
 
-EASTER provides a six-primitive model for examining and implementing the second.
+EASTER provides a six-primitive model for examining and implementing consequential continuity.
 
-The relationship is therefore not one of reduction but of projection:
+Their proposed relationship is one of projection:
 
 **functional structure in userland → consequential projection → continuity boundary**
 
-This division of analytical roles allows EASTER to remain semantically narrow while still preserving consequential work whose meaning is owned elsewhere.
+Prospective testing is required to determine how strongly the observed corpus asymmetry supports that proposed division of analytical roles.
