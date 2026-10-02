@@ -337,7 +337,7 @@ The reference schema contains durable records for identities, authority definiti
 
 Authoritative records are append-oriented. Database triggers reject UPDATE and DELETE operations against authoritative tables. Corrections, revocations, recovery, and later interpretation therefore occur through additional records rather than rewriting earlier history.
 
-Payloads are represented as JSON where userland meaning is required. Structural properties that the kernel must mechanically enforce are represented separately. For example, root Authority is represented by a kernel-enforced \texttt{is\textbackslash\{\}\_root} property rather than inferred from an opaque JSON payload.
+Payloads are represented as JSON where userland meaning is required. Structural properties that the kernel must mechanically enforce are represented separately. For example, root Authority is represented by a kernel-enforced \texttt{is\_root} property rather than inferred from an opaque JSON payload.
 
 This split implements a general boundary rule of the reference kernel:
 
@@ -353,13 +353,13 @@ Accordingly, an accepted operation is evaluated against the Authority state visi
 
 For accepted state transitions, the requested State, Transition, associated Evidence links, and ACCEPTED Receipt are committed as one transaction. If an exception escapes that transaction, the transaction context rolls back its writes rather than leaving partial admission.
 
-The supported operation then handles the failure outside that rolled-back transaction. \texttt{record\textbackslash\{\}\_failure()} opens a new \texttt{BEGIN IMMEDIATE} transaction and writes the unsuccessful outcome as a Receipt plus linked Exception; for submitted Evidence identifiers that already exist, it may also preserve Receipt--Evidence associations. The failure-recording transaction creates no requested State or authoritative Transition. A successful failure-recording transaction therefore leaves the attempted authoritative change absent while preserving the fact and diagnostic classification of the unsuccessful attempt.
+The supported operation then handles the failure outside that rolled-back transaction. \texttt{record\_failure()} opens a new \texttt{BEGIN IMMEDIATE} transaction and writes the unsuccessful outcome as a Receipt plus linked Exception; for submitted Evidence identifiers that already exist, it may also preserve Receipt--Evidence associations. The failure-recording transaction creates no requested State or authoritative Transition. A successful failure-recording transaction therefore leaves the attempted authoritative change absent while preserving the fact and diagnostic classification of the unsuccessful attempt.
 
 The schema additionally constrains each operation identifier to at most one terminal Receipt. A duplicate outcome record for an identifier that already has a terminal Receipt is rejected by the database itself, and the kernel surfaces the rejection as a deliberate error rather than recording a second outcome. The enforcement is therefore a schema property, not a caller-discipline convention.
 
 This two-stage behavior is important: the FAILED Receipt and Exception are \textbf{not survivors of the transaction that failed}. The attempted operation transaction is unwound first; the failure record is a subsequent kernel transaction. If failure-record persistence itself cannot commit, that second transaction also rolls back. The implementation therefore does not claim that every catastrophic storage/process failure can produce a durable Receipt.
 
-Regression evidence exercises this boundary directly. A genuine SQLite integrity failure and a generic unexpected exception both produce a FAILED Receipt linked to an Exception while leaving zero requested authoritative effects. Separate Exception red-team tests exercise all six supported write entry points and verify that unsuccessful operations leave no authoritative effect other than their Receipt/Exception failure record. Tests also distinguish a genuine persistence failure in \texttt{record\textbackslash\{\}\_failure()} itself: if even the fallback failure record cannot be persisted, the transaction rolls back with no phantom Receipt.
+Regression evidence exercises this boundary directly. A genuine SQLite integrity failure and a generic unexpected exception both produce a FAILED Receipt linked to an Exception while leaving zero requested authoritative effects. Separate Exception red-team tests exercise all six supported write entry points and verify that unsuccessful operations leave no authoritative effect other than their Receipt/Exception failure record. Tests also distinguish a genuine persistence failure in \texttt{record\_failure()} itself: if even the fallback failure record cannot be persisted, the transaction rolls back with no phantom Receipt.
 
 The implementation therefore relies on SQLite transaction atomicity as an implementation mechanism for two separate guarantees: accepted authoritative effects commit together with their ACCEPTED Receipt, while unsuccessful attempted effects are rolled back before any durable failure record is written.
 
@@ -369,7 +369,7 @@ Authority is implemented independently from State and Transition history.
 
 Authority definitions and possession are separate records. An identity possesses Authority through an immutable grant. Grants may have validity intervals and may subsequently be invalidated through append-only revocation records rather than modification of the original grant.
 
-The current implementation supports direct revocation of a grant and \texttt{REVOKE\textbackslash\{\}\_ALL}, which invalidates grants held by an identity as of the revocation's position in Authority's ordered history.
+The current implementation supports direct revocation of a grant and \texttt{REVOKE\_ALL}, which invalidates grants held by an identity as of the revocation's position in Authority's ordered history.
 
 Grant and revocation records share an Authority-owned monotonically ordered sequence. Authority validity is determined from this ledger rather than inferred from Receipt payloads or wall-clock ordering.
 
@@ -377,7 +377,7 @@ This separation was strengthened through adversarial remediation. A prior design
 
 Root capabilities are likewise represented as mechanically enforced Authority properties. Root-authorized operations govern Authority definition, grant, and revocation, while ordinary state transition does not create or mutate Authority.
 
-The v0.1 scope is deliberately limited. For ordinary State transitions, a currently valid non-root grant held by the requesting identity is sufficient under the kernel's Authority rules; \texttt{authority\textbackslash\{\}\_id} is not a fine-grained RBAC or object-capability policy for State content. Root grants additionally authorize Authority administration. Application-specific roles, object permissions, and semantic approval rules remain userland concerns unless they are represented by mechanically enforced kernel structure.
+The v0.1 scope is deliberately limited. For ordinary State transitions, a currently valid non-root grant held by the requesting identity is sufficient under the kernel's Authority rules; \texttt{authority\_id} is not a fine-grained RBAC or object-capability policy for State content. Root grants additionally authorize Authority administration. Application-specific roles, object permissions, and semantic approval rules remain userland concerns unless they are represented by mechanically enforced kernel structure.
 
 The result is a deliberate separation:
 
@@ -387,7 +387,7 @@ An unauthorized attempt that reaches a supported kernel operation may produce a 
 
 \subsection{State and Transition implementation}
 
-State rows contain immutable JSON payloads and identifiers. State does not contain its own parent pointer. Lineage is represented exclusively through Transition records connecting \texttt{from\textbackslash\{\}\_state\textbackslash\{\}\_id} to \texttt{to\textbackslash\{\}\_state\textbackslash\{\}\_id}.
+State rows contain immutable JSON payloads and identifiers. State does not contain its own parent pointer. Lineage is represented exclusively through Transition records connecting \texttt{from\_state\_id} to \texttt{to\_state\_id}.
 
 The reference database begins from a distinguished Genesis State. Genesis is the sole State without an incoming Transition. Later States are admitted through successful transitions.
 
@@ -415,7 +415,7 @@ An ACCEPTED Receipt may refer to an admitted Transition, but Receipt is not stru
 
 This decoupling allows Receipt to describe supported kernel operation outcomes without treating every consequential operation as a State change. It does not imply that requests refused before reaching the kernel---for example by gateway authentication---or catastrophic failures that prevent receipt persistence themselves must have kernel Receipts.
 
-REJECTED and FAILED operations do not produce requested authoritative Transitions. The supported entry points catch kernel-rule rejection and unexpected failure after the attempted operation transaction has unwound, then call the separate failure-recording path. \texttt{record\textbackslash\{\}\_failure()} atomically inserts the REJECTED or FAILED Receipt and its linked Exception in a new transaction. FAILED Receipts carry a minimal kernel-authored failure classification; the Exception owns the detailed diagnostics.
+REJECTED and FAILED operations do not produce requested authoritative Transitions. The supported entry points catch kernel-rule rejection and unexpected failure after the attempted operation transaction has unwound, then call the separate failure-recording path. \texttt{record\_failure()} atomically inserts the REJECTED or FAILED Receipt and its linked Exception in a new transaction. FAILED Receipts carry a minimal kernel-authored failure classification; the Exception owns the detailed diagnostics.
 
 The failure-recording path is itself transactional. If it cannot persist a valid failure record, it rolls back rather than leaving only part of the Receipt/Exception pair. This bounds the durability claim to outcomes the kernel is able to commit; EASTER does not manufacture a durable record through an unavailable or failed persistence substrate.
 
@@ -823,9 +823,9 @@ Mutable constraints and constraints governing other constraints do not necessari
 
 In an earlier formalization, Constraint was expressed as a set of admissible successor structures:
 
-\textbackslash\{\}[
-C(G) = \textbackslash\{\}\{G' \textbackslash\{\}mid G' \textbackslash\{\}text\{ is an admissible successor of \} G\textbackslash\{\}\}
-\textbackslash\{\}]
+\[
+C(G) = \{G' \mid G' \text{ is an admissible successor of } G\}
+\]
 
 This notation is useful for expressing constrained evolution, but Draft 2 does not require all userland systems to instantiate a formal graph or explicitly compute such a set.
 
@@ -1102,7 +1102,7 @@ Contribution credit: Hermes is credited narrowly and specifically for the indepe
 
 Hermes cold-review finding \#3 challenged whether the provenance case exposed enough stable EASTER records to permit independent reconstruction rather than relying on a first-party narrative. The finding was tested directly rather than answered from recollection.
 
-Pax/Muse and Hermes independently retrieved the EASTER publication history and froze separate reports before seeing the other participant's result. Pax/Muse worked under the \texttt{agent} role using stable-ID traversal through \texttt{get\textbackslash\{\}\_evidence} and \texttt{get\textbackslash\{\}\_receipt}; Hermes independently enumerated the authenticated EASTER API using opaque pagination cursors and reconstructed the relevant history from the returned corpus. Their reports are preserved separately as \texttt{paper/reviews/pax-easter-provenance-retrieval-2026-10-02.md} and \texttt{paper/reviews/hermes-easter-provenance-retrieval-2026-10-02.md} and are not treated as a synthesized canonical history.
+Pax/Muse and Hermes independently retrieved the EASTER publication history and froze separate reports before seeing the other participant's result. Pax/Muse worked under the \texttt{agent} role using stable-ID traversal through \texttt{get\_evidence} and \texttt{get\_receipt}; Hermes independently enumerated the authenticated EASTER API using opaque pagination cursors and reconstructed the relevant history from the returned corpus. Their reports are preserved separately as \texttt{paper/reviews/pax-easter-provenance-retrieval-2026-10-02.md} and \texttt{paper/reviews/hermes-easter-provenance-retrieval-2026-10-02.md} and are not treated as a synthesized canonical history.
 
 Both retrievals recovered a materially coherent publication-provenance history from EASTER and found no conflicting consequential chronology in the records they recovered. Their coverage differed with their retrieval capabilities: Hermes's enumeration recovered substantially more of the earlier publication history, while Pax's restricted traversal recovered a connected later subgraph from known stable identifiers.
 
@@ -2014,6 +2014,11 @@ It is a concrete architecture, a working implementation, a bounded body of evide
 \bibitem{ref33} Clawde/Sonnet, “Independent Adversarial Review of Draft 2,” frozen EASTER research artifact, 1 Oct. 2026; reviewed subject commit \texttt{6386f9927c6111205ca0b188c10c0c32353f5b50}, pinned at artifact commit \texttt{4cb991f87f11a7efe8de81ad35aaf20a6901bae9} (merge of PR \#14) at \texttt{paper/reviews/clawde-draft2-adversarial-review-2026-10-01.md}.
 \bibitem{ref34} Clawde/Sonnet, “Targeted Remediation Verification (Findings \#1--\#4),” archived EASTER research artifact, 1 Oct. 2026, pinned at artifact commit \texttt{ef81644f655294ecb7d863a9c6ce527f7fef214f} (merge of PR \#16) at \texttt{paper/reviews/clawde-draft2-remediation-verification-2026-10-01.md}.
 \end{thebibliography}
+\subsection{Bibliographic boundary}
+
+References [1]--[19] are authoritative or primary publication references used to support the architectural neighborhoods and closest-prior discussion. References [20]--[25] are current official navigation references for the six comparative agent systems; they do \textbf{not} retroactively establish exact historical version pins where Appendix A records those pins as unrecovered. References [26]--[34] provide immutable Git commit identifiers for the implementation and preserved research artifacts.
+
+Venue-specific formatting may still require mechanical restyling of this list, but no missing bibliographic fact should be invented during that conversion.
 % === APPENDIX-A-COMPARATIVE-EVIDENCE-REGISTER.md ===
 \appendix
 \section{Comparative Evidence Register}
@@ -2028,7 +2033,7 @@ Missing historical evidence remains missing. This appendix does not infer primit
 
 The principal recovered artifact is \texttt{paper/archive/frozen-review-recovery-2026-09-29.md}, an archival reconstruction created from previously preserved EASTER/DRC research state. That artifact explicitly distinguishes recovered findings from material that was not recovered.
 
-\subsection{A.1 Derivation status of the aggregate result}
+\subsection{Derivation status of the aggregate result}
 
 The manuscript reports the frozen per-system aggregate GAP-count sequence, in corpus order:
 
@@ -2062,7 +2067,7 @@ This table establishes what can and cannot be derived from the surviving archive
 \item Antigravity's three cannot be reverse-engineered from the six recovered issue families.
 \end{itemize}
 
-\subsection{A.2 Recovered system-level evidence}
+\subsection{Recovered system-level evidence}
 
 \subsubsection{Hermes Agent}
 
@@ -2239,7 +2244,7 @@ Frozen final aggregate: 3 GAPs.
 
 The exact mapping from the six issue families to the final three GAPs was not recovered and is intentionally not reconstructed.
 
-\subsection{A.3 Reproducibility boundary}
+\subsection{Reproducibility boundary}
 
 This register makes the surviving derivation inspectable, but it does not make the historical study fully reproducible.
 
@@ -2247,7 +2252,7 @@ A reader can verify that Section 6 accurately reports the recovered artifact and
 
 Re-running the reverse review against current or pinned system sources would be valuable future work, but it would create a new replication dataset. It would not recover the missing historical evidence and should not be substituted for it.
 
-\subsection{A.4 Preservation rule}
+\subsection{Preservation rule}
 
 The evidence register is intentionally asymmetric: some rows are detailed and others are sparse. That asymmetry is itself part of the research record.
 
@@ -2257,7 +2262,7 @@ The paper therefore prefers an explicit unknown over a retrospectively completed
 
 This appendix maps the manuscript's externally grounded architectural claims to the verified bibliography in §13. It is intentionally separate from the historical-source record: Appendix A and the archived review artifacts describe what the original research pass preserved, while this appendix identifies authoritative publication references a reader can use to inspect the claims now.
 
-\subsection{B.1 Comparative corpus navigation}
+\subsection{Comparative corpus navigation}
 
 \begin{table}[htbp]
 \centering
@@ -2277,7 +2282,7 @@ Google Antigravity & [25] & Current official documentation for navigation; histo
 \end{table}
 
 
-\subsection{B.2 Related-work claim map}
+\subsection{Related-work claim map}
 
 \begin{table}[htbp]
 \centering
@@ -2307,7 +2312,7 @@ Amazon QLDB provided immutable journal/ledger architecture and is retained as hi
 \end{table}
 
 
-\subsection{B.3 EASTER implementation and evidence map}
+\subsection{EASTER implementation and evidence map}
 
 \begin{table}[htbp]
 \centering
@@ -2330,7 +2335,7 @@ Clawde/Sonnet's targeted verification that review findings \#1--\#4 were correct
 \end{table}
 
 
-\subsection{B.4 Historical-versus-publication rule}
+\subsection{Historical-versus-publication rule}
 
 A publication reference answers \textbf{where a reader can inspect an authoritative source now}. It does not answer \textbf{which exact source/version the historical reviewer inspected} unless the archive independently preserves that fact.
 

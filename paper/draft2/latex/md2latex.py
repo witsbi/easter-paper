@@ -6,7 +6,12 @@ This is a mechanical representation transform only — no substantive changes.
 import re
 import os
 
-SRC = os.path.expanduser("~/workspace/easter-paper-work/paper/draft2")
+# Resolve source dir relative to this script's location in the repo
+# (script lives at paper/draft2/latex/md2latex.py)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.normpath(os.path.join(SCRIPT_DIR, ".."))
+# Allow override via env for flexibility
+SRC = os.environ.get("EASTER_DRAFT2_SRC", SRC)
 
 # Paper content files in order (excludes repo-only artifacts)
 PAPER_FILES = [
@@ -48,7 +53,8 @@ def escape_latex(text):
     return text
 
 def convert_text(raw):
-    """Full pipeline: stash URLs, escape, then inline-convert."""
+    """Full pipeline: stash URLs, code; escape; then inline-convert.
+    Note: display math \[...\] is handled at the convert_file level (multi-line)."""
     urls = []
     def stash_url(m):
         urls.append(m.group(0))
@@ -60,7 +66,19 @@ def convert_text(raw):
         symbols.append(m.group(0))
         return f"\x00SYM{len(symbols)-1}\x00"
     text = re.sub(r'[⇏⇒→—–]', stash_sym, text)
+    # Stash inline code BEFORE escaping (prevents double-escape)
+    codes = []
+    def stash_code(m):
+        codes.append(m.group(1))
+        return f"\x00CODE{len(codes)-1}\x00"
+    text = re.sub(r'`([^`]+)`', stash_code, text)
+
     text = escape_latex(text)
+
+    # Restore code with single escaping
+    for i, code in enumerate(codes):
+        safe = escape_latex(code)
+        text = text.replace(f"\x00CODE{i}\x00", r'\texttt{' + safe + '}')
     # Restore symbols as LaTeX after escaping
     sym_map = {'⇏': r'$\not\Rightarrow$', '⇒': r'$\Rightarrow$',
                '→': r'$\rightarrow$', '—': '---', '–': '--'}
@@ -77,14 +95,7 @@ def convert_text(raw):
     return text
 
 def convert_inline(text):
-    """Convert inline markdown to LaTeX. Assumes text already escaped, URLs stashed."""
-    # Inline code (protect contents from other processing)
-    codes = []
-    def stash_code(m):
-        codes.append(m.group(1))
-        return f"\x00CODE{len(codes)-1}\x00"
-    text = re.sub(r'`([^`]+)`', stash_code, text)
-
+    """Convert inline markdown to LaTeX. Assumes text already escaped, code/URLs stashed."""
     # Links: [text](url) -> hyperlinked text
     text = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)', r'\\href{\2}{\1}', text)
 
@@ -93,10 +104,6 @@ def convert_inline(text):
     # Italic (avoid catching already-converted)
     text = re.sub(r'(?<!\\)\*(?!\*)([^*]+)(?<!\*)\*(?!\*)', r'\\textit{\1}', text)
 
-    # Restore code with escaping
-    for i, code in enumerate(codes):
-        safe = code.replace('\\', r'\textbackslash{}').replace('{', r'\{').replace('}', r'\}').replace('%', r'\%').replace('&', r'\&').replace('#', r'\#').replace('_', r'\_').replace('^', r'\textasciircum{}').replace('~', r'\textasciitilde{}')
-        text = text.replace(f"\x00CODE{i}\x00", r'\texttt{' + safe + '}')
     return text
 
 def convert_table(lines, idx):
@@ -197,7 +204,8 @@ def convert_file(path, is_appendix=False):
                     j = i + 1
                     bib_items = []
                     current = ""
-                    while j < len(lines):
+                    # Stop at next heading (don't consume to EOF)
+                    while j < len(lines) and not re.match(r'^#{1,4}\s', lines[j]):
                         lj = lines[j]
                         if re.match(r'^\d+\.\s', lj):
                             if current:
@@ -228,12 +236,15 @@ def convert_file(path, is_appendix=False):
                 else:
                     out.append("\\section{" + title + "}")
             elif level == 2:
-                # Strip leading "N.M " numbering (LaTeX numbers automatically)
-                clean_title = re.sub(r'^\d+\.\d+\s+', '', m.group(2).strip())
+                # Strip leading numbering: "N.M ", "A.1 ", "B.2 " etc.
+                # (LaTeX numbers automatically via \section/\appendix)
+                raw_title = m.group(2).strip()
+                clean_title = re.sub(r'^(\d+\.\d+|[A-Z]\.\d+)\s+', '', raw_title)
                 out.append("\\subsection{" + convert_text(clean_title) + "}")
             elif level == 3:
-                # Strip leading "N.M.K " numbering
-                clean_title = re.sub(r'^\d+\.\d+\.\d+\s+', '', m.group(2).strip())
+                # Strip leading "N.M.K " or "A.1.2 " numbering
+                raw_title = m.group(2).strip()
+                clean_title = re.sub(r'^(\d+\.\d+\.\d+|[A-Z]\.\d+\.\d+)\s+', '', raw_title)
                 out.append("\\subsubsection{" + convert_text(clean_title) + "}")
             else:
                 out.append("\\paragraph{" + title + "}")
@@ -305,6 +316,20 @@ def convert_file(path, is_appendix=False):
             i += 1
             continue
 
+        # Display math block: \[ ... \] (may span lines) - preserve verbatim
+        if re.match(r'^\\\[\s*$', line):
+            close_list()
+            math_lines = [line]
+            i += 1
+            while i < len(lines) and not re.match(r'^\\\]\s*$', lines[i]):
+                math_lines.append(lines[i])
+                i += 1
+            if i < len(lines):
+                math_lines.append(lines[i])  # closing \]
+                i += 1
+            out.append("\n".join(math_lines))
+            continue
+
         # Regular paragraph
         close_list()
         out.append(convert_text(line.strip()))
@@ -351,7 +376,8 @@ def main():
 """
     full = preamble + "\n".join(body_parts) + ending
 
-    outdir = os.path.expanduser("~/workspace/easter-paper-latex")
+    # Output alongside the script (paper/draft2/latex/)
+    outdir = SCRIPT_DIR
     os.makedirs(outdir, exist_ok=True)
     outpath = os.path.join(outdir, "easter-draft2.tex")
     open(outpath, "w").write(full)
