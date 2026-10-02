@@ -66,8 +66,12 @@ The entries below distinguish publication references from the historical source-
 
 32. Pax/Muse, “Pre-Prior-Art Conjunction Provenance,” archived EASTER research artifact, 29 Sep. 2026; compiled at Ori's direction via Mercury relay, pinned in [27] at `paper/archive/pre-prior-art-conjunction-provenance-2026-09-29.md`.
 
+33. Clawde/Sonnet, “Independent Adversarial Review of Draft 2,” frozen EASTER research artifact, 1 Oct. 2026; reviewed subject commit `6386f9927c6111205ca0b188c10c0c32353f5b50`, pinned at artifact commit `4cb991f87f11a7efe8de81ad35aaf20a6901bae9` (merge of PR #14) at `paper/reviews/clawde-draft2-adversarial-review-2026-10-01.md`.
+
+34. Clawde/Sonnet, “Targeted Remediation Verification (Findings #1–#4),” archived EASTER research artifact, 1 Oct. 2026, pinned at artifact commit `ef81644f655294ecb7d863a9c6ce527f7fef214f` (merge of PR #16) at `paper/reviews/clawde-draft2-remediation-verification-2026-10-01.md`.
+
 ## Bibliographic boundary
 
-References [1]–[19] are authoritative or primary publication references used to support the architectural neighborhoods and closest-prior discussion. References [20]–[25] are current official navigation references for the six comparative agent systems; they do **not** retroactively establish exact historical version pins where Appendix A records those pins as unrecovered. References [26]–[32] provide immutable Git commit identifiers for the implementation and preserved research artifacts.
+References [1]–[19] are authoritative or primary publication references used to support the architectural neighborhoods and closest-prior discussion. References [20]–[25] are current official navigation references for the six comparative agent systems; they do **not** retroactively establish exact historical version pins where Appendix A records those pins as unrecovered. References [26]–[34] provide immutable Git commit identifiers for the implementation and preserved research artifacts.
 
 Venue-specific formatting may still require mechanical restyling of this list, but no missing bibliographic fact should be invented during that conversion.

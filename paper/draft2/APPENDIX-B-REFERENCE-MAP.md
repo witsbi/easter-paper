@@ -45,6 +45,8 @@ This appendix maps the manuscript's externally grounded architectural claims to 
 | Clawde/Sonnet prior-art methodology reconstruction | [30] |
 | Reconciliation that produced the four-property behavioral conjunction | [31] |
 | Evidence that the conjunction's coarse properties predated the dedicated closest-prior investigation | [32] |
+| Clawde/Sonnet's independent adversarial review of the completed publication package | [33] |
+| Clawde/Sonnet's targeted verification that review findings #1–#4 were correctly remediated | [34] |
 
 ## B.4 Historical-versus-publication rule
 
