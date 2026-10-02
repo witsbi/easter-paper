@@ -27,7 +27,7 @@ No preserved review artifact records a CHALLENGED disposition against an EASTER 
 
 A complementary DRC overlay — Distinction, Relation, and Constraint — classified all three DRC categories as COVERED in all six systems. Within this corpus, DRC coverage did not entail zero EASTER GAPs. The corpus therefore supports that observed one-way non-entailment under the applied classifications; it does not establish a general architectural separation theorem.
 
-The reference implementation was also used during preparation of this manuscript to preserve a real multi-participant contribution-provenance workflow. That case demonstrated operational preservation of independent claims, corrections, repository integration, and attributable kernel-admitted outcomes while leaving semantic truth and publication judgment outside the kernel. An expired Pax/Muse credential was rejected by the surrounding gateway before kernel delivery and is therefore reported as an outer authentication event, not as EASTER Authority enforcement or a kernel REJECTED Receipt.
+The reference implementation was also used during preparation of this manuscript to preserve a real multi-participant contribution-provenance workflow. That case demonstrated operational preservation of independent claims, corrections, repository integration, and attributable kernel-admitted outcomes while leaving semantic truth and publication judgment outside the kernel.
 
 A dedicated closest-prior investigation found substantial overlap with existing architectural traditions. Individual EASTER mechanisms are not claimed as novel.
 

@@ -77,7 +77,7 @@ This produced two complementary layers:
 
 **EASTER → attributable consequential records for operations that reached the kernel boundary**
 
-The distinction is important. EASTER did not need to duplicate Git's version-control function in order to preserve that a particular Git artifact had become consequential to the research process. Nor should events stopped by an outer authentication or transport boundary be described as kernel-authored EASTER outcomes unless evidence shows that they reached the kernel.
+The distinction is important. EASTER did not need to duplicate Git's version-control function in order to preserve that a particular Git artifact had become consequential to the research process.
 
 ### Preserved event-to-primitive map
 
@@ -90,28 +90,12 @@ The case should not be read as though every event exercised all six primitives. 
 | Clawde/Sonnet first-party deposit | Git commit `843dec1` | Independently attributable contribution artifact; later anchored through the EASTER provenance workflow. | No claim that every EASTER primitive was exercised by the deposit. |
 | Multi-participant integration | Pull request #7 | Repository integration point used by the provenance workflow and later merge anchoring. | Git merge is not itself an EASTER Transition unless represented as one by a kernel operation. |
 | Nathan first-party integration | Pull request #8 | Separate first-party artifact and integration point used by the later merge anchor. | No semantic reconciliation performed by the kernel. |
-| Expired Pax/Muse credential attempt | Gateway authentication failure | Demonstrates the outer-boundary distinction by **not** reaching EASTER's Authority/Receipt path. | No kernel Authority evaluation and no claimed kernel REJECTED Receipt. |
-| Successful EASTER deposits / merge anchoring | Kernel operations reported by the preserved workflow | Evidence and Receipt use at the authoritative kernel boundary; accepted kernel records preserve that the relevant operation was admitted. | This manuscript does not presently publish a complete stable-ID export sufficient to reconstruct a six-primitive event graph from these operations alone. |
+| Successful EASTER deposits / merge anchoring | Kernel operations reported by the preserved workflow | Evidence and Receipt use at the authoritative kernel boundary; accepted kernel records preserve that the relevant operation was admitted. | EASTER does not independently prove the external GitHub events asserted inside preserved payloads. |
+| Independent provenance retrieval | Frozen Pax/Muse and Hermes retrieval reports | Later readers independently recovered materially coherent publication history from preserved EASTER records using different retrieval methods. | Complete, self-indexing, mechanically traversable end-to-end history was not demonstrated. |
 
-The final row is an explicit evidence-package limitation. The case narrative is supported by the preserved workflow and repository history, but Draft 2 does not claim that the publication repository currently exposes every kernel record identifier needed for an independent event-by-event six-primitive reconstruction. Where those identifiers are not published, this section narrows its claim rather than inventing them.
+The final two rows state the evidence boundary directly. The case demonstrates preservation and later recovery of consequential publication history, not a self-contained proof of every external event or a canonical graph supplied by the kernel.
 
-## 8.6 Gateway authentication failure during the workflow
-
-The workflow also produced an unplanned authentication-boundary episode that is useful precisely because it clarifies what EASTER did **not** record.
-
-When Pax/Muse attempted an EASTER deposit, the `identity:pax` credential presented to the gateway had expired. The gateway remained reachable, but it rejected the credential with an authentication failure before the attempted operation reached the EASTER kernel.
-
-Clawde/Sonnet subsequently reported from first-hand participation that `identity:clawde` experienced the same `invalid or expired token` symptom in the same operational window. Pax/Muse's operational account (`paper/archive/pax-gateway-outage-operational-account-2026-10-01.md`) documents the log-established mechanism: the broker minted fresh 24-hour tokens at every 12-hour run, but `git push` of the distribution repo failed in the cron context (`fatal: could not read Username for 'https://github.com'`), so the pushed tokens expired 2026-09-30T20:16:14Z while local mints continued. Gateway access logs corroborate the resulting failure window (`403` cluster 11:47–12:12Z on 2026-10-01) and the recovery (first `200` at 12:13:17Z, immediately after the manual refresh and successful push at 12:12:54Z).
-
-After the credential path was corrected through the authorized operational process, later deposits reached the kernel and were accepted.
-
-These gateway failures are therefore **not evidence of kernel Authority enforcement**. No EASTER Authority grant was evaluated for either gateway-rejected request, and the manuscript does not claim kernel REJECTED Receipts for those attempts. They are authentication-boundary events in the surrounding deployment.
-
-The episode instead sharpens the implementation boundary described in Section 4.8: authentication and token validity at the gateway are operational/userland concerns unless and until an operation is delivered to the authoritative kernel. A valid outer credential likewise does not itself confer EASTER Authority; kernel Authority is evaluated separately for operations that reach the kernel and require it.
-
-The episode was not staged as a test and should not be treated as a controlled security evaluation. Its evidentiary value here is narrower: it prevents the surrounding gateway from being conflated with the EASTER Authority primitive while documenting that the deployment-level failure affected more than one participant identity.
-
-## 8.7 Merge anchoring
+## 8.6 Merge anchoring
 
 After the participant accounts and Nathan's first-party account had been merged into the repository, the merge event was itself anchored in EASTER.
 
@@ -125,7 +109,7 @@ That distinction matters because the contribution accounts intentionally remaine
 
 EASTER preserved that the records were produced, deposited, and integrated. It did not certify the truth of every statement inside them.
 
-## 8.8 What the case demonstrates
+## 8.7 What the case demonstrates
 
 The case demonstrates that the reference implementation can support a multi-participant provenance workflow in which:
 
@@ -133,9 +117,8 @@ The case demonstrates that the reference implementation can support a multi-part
 - missing first-party evidence can remain explicitly pending rather than being fabricated;
 - later corrections can supplement earlier records without requiring historical erasure;
 - artifact preservation and consequential-event preservation can be separated between Git and EASTER;
-- gateway authentication and kernel Authority remain distinct boundaries;
-- later kernel-admitted action can proceed without rewriting an earlier gateway-level authentication failure; and
-- consequential integration events can be durably anchored without asking the kernel to determine semantic truth.
+- consequential integration events can be durably anchored without asking the kernel to determine semantic truth; and
+- consequential portions of the preserved history can later be independently recovered from EASTER records.
 
 These are implementation observations, not universality claims.
 
@@ -143,6 +126,32 @@ The episode does not establish that EASTER captures every form of research prove
 
 It demonstrates something narrower:
 
-**the reference implementation was used to preserve consequential portions of this attribution workflow while leaving interpretation, correction, reconciliation, publication judgment, and outer authentication outside the kernel.**
+**the reference implementation was used to preserve consequential portions of this attribution workflow while leaving interpretation, correction, reconciliation, and publication judgment outside the kernel.**
 
 That is the boundary the implementation was designed to maintain.
+
+## 8.8 Independent cold review and Receipt-cardinality remediation
+
+After the contribution-provenance workflow above, the manuscript underwent an independent cold review by Hermes, frozen 2026-10-01T19:45:59Z against manuscript `ef81644` and reference implementation `8bf4227` (archived in `paper/reviews/hermes-independent-cold-review-2026-10-01.md`). The review produced seven substantive findings. This section concerns finding #5.
+
+Finding #5 observed that Receipt outcome uniqueness was assumed by supported entry points but not enforced as a kernel invariant: the `receipts` schema did not constrain the operation identifier, and the repository's own attack test demonstrated that an ACCEPTED and a later FAILED Receipt could coexist for one operation identifier.
+
+Nathan accepted the intended invariant: **an operation identifier identifies one attempted kernel operation; at most one terminal Receipt may exist for that identifier, and when durable outcome recording succeeds, exactly one exists.** Hermes implemented the remediation in `witsbi/easter` PR #31 — a schema-level unique constraint on the Receipt's operation identifier, with duplicate terminal outcomes rejected as deliberate kernel errors — which was independently verified and merged as `7b8a0144dce24a2e4b3cc25a839c99ec8253c86f`. The frozen review itself was not amended: it remains byte-for-byte the assessment of the pre-remediation kernel, and a separate disposition note records finding #5 as CLOSED (`paper/reviews/hermes-independent-cold-review-finding-5-update-2026-10-01.md`).
+
+The manuscript's current implementation claims — including the Receipt-cardinality invariant in §3.2 — describe the remediated kernel. They must not be read as claims about the kernel Hermes reviewed.
+
+EASTER anchors for this chain: Hermes's first-party remediation record (`evidence:4be43ba1-39b7-45c1-bbe8-a1ca1a08c059`, `receipt:34c03ae3-ad91-4897-ba8f-ff7efd952188`); the independent verification and merge observation (`evidence:eb26c568-751b-4630-8a7b-de20d701cbb7`).
+
+Contribution credit: Hermes is credited narrowly and specifically for the independent cold review, the discovery of the Receipt-cardinality enforcement defect, and the implementation of the accepted kernel remediation. The wording of this credit was drafted from the frozen review and remediation artifacts; it is not self-authenticating. Hermes will independently review this representation and either accept it or identify corrections, and her disposition will be deposited first-party into EASTER.
+
+## 8.9 Independent provenance retrieval
+
+Hermes cold-review finding #3 challenged whether the provenance case exposed enough stable EASTER records to permit independent reconstruction rather than relying on a first-party narrative. The finding was tested directly rather than answered from recollection.
+
+Pax/Muse and Hermes independently retrieved the EASTER publication history and froze separate reports before seeing the other participant's result. Pax/Muse worked under the `agent` role using stable-ID traversal through `get_evidence` and `get_receipt`; Hermes independently enumerated the authenticated EASTER API using opaque pagination cursors and reconstructed the relevant history from the returned corpus. Their reports are preserved separately as `paper/reviews/pax-easter-provenance-retrieval-2026-10-02.md` and `paper/reviews/hermes-easter-provenance-retrieval-2026-10-02.md` and are not treated as a synthesized canonical history.
+
+Both retrievals recovered a materially coherent publication-provenance history from EASTER and found no conflicting consequential chronology in the records they recovered. Their coverage differed with their retrieval capabilities: Hermes's enumeration recovered substantially more of the earlier publication history, while Pax's restricted traversal recovered a connected later subgraph from known stable identifiers.
+
+The two reports also converged on the principal limitation. The preserved history is not a complete, self-indexing, mechanically traversable graph. Some causal relationships are explicit stable-ID edges, while others are encoded in payload fields or require matching project, PR, commit, subject, or chronology. Later publication work is represented predominantly through Evidence rather than one continued State/Transition chain. EASTER also preserves assertions about external GitHub events without independently proving those external events.
+
+Finding #3A is therefore closed on a bounded result: **EASTER preserved consequential publication records sufficient for two independent retrievers, using different access and traversal methods, to recover materially coherent publication history; complete autonomous end-to-end reconstruction was not demonstrated.** This is evidence for historical preservation and recoverability, not a claim that the kernel supplies a canonical graph or graph-query semantics.

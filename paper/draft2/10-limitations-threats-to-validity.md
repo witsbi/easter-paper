@@ -99,15 +99,19 @@ A demonstrated case of that kind should be treated as evidence against the prese
 
 The DRC overlay classified Distinction, Relation, and Constraint as COVERED for all six architectures.
 
-No DRC-negative specimen was observed.
+No DRC-negative or borderline specimen was observed in the selected corpus. The recovered DRC classifications are also incomplete at the primitive-receipt level for portions of the corpus, so the historical classifications cannot all be independently reconstructed from the surviving package.
+
+The six systems were selected as mature, representation-rich agent architectures for the EASTER investigation, not as specimens designed to probe DRC's discriminative lower bound. The uniform COVERED result therefore does not establish whether DRC would discriminate among less mature or representationally weaker systems.
 
 No ablation experiment demonstrated that removing one of the three categories necessarily destroys functional interpretability.
 
 No formal proof establishes that DRC is minimal, universally necessary, or sufficient for meaning.
 
-The observed 3/3 coverage across six mature systems is therefore compatible with several interpretations: DRC may identify highly general representational structure, the categories may be too broad to discriminate strongly, the corpus may be biased toward systems rich enough to satisfy them, or some combination of these may be true.
+The observed 3/3 coverage across six mature systems is therefore compatible with several interpretations: DRC may identify highly general representational structure, mature agent architectures may have converged on structures satisfying DRC, the categories may be too broad to discriminate strongly, the corpus may be biased toward systems rich enough to satisfy them, or some combination of these may be true.
 
-The present paper cannot distinguish among those possibilities.
+The present paper cannot distinguish among those possibilities and therefore does not establish DRC's discriminative lower bound.
+
+This limitation does not alter the narrower observation that, under the classifications applied in this corpus, DRC coverage did not entail zero EASTER GAPs. That statement reports the relationship among the preserved classifications; it is not a claim that DRC's lower bound has been independently established.
 
 DRC should consequently be treated as a candidate analytical vocabulary supporting the userland/continuity boundary, not as an established universal ontology.
 
@@ -125,19 +129,17 @@ EASTER does not establish semantic truth, completeness of userland representatio
 
 Projection fidelity remains an external responsibility.
 
-## 10.10 Operational case-study limitation
+## 10.10 Operational provenance and retrieval limitation
 
-The contribution-provenance workflow described in Section 8 occurred during real preparation of this manuscript.
+The contribution-provenance workflow described in Section 8 occurred during real preparation of this manuscript and was not designed prospectively as a controlled experiment.
 
-It was not designed prospectively as a controlled experiment.
+Two later retrievals tested a narrower question raised by the independent cold review: whether consequential publication history preserved in EASTER could be recovered independently from the stored records. Pax/Muse and Hermes froze separate reports before seeing one another's result and used different retrieval capabilities. Both recovered materially coherent publication-provenance histories, but neither result establishes a complete or mechanically traversable end-to-end graph.
 
-The gateway-authentication failures described in Section 8 were naturally occurring rather than intentionally injected. At least two participant identities were affected in the same operational window. The broker log establishes the failure mechanism (successful mints, failed distribution-repo push in the cron context, pushed-token expiry 2026-09-30T20:16:14Z); gateway access logs corroborate the failure window and the recovery timing, as documented in the first-party operational account cited in Section 8.6. The participants already understood the architecture. The workflow was performed by people and systems involved in EASTER's development.
+The limitations are structural to the evidence package rather than contradictions in the recovered histories. Some relationships are explicit stable-ID links; others are embedded in payload fields or inferred from shared project, pull-request, commit, subject, and chronology information. Hermes could enumerate the authenticated API and therefore recovered substantially more history than Pax/Muse, whose `agent` role was limited to traversal from known identifiers. Later publication work is also represented predominantly through Evidence records rather than one continued State/Transition chain.
 
-The case therefore demonstrates that the reference implementation was used operationally under the described conditions.
+The retrieval result therefore supports historical preservation and bounded recoverability. It does not establish self-indexing graph semantics, canonical history selection, complete autonomous reconstruction, or independent verification of external GitHub assertions preserved inside EASTER payloads.
 
-It does not establish comparative superiority, security robustness, general usability, or universal sufficiency.
-
-Independent users applying EASTER to consequential workflows they did not design would provide stronger evidence.
+The workflow and retrievals were performed by systems involved in the EASTER research program. Independent users applying EASTER to consequential workflows they did not design would provide stronger evidence.
 
 ## 10.11 Reference-implementation dependence
 
@@ -215,9 +217,10 @@ It shows that:
 - the model can be applied as an architectural review lens;
 - the examined corpus contains both substantial overlap with EASTER and bounded demonstrated gaps;
 - DRC coverage did not entail zero EASTER GAPs under the applied classifications in that corpus;
-- the reference implementation supported one real multi-participant provenance workflow; and
+- the reference implementation supported one real multi-participant provenance workflow;
+- consequential portions of that publication history were independently recoverable from EASTER records by two retrievers using different access and traversal methods; and
 - the closest-prior investigation did not identify the surviving four-property conjunction in the systems and literature examined.
 
-The evidence does not establish universal sufficiency, minimality, semantic correctness, statistical prevalence, exhaustive novelty, or independent replication.
+The evidence does not establish universal sufficiency, minimality, semantic correctness, statistical prevalence, exhaustive novelty, complete self-indexing provenance reconstruction, or independent replication by researchers outside the development process.
 
 Those boundaries are part of the result rather than qualifications to be removed from it.
